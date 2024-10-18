@@ -1,0 +1,240 @@
+/** Header Styles */
+.header-gt {
+    background-color: #ffffff;
+    text-align: center;
+    padding-top: 24px;
+    padding-bottom: 0;
+}
+
+.header-gt .logo {
+    width: 100%;
+    border: 3px solid #F26F33;
+    transition: opacity 0.5s ease;
+}
+
+/* Introduction Styles */
+.introduction {
+    background: linear-gradient(to bottom, #005f69cb, #ffffff, #f27033eb);
+    width: 850px;
+    height: 550px;
+    padding: 60px 0;
+    margin: 3cm auto;
+}
+
+.introduction h2 {
+    font-family: "Arima", system-ui;
+    color: #000000;
+    font-size: 40px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.introduction p {
+    font-family: "Roboto Slab", serif;
+    font-size: 18px;
+    max-width: 800px;
+    margin: 10px auto;
+    color: #000000;
+    text-align: justify;
+    padding: 10px;
+}
+
+.introduction p b {
+    font-weight: bold;
+}
+
+/** Partner Section Styles */
+.partners {
+    padding: 30px 0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    gap: 0.3cm;
+    flex-wrap: wrap;
+}
+
+.partner-logos img {
+    width: 200px;
+    height: 120px;
+    object-fit: contain;
+    border: 2px solid #005f6984;
+    border-radius: 6px;
+}
+
+.cta-button {
+    font-family: "Open Sans", sans-serif;
+    font-size: 30px;
+    display: inline-block;
+    background-color: #005f69b1;
+    color: white;
+    padding: 10px 70px;
+    text-decoration: none;
+    margin-top: 40px;
+    text-shadow: 2px 2px 5px rgba(53, 53, 53, 0.596);
+}
+
+.thumbnail {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    border: 10px solid white;
+}
+
+.thumbnail:hover {
+    opacity: 50%;
+}
+
+.thumbnail img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.big-thumbnail {
+    height: 620px;
+}
+
+.small-thumbnail {
+    height: 310px;
+}
+
+.big-thumbnail img {
+    padding: 50px;
+}
+
+.small-thumbnail img {
+    padding: 30px;
+}
+
+.orange-line {
+    border: 0;
+    height: 1mm;
+    background-color: #F26F33;
+    margin-top: 50px;
+}
+
+/** Media Queries for Responsive Design */
+@media (max-width: 1440px) {
+    .container {
+        width: 95%;
+    }
+
+    .introduction {
+        width: 90%;
+        height: auto;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .introduction {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .thumbnail {
+        border: 5px solid white;
+    }
+
+    .cta-button {
+        font-size: 25px;
+        padding: 8px 50px;
+    }
+
+
+    .nav-link {
+        font-size: 16px;
+    }
+
+    .big-thumbnail,
+    .small-thumbnail {
+        height: 200px;
+    }
+
+    .partner-logos img {
+        width: 150px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .introduction h2 {
+        font-size: 30px;
+    }
+
+    .introduction p {
+        font-size: 16px;
+    }
+
+    .big-thumbnail {
+        height: 400px;
+    }
+
+    .small-thumbnail {
+        height: 200px;
+    }
+
+    .cta-button {
+        font-size: 20px;
+        padding: 8px 40px;
+    }
+
+    .partner-logos img {
+        width: 130px;
+        height: 90px;
+    }
+
+    .icon-container i {
+        height: 36px;
+        width: 36px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .introduction {
+        width: 100%;
+        margin: 2cm auto;
+        padding: 15px;
+    }
+
+    .introduction h2 {
+        font-size: 24px;
+    }
+
+    .introduction p {
+        font-size: 14px;
+    }
+
+    .cta-button {
+        font-size: 18px;
+        padding: 6px 30px;
+    }
+
+    .partner-logos img {
+        width: 100px;
+        height: 70px;
+    }
+
+    .big-thumbnail {
+        height: 150px;
+    }
+
+    .small-thumbnail {
+        height: 100px;
+    }
+
+    .icon-container i {
+        height: 30px;
+        width: 30px;
+        font-size: 0.8rem;
+    }
+}

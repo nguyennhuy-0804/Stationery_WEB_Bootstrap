@@ -1,0 +1,119 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.form-check-label {
+    font-size: 1em;
+}
+
+.img-fluid {
+    max-width: 200px;
+    height: auto;
+    margin-left: 40px;
+}
+
+
+@media (max-width: 576px) {
+    .custom-inf {
+        font-size: 1.2rem;
+    }
+
+    .card-title {
+        text-align: center;
+    }
+}
+
+
+.text-danger small {
+    font-size: 0.85em;
+}
+
+.btn-danger {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.custom-inf {
+    background-color: #F26F33;
+    /* Orange color */
+    color: white;
+    padding: 10px 20px;
+    /* Increase padding to make the box larger */
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 250px;
+    /* Ensures the box is at least 250px wide, even if the text is shorter */
+}
+
+.order-detail {
+    background-color: #F26F33;
+    /* Orange color */
+    color: white;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 250px;
+    margin-left: 0;
+}
+
+.btn-custom {
+    background-color: #F26F33;
+    border-color: #F26F33;
+    color: white;
+    text-align: center;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.form-check-input {
+    appearance: none;
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid #F26F33;
+    border-radius: 50%;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #F26F33;
+    border: 2px solid #F26F33;
+}
+
+.form-check-label {
+    margin-left: 8px;
+}
+
+.product-item1 {
+    background-color: rgba(0, 95, 105, 0.49);
+    padding: 10px;
+}
+
+.product-item2 {
+    background-color: #D9D9D9;
+    padding: 10px;
+}
+
+.card-footer {
+    background-color: rgba(0, 95, 105, 0.7);
+}
+
+.text-end {
+    font-weight: 600;
+}

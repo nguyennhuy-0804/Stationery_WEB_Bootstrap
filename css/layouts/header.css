@@ -1,0 +1,293 @@
+/** Header Top */
+.bg-header-top {
+  background-color: #f15a29;
+}
+
+.header-top-container {
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Logo ueh */
+.navbar-brand-logo {
+  width: 220px;
+  height: auto;
+}
+
+/* Icon địa chỉ, sđt, facebook */
+.navbar-header-logo {
+  width: 24px;
+  height: auto;
+  margin-right: 0.6rem;
+}
+
+/* Tên STATIONERY */
+.navbar-brand-text {
+  font-family: "Baloo";
+  color: white;
+  font-size: 40px;
+  font-weight: 400;
+  text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69,
+    2px 2px 0 #005f69;
+}
+
+/** Searchbar */
+/* Background thanh tìm kiếm */
+.search-container {
+  flex-grow: 1;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+/* Data user nhập */
+.search-input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 28px;
+  padding: 12px 40px;
+  font-size: 1rem;
+}
+
+/* Icon của thanh search */
+.search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Nút tìm kiếm */
+.search-btn {
+  height: 20px;
+  width: 20px;
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 18px;
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/** Dropdown cho search bar */
+.searchbar-dropdown {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.searchbar-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+  border: 2px solid #ccc;
+  border-top: none;
+  padding: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+}
+
+.searchbar-dropdown-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.searchbar-dropdown-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.searchbar-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.searchbar-dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+/** Toolbar  */
+/* Vị trí CÁc icon địa chỉ, sđt, fb */
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* Chứa các icon địa chỉ, sđt, fb */
+.icon-container {
+  gap: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Các icon địa chỉ, sđt,fb */
+.icon-container i {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid white;
+  color: white;
+  height: 44px;
+  width: 44px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container i:hover {
+  background-color: white;
+  color: #f15a29;
+  transition: all 0.3s ease;
+}
+
+/** Chuyển đổi ngôn ngữ */
+.language-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.locale-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  padding: 4px 15px;
+  cursor: pointer;
+  color: #0d6660;
+  font-size: 18px;
+  height: 50px;
+}
+
+.locale-switcher:hover {
+  background-color: white;
+  color: #005f69;
+  transition: all 0.3s ease;
+}
+
+.active-language {
+  font-weight: bold;
+}
+
+/** Responsive cho cỡ chữ title của web*/
+@media (max-width: 768px) {
+  .navbar-brand-text {
+    font-size: 26px;
+  }
+
+  .search-container {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+/** Header Bottom */
+.bg-header-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #005f69;
+  padding: 0;
+  margin: 0;
+}
+
+.header-bottom-container {
+  display: flex;
+}
+
+.navbar-nav {
+  height: 100%;
+  width: 100%;
+}
+
+.nav-link {
+  color: white;
+  font-size: 24px;
+  padding: 10px 15px;
+}
+
+.nav-link i {
+  margin-right: 8px;
+}
+
+.nav-item {
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  flex-grow: 1;
+  height: 100%;
+  font-family: "Roboto";
+}
+
+.nav-item:hover .nav-link {
+  color: #f15a29;
+}
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  margin: 0;
+  background-color: white;
+  width: 100%;
+  position: absolute;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  color: black;
+}
+
+.dropdown-item:hover {
+  background-color: #ece6f0;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.vertical-divider {
+  border-right: 2px solid white;
+  height: 100%;
+}

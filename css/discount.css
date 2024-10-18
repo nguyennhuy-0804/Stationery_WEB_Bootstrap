@@ -1,0 +1,526 @@
+/** Banner Section */
+.banner-section {
+    padding-top: 20px;
+}
+
+.bg-banner {
+    background-color: #005f692e;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #0000001c;
+    padding: 10px 20px;
+}
+
+.big-banner {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
+    opacity: 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+.small-banner {
+    width: 100%;
+    height: 194px;
+    border-radius: 15px;
+    opacity: 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+/** Flashsale Section */
+.flashsale-section {
+    padding-top: 50px;
+    height: auto;
+}
+
+.bg-flashsale {
+    width: 100%;
+    height: auto;
+    background-color: #EFB2B966;
+    border: 2px solid #00000040
+}
+
+.bg-flash-countdown {
+    width: fit-content;
+    max-width: 100%;
+    height: auto;
+    padding: 12px 16px;
+    background-color: #0DF6EB59;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.bg-flash-countdown-text {
+    font-family: 'Anton';
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 16px;
+    line-height: 52.69px;
+    text-shadow: -1px -1px 0 red,
+        1px -1px 0 red,
+        -1px 1px 0 red,
+        1px 1px 0 red;
+}
+
+.flashsale-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.bg-flash-info {
+    border-radius: 10px;
+    border: 4px solid white;
+    padding: 0;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 100%;
+    max-width: 100%;
+    height: fit-content;
+}
+
+
+.bg-flash-info-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.bg-flash-info .title {
+    align-items: center;
+    color: black;
+    display: flex;
+    font-family: 'Anton SC';
+    font-size: 28px;
+    font-weight: bold;
+    height: auto;
+    justify-content: center;
+    line-height: 41.02px;
+}
+
+.bg-flash-info .content {
+    align-items: start;
+    color: black;
+    display: flex;
+    font-size: 28px;
+    font-weight: 400;
+    height: 80px;
+    justify-content: start;
+    line-height: 37.5px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+
+
+.bg-flash-info .price-info {
+    align-items: center;
+    color: black;
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 37.5px;
+    text-align: left;
+}
+
+.bg-flash-info .discount-price {
+    color: #ff6b70;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.bg-flash-info .priceInfo .price {
+    color: #FF6B70;
+    font-weight: bold;
+}
+
+/** Discount Badge */
+.discount-badge {
+    position: relative;
+    display: inline-block;
+    padding: 24px 10px 20px 10px;
+    color: white;
+    background-color: red;
+    font-family: 'Reddit Mono';
+    font-size: 32px;
+    font-weight: bold;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    text-align: center;
+    height: 120px;
+    width: 90px;
+}
+
+.discount-badge::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 20px solid #f5cac3;
+}
+
+.discount-badge span {
+    display: inline-block;
+}
+
+/** Rating */
+.bg-flash-info .discount-ratings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28px;
+    height: 90px;
+    width: 100%;
+}
+
+.bg-flash-info .discount-ratings .discount-stars {
+    font-size: 36px;
+    display: inline-block;
+}
+
+/** Add Cart */
+.btn-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.btn-circle i {
+    font-size: 24px;
+}
+
+@media (max-width: 576px) {
+    .bg-flash-countdown {
+        width: 290px;
+        height: 60px;
+        padding: 12px 16px;
+        background-color: #0DF6EB59;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .bg-flash-countdown img {
+        height: 55px;
+        width: 40px;
+    }
+
+    .bg-flash-countdown-text {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .bg-flash-info {
+        width: 100%;
+        height: 70%;
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+
+    .bg-flash-info .title {
+        font-size: 20px;
+
+    }
+
+    .bg-flash-info .content {
+        font-size: 15px;
+        font-weight: 400;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 15px;
+        text-align: left;
+    }
+
+    .bg-flash-info .discount-color {
+        font-size: 15px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .bg-flash-info .price-info {
+        font-size: 22px;
+    }
+
+    .bg-flash-info .discount-price {
+        font-size: 15px;
+        width: 110px;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .bg-flash-info .discount-ratings {
+        font-size: 22px;
+        display: inline-block;
+        align-items: center;
+    }
+
+    .bg-flash-info .discount-ratings .discount-stars {
+        font-size: 20px;
+        padding-left: 3px;
+    }
+
+    .bg-flash-info .btn-circle {
+        width: 27px;
+        height: 27px;
+        font-size: 0.5rem;
+    }
+
+    .bg-flash-info .btn-circle i {
+        font-size: 17px;
+    }
+
+    .bg-flash-info .discount-badge {
+        font-size: 20px;
+        height: 80px;
+        width: 70px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .bg-flash-countdown {
+        width: 290px;
+        height: 60px;
+        padding: 12px 16px;
+        background-color: #0DF6EB59;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .bg-flash-countdown img {
+        height: 55px;
+        width: 40px;
+    }
+
+    .bg-flash-countdown-text {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .bg-flash-info {
+        width: 90%;
+        height: fit-content;
+        margin-top: 80px;
+    }
+
+    .bg-flash-info .title {
+        font-size: 18px;
+    }
+
+    .bg-flash-info .content {
+        font-size: 15px;
+        font-weight: 400;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 15px;
+        text-align: left;
+    }
+
+    .bg-flash-info .discount-color {
+        font-size: 15px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .bg-flash-info .price-info {
+        font-size: 22px;
+    }
+
+    .bg-flash-info .discount-price {
+        font-size: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .bg-flash-info .discount-ratings {
+        font-size: 22px;
+        padding: 0;
+    }
+
+    .bg-flash-info .discount-ratings .discount-stars {
+        font-size: 20px;
+        padding-left: 3px;
+    }
+
+    .btn-circle {
+        width: 27px;
+        height: 27px;
+        font-size: 0.5rem;
+    }
+
+    .btn-circle i {
+        font-size: 17px;
+    }
+
+    .discount-badge {
+        font-size: 22px;
+        height: 80px;
+        width: 60px;
+    }
+}
+
+/** Carousel */
+.flashsale-carousel {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/** Banner Discount */
+.banner-discount-section {
+    padding: 50px 10px;
+}
+
+.banner-discount-section img {
+    width: 100%;
+    height: 100%;
+    top: 1617px;
+    left: 32px;
+    gap: 0px;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 0px;
+}
+
+/** Voucher */
+.bg-title-voucher {
+    width: 468px;
+    height: 107px;
+    border-radius: 0px 5px 5px 0px;
+    border: 3px solid #188443;
+    background-color: #6bffa659;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-voucher {
+    font-family: "Anton SC";
+    font-size: 38px;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    text-shadow: -1px -1px 0 #f26f33, 1px -1px 0 #f26f33, -2px 2px 0 #f26f33,
+        2px 2px 0 #f26f33;
+}
+
+/** Card Voucher */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 0px auto;
+    margin-top: 50px;
+    max-width: 900px;
+}
+
+.voucher-card {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.voucher-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.voucher-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.voucher-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.voucher-details .text {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.voucher-button {
+    background-color: #f26f33;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.voucher-button:hover {
+    background-color: #ff5333;
+    color: white;
+}
+
+@media (max-width: 576px) {
+    .bg-title-voucher {
+        width: 270px;
+        height: 70px;
+    }
+
+    .title-voucher {
+        font-size: 20px;
+    }
+
+    .voucher-title {
+        font-size: 18px;
+        padding-right: 3px;
+        width: 78%;
+
+    }
+
+    .voucher-details .text {
+        font-size: 13px;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .voucher-image {
+        width: 130px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .voucher-button {
+        font-size: 10px;
+    }
+
+}

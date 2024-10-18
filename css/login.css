@@ -1,0 +1,198 @@
+.login-container {
+    padding: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.title h1 {
+    font-family: "Anton SC", system-ui;
+    font-weight: 300;
+    text-align: center;
+    font-size: 32px;
+    background-color: #005F69CC;
+    width: fit-content;
+    padding: 30px 40px;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482);
+    margin: 40px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0px 0;
+}
+
+input[type="username"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    background-color: #cdcdcd6a;
+    border: 2px solid #005F69;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Roboto Slab", system-ui;
+    color: black;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2cm;
+    margin-top: 20px;
+}
+
+.login-btn {
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: "Anton SC", system-ui;
+    font-weight: 400;
+    display: inline-block;
+    text-align: center;
+    width: 48%;
+    text-shadow: 1px 1px 0 #336c72,
+        -1px -1px 0 #336c72,
+        1px -1px 0 #336c72,
+        -1px 1px 0 #336c72;
+}
+
+.signup-btn {
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: "Anton SC", system-ui;
+    font-weight: 400;
+    display: inline-block;
+    text-align: center;
+    width: 48%;
+    text-shadow: 1px 1px 0 #336c72,
+        -1px -1px 0 #336c72,
+        1px -1px 0 #336c72,
+        -1px 1px 0 #336c72;
+}
+
+.signup-btn {
+    width: 180px;
+    background-color: #F26F33;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 14px 0;
+    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215);
+}
+
+.login-btn {
+    width: 180px;
+    background-color: #F26F33;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 14px 0;
+    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215);
+}
+
+.extra-options {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.extra-options a {
+    text-decoration: underline;
+    font-family: "Roboto Slab", system-ui;
+    font-size: 14px;
+    color: #666666;
+    font-weight: 400;
+}
+
+/* Responsive styles */
+@media (max-width: 1440px) {
+    .title h1 {
+        font-size: 36px;
+        padding: 30px 30px;
+    }
+
+    .login-btn,
+    .signup-btn {
+        width: 180px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .title h1 {
+        font-size: 32px;
+        padding: 30px 25px;
+    }
+
+    .login-btn,
+    .signup-btn {
+        width: 160px;
+        font-size: 18px;
+    }
+
+    .buttons {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title h1 {
+        font-size: 28px;
+        padding: 30px 20px;
+        margin: 40px auto;
+    }
+
+    .login-btn,
+    .signup-btn {
+        width: 160px;
+        font-size: 18px;
+    }
+
+    .login-container {
+        padding: 20px;
+    }
+
+    input[type="username"],
+    input[type="email"],
+    input[type="password"]  {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title h1 {
+        font-size: 24px;
+        padding: 20px 15px;
+        margin: 40px auto;
+    }
+
+    .login-btn,
+    .signup-btn {
+        width: 120px;
+        font-size: 14px;
+    }
+
+    input[type="username"],
+    input[type="email"],
+    input[type="password"]  {
+        padding: 16px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+}
