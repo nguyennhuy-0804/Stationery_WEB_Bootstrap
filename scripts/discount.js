@@ -33,19 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
             var now = new Date().getTime(); // Lấy thời gian hiện tại
             var distance = new Date(endTime).getTime() - now; // Tính khoảng cách thời gian còn lại
 
-            // Nếu thời gian còn lại < 0 thì dừng đồng hồ và hiển thị "EXPIRED"
+            //* Nếu thời gian còn lại < 0 thì dừng đồng hồ và hiển thị "EXPIRED"
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 countdownElement.innerHTML = "EXPIRED";
                 return;
             }
 
-            // Tính giờ, phút, giây
+            //* Tính giờ, phút, giây
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Hiển thị giờ, phút, giây
+            //* Hiển thị giờ, phút, giây
             countdownElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
         }, 1000);
     }

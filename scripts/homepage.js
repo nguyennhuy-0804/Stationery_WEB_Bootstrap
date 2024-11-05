@@ -32,6 +32,6 @@ function setupCarousel(carouselId, contentId, nextId, prevId) {
   window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
 }
 
-//* Cài đặt carousel
+// Cài đặt carousel
 setupCarousel("carousel-hot", "content-hot", "next-hot", "prev-hot");
 setupCarousel("carousel-bestseller", "content-bestseller", "next-bestseller", "prev-bestseller");

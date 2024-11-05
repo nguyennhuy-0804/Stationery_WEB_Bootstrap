@@ -10,7 +10,7 @@ $(document).ready(function(){
 		navBar.toggleClass('active')
 	});
 
-	// pseudo active
+	// pseudo active 
 	if($('#docs').length){
 		var sidenav = $('ul.side-nav').find('a');
 		var url = window.location.pathname.split( '/' );

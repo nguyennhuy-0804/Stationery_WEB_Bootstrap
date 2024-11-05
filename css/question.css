@@ -1,0 +1,115 @@
+body {
+    font-weight: 300;
+    font-size: 26px;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.title {
+    font-family: "Anton SC", sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+    text-align: center;
+    color: #f37921;
+    margin-bottom: 20px;
+}
+
+.step {
+    margin-bottom: 20px;
+}
+
+.step h2 {
+    color: #005F69;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.step p,
+.step ul {
+    font-size: 16px;
+    margin-left: 5px;
+    text-align: justify;
+}
+
+.step ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.step ul li {
+    margin-bottom: 5px;
+}
+
+.orange-divider {
+    border: none;
+    height: 2px;
+    background-color: #F26F33;
+    margin: 20px auto;
+}
+
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    body {
+        font-size: 22px;
+    }
+
+    .container {
+        padding-left: 2cm;
+        padding-right: 2cm;
+    }
+
+    .title {
+        font-size: 40px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        padding-left: 1cm;
+        padding-right: 1cm;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .container {
+        padding-left: 0.5cm;
+        padding-right: 0.5cm;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .step h2 {
+        font-size: 16px;
+    }
+
+    .step p,
+    .step ul {
+        font-size: 14px;
+    }
+
+    .step ul {
+        margin-left: 15px;
+    }
+}

@@ -15,7 +15,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danh mục sản phẩm</title>
 
-    <!-- get jQuery from the google apis or use your own -->
+    <!-- lấy jQuery từ google apis hoặc dữ liệu người dùng -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Assets for star ratings -->
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"
@@ -283,7 +283,7 @@ session_start();
                 </div>
             </div>
         <?php } ?>
-        <!-- End category loop -->
+        <!-- Kết thúc lặp danh mục -->
 
         <!-- Header -->
         <?php include 'layouts/footer.php'; ?>
@@ -304,16 +304,16 @@ session_start();
     <script>
         function filterProducts() {
             var filterValue = document.getElementById('productFilter').value;
-            window.location.href = "?sort=" + filterValue; // Redirect to apply the sort
+            window.location.href = "?sort=" + filterValue; // Chuyển hướng để áp dụng sắp xếp
         }
 
-        // Function to get the value of a query parameter
+        // Hàm để lấy giá trị của một tham số truy vấn
         function getQueryParameter(param) {
             var urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        // Set the selected option on page load
+        // Đặt tùy chọn đã chọn khi tải trang
         window.onload = function() {
             var selectedSort = getQueryParameter('sort');
             if (selectedSort) {

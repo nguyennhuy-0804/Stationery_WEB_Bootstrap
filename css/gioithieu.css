@@ -1,9 +1,10 @@
-/** Header Styles */
+/* Header Styles */
 .header-gt {
     background-color: #ffffff;
     text-align: center;
-    padding-top: 24px;
+    padding-top: 10px;
     padding-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .header-gt .logo {
@@ -43,7 +44,7 @@
     font-weight: bold;
 }
 
-/** Partner Section Styles */
+/* Partner Section Styles */
 .partners {
     padding: 30px 0;
     margin-top: 20px;
@@ -94,16 +95,16 @@
     left: 50%;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transform: translate(-50%, -50%);
 }
 
 .big-thumbnail {
-    height: 620px;
+    height: 420px;
 }
 
 .small-thumbnail {
-    height: 310px;
+    height: 210px;
 }
 
 .big-thumbnail img {
@@ -112,6 +113,7 @@
 
 .small-thumbnail img {
     padding: 30px;
+    height: 150px;
 }
 
 .orange-line {
@@ -121,7 +123,7 @@
     margin-top: 50px;
 }
 
-/** Media Queries for Responsive Design */
+/* Media Queries for Responsive Design */
 @media (max-width: 1440px) {
     .container {
         width: 95%;
@@ -143,12 +145,101 @@
     .thumbnail {
         border: 5px solid white;
     }
+}
+
+@media (max-width: 768px) {
+    .introduction h2 {
+        font-size: 30px;
+    }
+
+    .introduction p {
+        font-size: 16px;
+    }
+
+    .big-thumbnail,
+    .small-thumbnail {
+        height: 200px;
+    }
+
+    .big-thumbnail img {
+        padding: 30px;
+    }
+
+    .small-thumbnail img {
+        padding: 20px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .introduction {
+        width: 100%;
+        margin: 2cm auto;
+        padding: 15px;
+    }
+
+    .partners .partner-logos img {
+        width: 150px;
+        height: 90px;
+    }
+
+    .cta-button {
+        font-size: 20px;
+        padding: 10px 40px;
+    }
+
+    .big-thumbnail {
+        height: 150px;
+    }
+
+    .small-thumbnail {
+        height: 100px;
+    }
+}
+
+/*footer*/
+.footer-bottom,
+.footer-top,
+.policy-list,
+.footer-bottom p,
+.footer-bottom-buttons-btn-phone {
+    font-family: "open sans", serif;
+    font-size: 20px;
+    font-weight: 10px;
+    text-shadow: 2px 2px 5px rgba(53, 53, 53, 0.596);
+}
+
+/* Footer Top */
+.footer-top {
+    color: white;
+    padding: 64px 0;
+}
+
+.footer-top .footer-image {
+    width: 100%;
+    height: 400px;
+    background-image: url("../assets/imgs/parts/footer_banner.png");
+    background-size: 100% 100%;
+}
+
+@media (max-width: 1024px) {
+    .introduction {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .thumbnail {
+        border: 5px solid white;
+    }
 
     .cta-button {
         font-size: 25px;
         padding: 8px 50px;
     }
 
+    .navbar-brand-text {
+        font-size: 32px;
+    }
 
     .nav-link {
         font-size: 16px;
@@ -174,12 +265,13 @@
         font-size: 16px;
     }
 
-    .big-thumbnail {
-        height: 400px;
-    }
-
+    .big-thumbnail,
     .small-thumbnail {
         height: 200px;
+    }
+
+    .navbar-brand-text {
+        font-size: 26px;
     }
 
     .cta-button {
@@ -212,6 +304,10 @@
 
     .introduction p {
         font-size: 14px;
+    }
+
+    .navbar-brand-text {
+        font-size: 22px;
     }
 
     .cta-button {

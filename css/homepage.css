@@ -43,10 +43,9 @@
 /** Category Section */
 /* Tiêu đề của category */
 .bg-title-category {
-    width: 250px;
+    width: 240px;
     height: auto;
     background-color: #f26f33;
-    padding: 5px 16px;
     margin: 50px 0px 20px 0px;
 }
 
@@ -64,23 +63,23 @@
 /* Các sản phẩm */
 .bgCategory {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     background-color: #d9d9d952;
     border: 2px solid #0000001c;
+    padding: 10px 0px 10px 0px;
 }
 
 .card {
     width: 245px;
     height: 350px;
     left: 30px;
-    border-radius: 10px;
+    border-radius: 10px 10px 10px 10px;
     border: 2px solid #005f69;
 }
 
 .card img {
     width: 100%;
     height: 250px;
-    padding-bottom: 20px;
 }
 
 .card-title {
@@ -89,7 +88,7 @@
     font-weight: 400;
     text-align: center;
     color: #005f69;
-
+    padding-top: 14px;
 }
 
 .card-text {

@@ -1,53 +1,66 @@
-<?php
-include "database/conn.php"; // Kết nối cơ sở dữ liệu
+<?php 
 session_start();
+include 'database/conn.php';
 
-//Nếu chưa đăng nhập -> Chuyển tới trang Login
-// if (!isset($_SESSION['mySession'])) {
-//     header('location:login.php');
-//     exit();
-// }
+// Kết nối cơ sở dữ liệu 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "uehstationery";
 
-// Kiểm tra phương thức yêu cầu HTTP là POST và nút 'confirm' đã được gửi
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm'])) {
-    $email = $_POST['email']; // Lấy giá trị email từ form
-    $new_password = $_POST['new_password']; // Lấy giá trị mật khẩu mới từ form
-    $confirm_password = $_POST['confirm_password']; // Lấy giá trị xác nhận mật khẩu từ form
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Kiểm tra xem email có tồn tại trong bảng 'thanhvien' không
-    $sql = "SELECT MaTK FROM thanhvien WHERE Email = '$email'";
-    $result = mysqli_query($conn, $sql); // Thực hiện truy vấn kiểm tra email
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
 
-    // Nếu tìm thấy kết quả, tức là email tồn tại
-    if (mysqli_num_rows($result) > 0) {
-        // Lấy thông tin MaTK (Mã tài khoản) từ kết quả truy vấn
-        $row = mysqli_fetch_assoc($result);
-        $maTK = $row['MaTK']; // Lưu Mã tài khoản
+// Thông báo lỗi và thành công 
+$error_message = "";
+$success_message = "";
 
-        // Kiểm tra xem mật khẩu mới và mật khẩu xác nhận có trùng khớp không
-        if ($new_password === $confirm_password) {
-            // Mã hóa mật khẩu mới bằng hàm password_hash
-            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+// Function thay đổi mật khẩu 
+function changePassword($username, $newPassword) {
+    global $conn, $error_message, $success_message;
 
-            // Cập nhật mật khẩu đã mã hóa vào bảng 'taikhoan'
-            $update_sql = "UPDATE taikhoan SET MatKhau = '$hashed_password' WHERE MaTK = '$maTK'";
+    // Kiểm tra username có tồn tại 
+    $stmt = $conn->prepare("SELECT MatKhau FROM taikhoan WHERE TenDangNhap = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-            // Nếu cập nhật mật khẩu thành công
-            if (mysqli_query($conn, $update_sql)) {
-                // Chuyển hướng tới trang login với thông báo thành công
-                header("Location: login.php?reset=success");
-                exit(); // Dừng script sau khi chuyển hướng
-            } else {
-                // Nếu có lỗi xảy ra trong quá trình cập nhật mật khẩu
-                $error_message = "Có lỗi xảy ra trong quá trình cập nhật mật khẩu.";
-            }
+    if ($stmt->num_rows > 0) {
+        // Hash mật khẩu mới 
+        $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+        $updateStmt = $conn->prepare("UPDATE taikhoan SET MatKhau = ? WHERE TenDangNhap = ?");
+        $updateStmt->bind_param("ss", $hashedPassword, $username);
+        
+        if ($updateStmt->execute()) {
+            $success_message = "Đổi mật khẩu thành công!";
         } else {
-            // Nếu mật khẩu mới và mật khẩu xác nhận không khớp
-            $error_message = "Mật khẩu không khớp. Vui lòng thử lại.";
+            $error_message = "Đã xảy ra lỗi trong quá trình cập nhật mật khẩu.";
+        }
+        $updateStmt->close();
+    } else {
+        $error_message = "Người dùng không tồn tại!";
+    }
+
+    $stmt->close();
+}
+
+// Gửi form đi 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['username']) && isset($_POST['new_password']) && isset($_POST['confirm_password'])) {
+        $username = $_POST['username'];
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+
+        if ($newPassword !== $confirmPassword) {
+            $error_message = "Mật khẩu mới và mật khẩu xác nhận không khớp!";
+        } else {
+            changePassword($username, $newPassword);
         }
     } else {
-        // Nếu email không tồn tại trong hệ thống
-        $error_message = "Email không tồn tại trong hệ thống.";
+        $error_message = "Vui lòng điền đầy đủ thông tin!";
     }
 }
 ?>
@@ -86,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm'])) {
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
     <link rel="stylesheet" href="css/quenMK.css" />
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -98,21 +112,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm'])) {
                 <h1>ĐẶT LẠI MẬT KHẨU</h1>
             </div>
 
-            <!-- Form để nhập email và mật khẩu mới -->
+            <!-- Form để nhập tên đăng nhập và mật khẩu mới -->
             <form action="quenMK.php" method="post" class="form-quenmk">
-                <label for="email">Nhập lại địa chỉ email *</label>
-                <input type="email" id="email" name="email" placeholder="Email" required> <!-- Ô nhập email -->
+                <label for="username">Tên tài khoản *</label>
+                <input type="username" name="username" id="username" placeholder="Username" required>
 
                 <label for="new_password">Mật khẩu mới *</label>
-                <input type="password" id="new_password" name="new_password" placeholder="Password" required> <!-- Ô nhập mật khẩu mới -->
+                <input type="password" id="new_password" name="new_password" placeholder="Password" required>
 
                 <label for="confirm_password">Nhập lại mật khẩu mới *</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Password" required> <!-- Ô nhập lại mật khẩu để xác nhận -->
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Password" required>
 
                 <!-- Hiển thị thông báo lỗi nếu có lỗi xảy ra -->
                 <?php if (!empty($error_message)): ?>
                     <div class="error-message">
-                        <?php echo $error_message; ?> <!-- Hiển thị lỗi từ biến $error_message -->
+                        <?php echo $error_message; ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Hiển thị thông báo thành công nếu có -->
+                <?php if (!empty($success_message)): ?>
+                    <div class="success-message" style="color: green;">
+                        <?php echo $success_message; ?>
                     </div>
                 <?php endif; ?>
 

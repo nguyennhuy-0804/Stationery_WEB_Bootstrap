@@ -1,0 +1,60 @@
+/* Table styles */
+.table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+    border: 2px solid #000000; /* Dark border for the outer edge of the table */
+    border-radius: 8px; /* Rounded corners for the table */
+    overflow: hidden; /* Prevents overflow of corners */
+}
+
+.table th,
+.table td {
+    border: 1px solid #dee2e6; /* Light gray border for table cells */
+    padding: 12px; /* Padding for table cells */
+    text-align: center; /* Center text alignment */
+}
+
+.table th {
+    background-color: #f8f9fa; /* Light background for header */
+    color: #343a40; /* Dark text color for header */
+    font-weight: bold; /* Make header text bold */
+}
+
+/* Centering the title */
+h3 {
+    text-align: center; /* Center the subsection headings */
+}
+
+/* Chart container styles */
+.chart-container {
+    position: relative;
+    margin: auto;
+    width: 80%; /* Adjust width as needed */
+    height: 400px; /* Adjust height as needed */
+    border: 2px solid #000000; /* Dark border around chart */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Heading styles */
+h1 {
+    color: #343a40; /* Dark text color for headings */
+    text-align: center; /* Centered headings */
+}
+
+h2 {
+    margin-top: 40px; /* Space above section heading */
+    margin-bottom: 20px; /* Space below section heading */
+}
+
+h3 {
+    margin-top: 30px; /* Space above subsection heading */
+    text-align: center; /* Center subsection headings */
+}
+
+/* Custom font color for tables */
+.table td {
+    color: #495057; /* Darker text color for table data */
+}

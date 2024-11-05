@@ -29,7 +29,7 @@ include 'database/conn.php';
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/styles.css" /> 
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
 
@@ -37,7 +37,6 @@ include 'database/conn.php';
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
-    <!-- Custom Style -->
     <link rel="stylesheet" href="css/homepage.css" />
 </head>
 
@@ -104,12 +103,10 @@ include 'database/conn.php';
         // Đếm số sản phẩm bán chạy
         $hotTrendCount = count($hotTrendLst);
         ?>
-
-        <!-- Tiêu đề -->
+        <!-- tiêu đề -->
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM HOT</p>
         </div>
-
         <!-- Các sản phẩm bán chạy được đặt trong carousel -->
         <div class="carousel-wrapper" id="wrapper-hot">
             <div class="carousel" id="carousel-hot">
@@ -120,7 +117,6 @@ include 'database/conn.php';
                             <div class="card-body">
                                 <!--Hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
-
                                 <!--Tên sản phẩm   -->
                                 <h5 class="card-title" data-bs-toggle="tooltip"
                                     data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
@@ -128,11 +124,8 @@ include 'database/conn.php';
                                         <?= $data['TenSP'] ?>
                                     </a>
                                 </h5>
-
-                                <div class="d-flex align-items-center justify-content-between pt-2">
-                                    <!-- Số lượng đã bán -->
-                                    <p class="card-old-price">Đã bán: 300</p>
-
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="card-old-price"> Đã bán: 300</p>
                                     <!-- Giá bán -->
                                     <p class="card-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?>đ</p>
                                 </div>
@@ -141,7 +134,6 @@ include 'database/conn.php';
                     <?php endforeach; ?>
                 </div>
             </div>
-
             <!-- Nếu sản phẩm nhiều hơn 5 thì mới hiện button mũi tên -->
             <?php if ($hotTrendCount > 5): ?>
                 <button class="carousel-prev" id="prev-hot">
@@ -180,7 +172,6 @@ include 'database/conn.php';
                             <div class="card-body">
                                 <!-- hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
-
                                 <!-- Tên sản phẩm -->
                                 <h5 class="card-title" data-bs-toggle="tooltip"
                                     data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
@@ -188,11 +179,8 @@ include 'database/conn.php';
                                         <?= $data['TenSP'] ?>
                                     </a>
                                 </h5>
-
-                                <div class="d-flex align-items-center justify-content-between pt-2">
-                                    <!-- Số lượng đã bán -->
+                                <div class="d-flex align-items-center justify-content-between">
                                     <p class="card-old-price"> Đã bán: 500</p>
-
                                     <!-- Giá bán -->
                                     <p class="card-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?>đ</p>
                                 </div>
@@ -201,7 +189,6 @@ include 'database/conn.php';
                     <?php endforeach; ?>
                 </div>
             </div>
-
             <!-- Nếu có 5 card sản phẩm trở lên thì mới hiện button mũi tên -->
             <?php if ($bestSellerCount > 5): ?>
                 <button class="carousel-prev" id="prev-hot">
@@ -218,11 +205,12 @@ include 'database/conn.php';
     <section class="category-section">
         <div class="container-fluid text-center">
             <div class="row d-flex justify-content-center align-items-center">
-                <!-- Thumbnail lớn -->
+                <!-- thumbnail lớn -->
                 <div class="col-12 col-md-6" id="sach-col">
                     <div class="thumbnail big-thumbnail p-0">
                         <!-- Link đến trang category của sách -->
                         <a href="danhmucsp.php#L1">
+
                             <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid"
                                 alt="Sách" />
                             <div class="caption">

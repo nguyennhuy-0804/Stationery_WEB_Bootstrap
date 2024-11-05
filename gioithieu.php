@@ -1,5 +1,6 @@
 <?php
 include "database/conn.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,6 @@ include "database/conn.php";
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/gioithieu.css">
 </head>
 
@@ -44,14 +44,13 @@ include "database/conn.php";
     <?php include 'layouts/header.php'; ?>
 
     <div class="outlet">
-        <!-- Hình ảnh -->
         <div class="header-gt">
-            <img id="merueh-logo" src="./assets/imgs/abouts/MERUEH.jpg" alt="MERUEH" class="logo">
+            <img id="merueh-logo" src="./assets/imgs/abouts/MERUEH.PNG" alt="MERUEH" class="logo">
         </div>
 
         <section class="introduction">
             <div class="container">
-                <h2><strong>GIỚI THIỆU</strong></h2>
+                <h2>GIỚI THIỆU</h2>
                 <p>
                     <b>UEH STATIONERY</b> là trang giao dịch bán hàng trực tuyến trực thuộc đại học kinh tế tp. hồ chí minh
                     (ueh)stationery. Trang được ra mắt lần đầu tiên vào ngày 21 tháng 9 năm 2024 với sứ mệnh từ việc bán
@@ -68,7 +67,7 @@ include "database/conn.php";
             </div>
         </section>
 
-        <div class="container-fluid text-center">
+        <div class="container text-center">
             <div class="row align-items-center">
                 <div class="col-12 col-md-6">
                     <div class="thumbnail big-thumbnail"
@@ -79,7 +78,6 @@ include "database/conn.php";
                         </a>
                     </div>
                 </div>
-
                 <div class="col-6 col-md-3">
                     <div class="thumbnail small-thumbnail"
                         style="background: linear-gradient(to bottom, #f26f33 0%, #ffffff 95%, #ffffff 100%);">
@@ -96,7 +94,6 @@ include "database/conn.php";
                         </a>
                     </div>
                 </div>
-
                 <div class="col-6 col-md-3">
                     <div class="thumbnail small-thumbnail"
                         style="background: linear-gradient(to bottom, #005f69 0%, #ffffff 95%, #ffffff 100%);">
@@ -124,13 +121,12 @@ include "database/conn.php";
                 <img src="./assets/imgs/abouts/DOUBLEA.png" alt="Double A">
                 <img src="./assets/imgs/abouts/THIENLONG.png" alt="Thiên Long">
             </div>
-
             <a class="cta-button">Đối tác</a>
         </section>
     </div>
 
     <!-- Footer -->
-    <?php include 'layouts/footer2.php'; ?>
+    <?php include 'layouts/footer.php'; ?>
 
     <!-- Scripts -->
     <script src="scripts/header.js"></script>

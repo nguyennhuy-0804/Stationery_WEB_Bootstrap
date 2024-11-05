@@ -1,4 +1,4 @@
-/** Header Top */
+/* Header Top */
 .bg-header-top {
   background-color: #f15a29;
 }
@@ -19,14 +19,14 @@
   height: auto;
 }
 
-/* Icon địa chỉ, sđt, facebook */
+/* icon địa chỉ, sđt, facebook */
 .navbar-header-logo {
   width: 24px;
   height: auto;
   margin-right: 0.6rem;
 }
 
-/* Tên STATIONERY */
+/* tên STATIONERY */
 .navbar-brand-text {
   font-family: "Baloo";
   color: white;
@@ -36,7 +36,7 @@
     2px 2px 0 #005f69;
 }
 
-/** Searchbar */
+/* Searchbar */
 /* Background thanh tìm kiếm */
 .search-container {
   flex-grow: 1;
@@ -48,7 +48,7 @@
   justify-items: center;
 }
 
-/* Data user nhập */
+/* data user nhập */
 .search-input {
   width: 100%;
   border: 1px solid #ccc;
@@ -57,7 +57,7 @@
   font-size: 1rem;
 }
 
-/* Icon của thanh search */
+/* icon của thanh search */
 .search-icon {
   position: absolute;
   left: 18px;
@@ -66,7 +66,6 @@
   transform: translateY(-50%);
 }
 
-/* Nút tìm kiếm */
 .search-btn {
   height: 20px;
   width: 20px;
@@ -124,8 +123,7 @@
   background-color: #f1f1f1;
 }
 
-/** Toolbar  */
-/* Vị trí CÁc icon địa chỉ, sđt, fb */
+/* vị trí CÁc icon địa chỉ, sđt, fb */
 .toolbar-container {
   display: flex;
   align-items: center;
@@ -139,7 +137,7 @@
   flex-direction: row;
 }
 
-/* Chứa các icon địa chỉ, sđt, fb */
+/* chứa các icon địa chỉ, sđt, fb */
 .icon-container {
   gap: 0.8rem;
   display: flex;
@@ -147,7 +145,7 @@
   justify-content: center;
 }
 
-/* Các icon địa chỉ, sđt,fb */
+/* các icon địa chỉ, sđt,fb */
 .icon-container i {
   background-color: transparent;
   border-radius: 50%;
@@ -167,7 +165,7 @@
   transition: all 0.3s ease;
 }
 
-/** Chuyển đổi ngôn ngữ */
+/* Ngôn ngữ */
 .language-container {
   display: flex;
   align-items: center;
@@ -197,7 +195,8 @@
   font-weight: bold;
 }
 
-/** Responsive cho cỡ chữ title của web*/
+
+/* respnsive cho cỡ chữ title của web*/
 @media (max-width: 768px) {
   .navbar-brand-text {
     font-size: 26px;
@@ -214,7 +213,7 @@
   }
 }
 
-/** Header Bottom */
+/* Header Bottom */
 .bg-header-bottom {
   display: flex;
   align-items: center;
@@ -224,10 +223,6 @@
   margin: 0;
 }
 
-.header-bottom-container {
-  display: flex;
-}
-
 .navbar-nav {
   height: 100%;
   width: 100%;
@@ -235,7 +230,7 @@
 
 .nav-link {
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   padding: 10px 15px;
 }
 
@@ -259,10 +254,6 @@
 
 .nav-item:hover .nav-link {
   color: #f15a29;
-}
-
-.nav-item.dropdown {
-  position: relative;
 }
 
 .dropdown-menu {
@@ -290,4 +281,12 @@
 .vertical-divider {
   border-right: 2px solid white;
   height: 100%;
+}
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.header-bottom-container {
+  display: flex;
 }

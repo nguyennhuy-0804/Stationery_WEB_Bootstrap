@@ -15,7 +15,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UEH Stationery</title>
 
-    <!-- get jQuery from the google apis or use your own -->
+    <!-- lấy jQuery từ google apis hoặc dữ liệu người dùng -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Assets for star ratings -->
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"
@@ -128,7 +128,7 @@ session_start();
                             <div class="col-md-6 p-0">
                                 <div
                                     class="d-flex justify-content-center align-items-center mh-100 h-100 position-relative">
-                                    <!-- Countdown cảu tiên để flashsale -->
+                                    <!-- Đếm ngược để flashsale -->
                                     <div class="bg-flash-countdown position-absolute top-0 start-0 ">
                                         <img src="assets/imgs/buttons/btn_flashsale.png" alt=""
                                             style="height: 70px; width: 50px"></img>
