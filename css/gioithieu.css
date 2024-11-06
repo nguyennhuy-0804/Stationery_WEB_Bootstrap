@@ -1,129 +1,197 @@
-/* Header Styles */
+/* Header Styles - Kiểu cho phần đầu trang */
 .header-gt {
+    /* Nền trắng */
     background-color: #ffffff;
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Khoảng cách phía trên của phần đầu trang */
     padding-top: 10px;
+    /* Xóa khoảng cách phía dưới */
     padding-bottom: 0;
+    /* Khoảng cách phía dưới của header so với phần khác */
     margin-bottom: 10px;
 }
 
 .header-gt .logo {
+    /* Chiều rộng tối đa là 100% của khung chứa */
     width: 100%;
+    /* Viền màu cam cho logo */
     border: 3px solid #F26F33;
+    /* Hiệu ứng chuyển đổi độ mờ khi hover */
     transition: opacity 0.5s ease;
 }
 
-/* Introduction Styles */
+/* Introduction Styles - Kiểu cho phần giới thiệu */
 .introduction {
+    /* Gradient chuyển màu từ xanh đến trắng và cam */
     background: linear-gradient(to bottom, #005f69cb, #ffffff, #f27033eb);
+    /* Chiều rộng khung phần giới thiệu */
     width: 850px;
+    /* Chiều cao khung */
     height: 550px;
+    /* Khoảng đệm từ trên và dưới */
     padding: 60px 0;
+    /* Căn giữa phần giới thiệu với khoảng cách trên-dưới là 3cm */
     margin: 3cm auto;
 }
 
 .introduction h2 {
+    /* Font chữ tiêu đề */
     font-family: "Arima", system-ui;
+    /* Màu chữ đen */
     color: #000000;
+    /* Kích thước chữ lớn */
     font-size: 40px;
+    /* Độ dày chữ nhẹ */
     font-weight: 200;
+    /* Căn giữa tiêu đề */
     text-align: center;
 }
 
 .introduction p {
+    /* Font chữ phần nội dung */
     font-family: "Roboto Slab", serif;
+    /* Cỡ chữ */
     font-size: 18px;
+    /* Chiều rộng tối đa */
     max-width: 800px;
+    /* Khoảng cách phía trên và dưới của đoạn văn */
     margin: 10px auto;
+    /* Màu chữ đen */
     color: #000000;
+    /* Căn đều 2 bên */
     text-align: justify;
+    /* Khoảng đệm bên trong đoạn văn */
     padding: 10px;
 }
 
 .introduction p b {
+    /* Độ dày chữ khi bôi đậm */
     font-weight: bold;
 }
 
-/* Partner Section Styles */
+/* Partner Section Styles - Kiểu cho phần Đối tác */
 .partners {
+    /* Khoảng đệm phía trên và dưới */
     padding: 30px 0;
+    /* Khoảng cách từ phần giới thiệu xuống phần đối tác */
     margin-top: 20px;
+    /* Căn giữa nội dung phần đối tác */
     text-align: center;
 }
 
 .partner-logos {
+    /* Dàn logo thành hàng ngang */
     display: flex;
+    /* Căn giữa logo theo chiều ngang */
     justify-content: center;
+    /* Khoảng cách giữa các logo */
     gap: 0.3cm;
+    /* Cho phép logo xuống hàng nếu thiếu không gian */
     flex-wrap: wrap;
 }
 
 .partner-logos img {
+    /* Chiều rộng và cao của logo */
     width: 200px;
     height: 120px;
+    /* Giữ nguyên tỷ lệ logo */
     object-fit: contain;
+    /* Viền xanh nhạt xung quanh logo */
     border: 2px solid #005f6984;
+    /* Bo góc nhẹ */
     border-radius: 6px;
 }
 
+/* Call-to-Action Button Styles - Kiểu cho nút kêu gọi hành động */
 .cta-button {
+    /* Font chữ nút */
     font-family: "Open Sans", sans-serif;
+    /* Kích thước chữ lớn */
     font-size: 30px;
+    /* Căn chỉnh nút */
     display: inline-block;
+    /* Nền nút màu xanh */
     background-color: #005f69b1;
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm trong nút */
     padding: 10px 70px;
+    /* Xóa gạch chân */
     text-decoration: none;
+    /* Khoảng cách phía trên của nút */
     margin-top: 40px;
+    /* Bóng chữ nhẹ cho nút */
     text-shadow: 2px 2px 5px rgba(53, 53, 53, 0.596);
 }
 
+/* Thumbnail Styles - Kiểu cho hình ảnh thu nhỏ */
 .thumbnail {
+    /* Vị trí tương đối */
     position: relative;
+    /* Cho phép hình ảnh nằm ngoài khung chứa */
     overflow: hidden;
+    /* Xóa gạch chân */
     text-decoration: none;
+    /* Viền trắng xung quanh thumbnail */
     border: 10px solid white;
 }
 
 .thumbnail:hover {
+    /* Hiệu ứng giảm độ mờ khi hover */
     opacity: 50%;
 }
 
 .thumbnail img {
+    /* Vị trí tuyệt đối của ảnh trong thumbnail */
     position: absolute;
+    /* Căn giữa ảnh */
     top: 50%;
     left: 50%;
+    /* Kích thước 100% thumbnail */
     width: 100%;
     height: 100%;
+    /* Giữ nguyên tỷ lệ ảnh */
     object-fit: contain;
+    /* Căn chỉnh giữa bằng cách di chuyển -50% */
     transform: translate(-50%, -50%);
 }
 
 .big-thumbnail {
+    /* Chiều cao lớn */
     height: 420px;
 }
 
 .small-thumbnail {
+    /* Chiều cao nhỏ */
     height: 210px;
 }
 
 .big-thumbnail img {
+    /* Khoảng đệm ảnh bên trong thumbnail lớn */
     padding: 50px;
 }
 
 .small-thumbnail img {
+    /* Khoảng đệm ảnh bên trong thumbnail nhỏ */
     padding: 30px;
+    /* Chiều cao ảnh nhỏ */
     height: 150px;
 }
 
+/* Đường kẻ màu cam */
 .orange-line {
+    /* Xóa viền */
     border: 0;
+    /* Chiều cao của đường kẻ */
     height: 1mm;
+    /* Màu cam cho đường kẻ */
     background-color: #F26F33;
+    /* Khoảng cách phía trên */
     margin-top: 50px;
 }
 
-/* Media Queries for Responsive Design */
+/* Media Queries for Responsive Design - Điều chỉnh cho thiết bị khác nhau */
 @media (max-width: 1440px) {
     .container {
         width: 95%;
@@ -197,7 +265,7 @@
     }
 }
 
-/*footer*/
+/* Footer Styles - Kiểu cho phần chân trang */
 .footer-bottom,
 .footer-top,
 .policy-list,
@@ -209,19 +277,24 @@
     text-shadow: 2px 2px 5px rgba(53, 53, 53, 0.596);
 }
 
-/* Footer Top */
+/* Footer Top - Phần trên chân trang */
 .footer-top {
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm phía trên và dưới */
     padding: 64px 0;
 }
 
 .footer-top .footer-image {
+    /* Chiều rộng và cao của ảnh nền */
     width: 100%;
     height: 400px;
+    /* Hình nền từ thư mục */
     background-image: url("../assets/imgs/parts/footer_banner.png");
     background-size: 100% 100%;
 }
 
+/* Media Queries for Footer - Điều chỉnh chân trang cho thiết bị */
 @media (max-width: 1024px) {
     .introduction {
         width: 80%;

@@ -1,515 +1,646 @@
+/* Import font từ Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-
-
-
+/* Cấu hình nền cho toàn bộ trang */
 body {
+    /* Màu nền xám nhạt */
     background-color: #f4f4f4;
 }
 
+/* Kiểu cho thẻ card */
 .card {
+    /* Đổ bóng nhẹ cho card */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Header của thẻ card */
 .card-header {
+    /* Tô đậm font chữ */
     font-weight: bold;
+    /* Kích thước font chữ lớn */
     font-size: 1.2em;
 }
 
+/* Nội dung bên trong thẻ card */
 .card-body {
+    /* Khoảng đệm bên trong */
     padding: 1rem;
 }
 
+/* Label cho các mục chọn (checkbox/radio) */
 .form-check-label {
+    /* Kích thước font chữ */
     font-size: 1em;
 }
 
+/* Kiểu cho hình ảnh */
 .img-fluid {
+    /* Chiều rộng tối đa là 200px */
     max-width: 200px;
+    /* Chiều cao tự động theo tỷ lệ */
     height: auto;
+    /* Khoảng cách bên trái */
     margin-left: 40px;
 }
 
-/* Responsive for smaller devices */
+/* Responsive cho các thiết bị có kích thước nhỏ hơn 576px */
 @media (max-width: 576px) {
     .custom-inf {
+        /* Tăng kích thước font chữ */
         font-size: 1.2rem;
     }
 
     .card-title {
+        /* Căn giữa tiêu đề */
         text-align: center;
     }
 }
 
-/* Text styling */
+/* Kiểu cho các đoạn văn bản cảnh báo */
 .text-danger small {
+    /* Kích thước font chữ nhỏ */
     font-size: 0.85em;
 }
 
+/* Kiểu cho nút "nguy hiểm" */
 .btn-danger {
+    /* Kích thước font chữ lớn */
     font-size: 1.2em;
+    /* Tô đậm chữ */
     font-weight: bold;
 }
 
-/* Custom info box */
+/* Hộp thông tin tuỳ chỉnh */
 .custom-inf {
+    /* Màu nền cam */
     background-color: #F26F33;
-    /* Orange color */
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm xung quanh */
     padding: 10px 20px;
-    /* Increase padding to make the box larger */
+    /* Đảm bảo chiều rộng vừa với nội dung */
     width: fit-content;
+    /* Căn giữa hộp thông tin */
     margin: 0 auto;
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Chiều rộng tối thiểu là 250px */
     min-width: 250px;
-    /* Ensures the box is at least 250px wide, even if the text is shorter */
 }
 
+/* Chi tiết đơn hàng */
 .order-detail {
+    /* Màu nền cam */
     background-color: #F26F33;
-    /* Orange color */
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm xung quanh */
     padding: 10px 20px;
+    /* Chiều rộng vừa với nội dung */
     width: fit-content;
+    /* Căn giữa hộp thông tin */
     margin: 0 auto;
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Chiều rộng tối thiểu là 250px */
     min-width: 250px;
+    /* Xóa khoảng cách bên trái */
     margin-left: 0;
 }
 
+/* Kiểu cho nút tuỳ chỉnh */
 .btn-custom {
+    /* Màu nền cam */
     background-color: #F26F33;
+    /* Màu viền cam */
     border-color: #F26F33;
+    /* Màu chữ trắng */
     color: white;
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Chiều rộng vừa với nội dung */
     width: fit-content;
+    /* Tô đậm chữ */
     font-weight: bold;
 }
 
-/* Custom radio button */
+/* Kiểu cho nút chọn (radio button) tuỳ chỉnh */
 .form-check-input {
+    /* Loại bỏ kiểu mặc định */
     appearance: none;
+    /* Chiều rộng và chiều cao của nút */
     width: 1.2em;
     height: 1.2em;
+    /* Màu viền cam */
     border: 2px solid #F26F33;
+    /* Bo tròn nút */
     border-radius: 50%;
+    /* Vị trí tương đối */
     position: relative;
+    /* Loại bỏ viền bao quanh khi chọn */
     outline: none;
+    /* Con trỏ thành tay khi di chuột qua */
     cursor: pointer;
 }
 
+
+/* Kiểu cho nút chọn (radio button) khi được chọn */
 .form-check-input:checked {
+    /* Màu nền cam khi được chọn */
     background-color: #F26F33;
+    /* Viền cam khi được chọn */
     border: 2px solid #F26F33;
 }
 
+/* Khoảng cách giữa label và nút chọn */
 .form-check-label {
+    /* Cách nút chọn 8px sang phải */
     margin-left: 8px;
 }
 
-/* Product item styles */
+/* Kiểu cho sản phẩm loại 1 */
 .product-item1 {
+    /* Màu nền xanh đậm trong suốt */
     background-color: rgba(0, 95, 105, 0.49);
+    /* Khoảng đệm bên trong */
     padding: 10px;
 }
 
+/* Kiểu cho sản phẩm loại 2 */
 .product-item2 {
+    /* Màu nền xám nhạt */
     background-color: #D9D9D9;
+    /* Khoảng đệm bên trong */
     padding: 10px;
 }
 
-/* Footer styling */
+/* Kiểu cho phần footer của thẻ card */
 .card-footer {
+    /* Màu nền xanh đậm trong suốt */
     background-color: rgba(0, 95, 105, 0.7);
 }
 
+/* Kiểu cho đoạn văn bản căn lề phải */
 .text-end {
+    /* Tăng độ đậm cho chữ */
     font-weight: 600;
 }
 
-
-
-
-
-
+/* Cấu hình nền và font chữ chung cho toàn bộ trang */
 body {
+    /* Font chữ chính */
     font-family: "Roboto", sans-serif;
+    /* Bỏ lề và khoảng đệm mặc định */
     margin: 0;
     padding: 0;
 }
 
-
-
-
+/* Căn chỉnh container */
 .container {
+    /* Chiều rộng 100% của màn hình */
     width: 100%;
+    /* Căn giữa container */
     margin: auto;
 }
 
-
-
-
+/* Kiểu cho các section thông tin hồ sơ và giỏ hàng */
 .profile-section,
 .cart-section {
+    /* Khoảng cách dưới và đệm bên trong */
     margin-bottom: 20px;
     padding: 10px;
 }
 
-
-
-
+/* Kiểu cho tiêu đề trong phần hồ sơ */
 .profile-section h2 {
+    /* Font chữ đậm từ Google Fonts */
     font-family: "Anton SC", sans-serif;
+    /* Khoảng đệm trên dưới */
     padding: 20px;
+    /* Màu nền cam */
     background-color: #f26f33;
+    /* Màu chữ trắng */
     color: white;
+    /* Tăng khoảng đệm trên dưới */
     padding: 30px;
+    /* Chiều rộng vừa với nội dung */
     width: fit-content;
+    /* Căn giữa tiêu đề */
     margin: auto;
+    /* Căn giữa chữ trong tiêu đề */
     text-align: center;
+    /* Hiệu ứng đổ bóng cho chữ */
     text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69;
 }
 
 
-
-
+/* Kiểu ảnh cho phần hồ sơ */
 .profile-section img {
+    /* Bo tròn ảnh thành hình tròn */
     border-radius: 50%;
+    /* Đảm bảo ảnh chiếm toàn bộ chiều rộng vùng chứa */
     width: 100%;
+    /* Đảm bảo tỷ lệ gốc của ảnh */
     height: auto;
+    /* Chiều rộng tối đa của ảnh */
     max-width: 300px;
+    /* Viền xanh đậm cho ảnh */
     border: 2px solid #005F69;
+    /* Khoảng cách bên dưới ảnh */
     margin-bottom: 10px;
 }
 
-
-
-
+/* Kiểu chung cho phần thông tin hồ sơ */
 .profile-info {
+    /* Sắp xếp nội dung theo chiều ngang */
     display: flex;
+    /* Căn giữa theo trục dọc */
     align-items: center;
+    /* Khoảng đệm bên trong */
     padding: 10px;
 }
 
-
-
-
 .profile-info div {
+    /* Căn lề cho nội dung bên trong */
     margin-left: 0;
     margin: 20px;
 }
 
-
-
-
+/* Kiểu khoảng cách giữa các đoạn trong thông tin hồ sơ */
 .profile-info p {
     margin: 5px 0;
 }
 
-
-
-
+/* Đường phân cách */
 hr {
+    /* Màu cam */
     color: #F26F33;
+    /* Độ dày của đường */
     border: 5px solid #F26F33;
 }
 
-
-
-
+/* Kiểu nền màu cam cho các thành phần flex */
 .d-flex {
+    /* Màu nền cam */
     background-color: #f26f33;
+    /* Chiều rộng vừa với nội dung */
     width: max-content;
 }
 
-
-
-
+/* Kiểu tiêu đề cho phần giỏ hàng */
 .cart-section h2 {
+    /* Font chữ đậm */
     font-family: "Anton SC", sans-serif;
+    /* Màu chữ trắng */
     color: white;
+    /* Bỏ khoảng cách trên và dưới */
     margin: 0;
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Khoảng đệm bên trong */
     padding: 20px;
+    /* Hiệu ứng đổ bóng cho chữ */
     text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69;
 }
 
-
-
-
+/* Kiểu biểu tượng trong phần giỏ hàng */
 .cart-section i {
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm xung quanh */
     padding: 20px;
+    /* Kích thước font chữ */
     font-size: 24px;
 }
 
-
-
-
+/* Kiểu cho mỗi sản phẩm trong giỏ hàng */
 .cart-item {
+    /* Sắp xếp nội dung theo chiều ngang */
     display: flex;
+    /* Căn giữa theo trục dọc */
     align-items: center;
+    /* Đường viền dưới nhạt */
     border-bottom: 1px solid #ddd;
+    /* Khoảng đệm bên trong */
     padding: 10px;
+    /* Màu nền xanh trong suốt */
     background-color: #005F697D;
+    /* Khoảng cách bên dưới */
     margin-bottom: 10px;
 }
 
-
-
-
+/* Kiểu ảnh cho mỗi sản phẩm trong giỏ hàng */
 .cart-item img {
+    /* Kích thước ảnh */
     width: 200px;
     height: 200px;
+    /* Cách cắt ảnh vừa với kích thước */
     object-fit: cover;
+    /* Khoảng đệm bên trong ảnh */
     padding: 20px;
 }
 
-
-
-
+/* Chi tiết sản phẩm trong giỏ hàng */
 .cart-item-details {
+    /* Chiếm toàn bộ chiều rộng còn lại */
     flex: 1;
 }
 
-
-
-
+/* Kiểu tiêu đề nhỏ */
 h4 {
+    /* Khoảng cách lề xung quanh */
     margin: 10px;
 }
 
-
-
-
+/* Khoảng cách giữa các đoạn mô tả sản phẩm */
 .cart-item-details p {
+    /* Khoảng cách trên dưới */
     margin: 5px 0;
+    /* Căn lề trái */
     margin-left: 10px;
-
-
-
-
 }
 
-
-
-
+/* Kiểu giá và số lượng sản phẩm */
 .cart-item-price,
 .cart-item-quantity {
+    /* Căn giữa nội dung */
     text-align: center;
+    /* Khoảng cách trái */
     margin-left: 10px;
 }
 
-
-
-
+/* Kiểu chữ và màu sắc cho giá sản phẩm */
 .cart-item-price {
+    /* Màu đỏ */
     color: red;
+    /* Chữ đậm */
     font-weight: bold;
 }
 
-
-
-
+/* Kiểu input để cập nhật số lượng */
 .update-input {
+    /* Chiều rộng của input */
     width: 50px;
+    /* Khoảng đệm bên trong */
     padding: 5px 10px;
+    /* Viền cam nhạt */
     border: 1px solid #ff884b;
+    /* Bo góc */
     border-radius: 4px;
+    /* Căn giữa chữ */
     text-align: center;
+    /* Kích thước font */
     font-size: 14px;
 }
 
-
-
-
+/* Kiểu chung cho nút */
 .btn {
+    /* Chiều rộng tối đa */
     width: 100%;
     max-width: 120px;
+    /* Khoảng đệm bên trong */
     padding: 10px;
+    /* Kích thước font */
     font-size: 14px;
+    /* Bo góc */
     border-radius: 4px;
+    /* Khoảng cách giữa các nút */
     margin: 5px;
+    /* Hiệu ứng chuyển màu khi hover */
     transition: background-color 0.3s ease-in-out;
 }
 
-
-
-
+/* Kiểu nút xóa khi hover */
 .remove-btn:hover {
+    /* Màu nền đỏ đậm */
     background-color: #8B0000;
 }
 
-
-
-
+/* Kiểu nút cập nhật khi hover */
 .update-btn:hover {
+    /* Màu nền xanh đậm */
     background-color: #0056b3;
 }
 
-
-
-
+/* Phần tóm tắt giỏ hàng */
 .cart-summary {
+    /* Khoảng cách trên */
     margin-top: 10px;
+    /* Màu nền cam nhạt */
     background-color: #F26F336B;
+    /* Khoảng đệm bên trong */
     padding: 10px;
+    /* Chiều rộng chiếm toàn bộ */
     width: 100%;
+    /* Sắp xếp nội dung theo chiều ngang */
     display: flex;
+    /* Căn đều hai bên */
     justify-content: space-between;
+    /* Căn giữa nội dung theo trục dọc */
     align-items: center;
 }
 
-
-
-
+/* Kiểu container hiển thị tổng giá */
 .total-price-container {
+    /* Sắp xếp theo chiều ngang */
     display: flex;
+    /* Căn giữa theo trục dọc */
     align-items: center;
+    /* Không có nền */
     background: none;
+    /* Khoảng đệm xung quanh */
     padding: 20px;
+    /* Căn lề trái */
     margin-left: auto;
 }
 
-
-
-
+/* Kiểu nhãn trong phần tóm tắt giỏ hàng */
 .cart-summary label {
+    /* Khoảng cách xung quanh */
     margin: 10px;
+    /* Kích thước font */
     font-size: 15px;
+    /* Khoảng đệm bên trong */
     padding: 10px;
 }
 
-
-
-
+/* Kiểu chữ và màu sắc cho giá tổng */
 .cart-summary .total-price {
+    /* Kích thước font lớn hơn */
     font-size: 18px;
+    /* Chữ đậm */
     font-weight: bold;
+    /* Màu đỏ */
     color: red;
+    /* Bỏ khoảng cách */
     margin: 0;
 }
 
-
-
-
+/* Nút thanh toán */
 .checkout-btn {
+    /* Màu nền cam đậm */
     background-color: #ff884b;
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm bên trong */
     padding: 20px;
+    /* Bỏ viền */
     border: none;
+    /* Con trỏ chuột dạng chỉ tay khi hover */
     cursor: pointer;
+    /* Bo góc */
     border-radius: 5px;
+    /* Khoảng cách trái */
     margin-left: 10px;
+    /* Hiệu ứng chuyển màu khi hover */
     transition: background-color 0.3s ease-in-out;
 }
 
-
-
-
+/* Hiệu ứng hover cho nút thanh toán */
 .checkout-btn:hover {
+    /* Màu nền đỏ */
     background-color: red;
 }
 
 
-
-
 /* Responsive */
 @media (max-width: 768px) {
+    /* Thiết kế responsive cho phần thông tin hồ sơ */
     .profile-info {
+        /* Chuyển hướng sang dọc */
         flex-direction: column;
+        /* Căn giữa các phần tử theo chiều ngang */
         align-items: center;
     }
 
-
-
-
+    /* Thiết kế responsive cho mỗi sản phẩm trong giỏ hàng */
     .cart-item {
+        /* Chuyển hướng sang dọc */
         flex-direction: column;
+        /* Căn trái các phần tử */
         align-items: flex-start;
     }
 
-
-
-
+    /* Ảnh sản phẩm trong giỏ hàng khi ở thiết kế nhỏ */
     .cart-item img {
+        /* Khoảng cách dưới ảnh */
         margin-bottom: 10px;
     }
 }
 
+/* Kiểu phần chân của card */
 .card-footer {
-    background-color: #F26F33; /* Màu nền cam */
-    color: white; /* Màu chữ trắng */
+    /* Màu nền cam */
+    background-color: #F26F33;
+    /* Màu chữ trắng */
+    color: white;
 }
 
+/* Kiểu nút sáng */
 .btn-light {
-    background-color: #F26F33; /* Màu nền cam cho nút */
-    color: white; /* Màu chữ trắng cho nút */
-    padding: 10px 18px; /* Tăng kích thước padding cho nút */
-    font-size: 14px; /* Tăng kích thước chữ cho nút */
-    border: none; /* Bỏ đường viền */
-    border-radius: 5px; /* Bo góc cho nút */
-    cursor: pointer; /* Thay đổi con trỏ khi hover */
-    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+    /* Màu nền cam cho nút */
+    background-color: #F26F33;
+    /* Màu chữ trắng cho nút */
+    color: white;
+    /* Tăng kích thước padding cho nút */
+    padding: 10px 18px;
+    /* Tăng kích thước chữ */
+    font-size: 14px;
+    /* Bỏ đường viền */
+    border: none;
+    /* Bo góc cho nút */
+    border-radius: 5px;
+    /* Thay đổi con trỏ khi hover */
+    cursor: pointer;
+    /* Hiệu ứng chuyển màu nền khi hover */
+    transition: background-color 0.3s;
 }
 
+/* Màu nền của nút khi hover */
 .btn-light:hover {
-    background-color: #e95d2e; /* Thay đổi màu nền khi hover */
+    background-color: #e95d2e;
 }
 
-
+/* Cách sắp xếp cho phần chân của card */
 .card-footer {
+    /* Sắp xếp phần tử về bên phải */
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
-    align-items: center; /* Center items vertically */
-    background-color: rgba(242, 111, 51, 0.42); /* Background color with opacity */
-    color: black; /* Text color */
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding around the footer */
+    justify-content: flex-end;
+    /* Căn giữa các phần tử theo chiều dọc */
+    align-items: center;
+    /* Màu nền cam trong suốt */
+    background-color: rgba(242, 111, 51, 0.42);
+    /* Màu chữ đen */
+    color: black;
+    /* Chiều rộng 100% */
+    width: 100%;
+    /* Khoảng đệm bên trong */
+    padding: 10px;
 }
 
+/* Kiểu chữ cho phần tổng cộng */
 .total-text {
-    margin-right: 0.5rem; /* Space between text and amount */
+    /* Khoảng cách giữa chữ và số tiền */
+    margin-right: 0.5rem;
 }
 
+/* Kiểu chữ cho số tiền */
 .total-amount {
+    /* Khoảng cách giữa số tiền và nút */
     margin-right: 1rem;
-    font-weight: 600; /* Space between amount and button */
+    /* Chữ đậm */
+    font-weight: 600;
 }
 
+/* Kiểu chung cho mỗi sản phẩm */
 .product-item {
-    display: flex;                /* Use flexbox for alignment */
-    align-items: center;         /* Center items vertically */
+    /* Sắp xếp phần tử theo flex */
+    display: flex;
+    /* Căn giữa các phần tử theo chiều dọc */
+    align-items: center;
 }
 
+/* Kiểu ảnh sản phẩm */
 .product-image {
-    width: 50px;                 /* Set width for the product image */
-    height: 50px;                /* Set height for the product image */
-    object-fit: cover;           /* Ensure the image fits within the specified dimensions */
-    margin-right: 10px;          /* Add some space between the image and text */
+    /* Chiều rộng ảnh */
+    width: 50px;
+    /* Chiều cao ảnh */
+    height: 50px;
+    /* Đảm bảo ảnh nằm gọn trong kích thước quy định */
+    object-fit: cover;
+    /* Khoảng cách giữa ảnh và văn bản */
+    margin-right: 10px;
 }
 
-/* styles.css */
-
-/* Popup container styles */
+/* Kiểu pop-up cho thông báo thành công */
 #successMessage {
-    display: none; /* Initially hidden */
+    /* Ẩn thông báo ban đầu */
+    display: none;
+    /* Vị trí cố định để hiển thị ở giữa màn hình */
     position: fixed;
     top: 50%;
     left: 50%;
+    /* Căn giữa */
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 95, 105, 0.7); /* Background color with opacity */
+    /* Màu nền xanh đậm với độ trong suốt */
+    background-color: rgba(0, 95, 105, 0.7);
+    /* Màu chữ trắng */
     color: white;
+    /* Khoảng đệm bên trong */
     padding: 20px;
+    /* Bo góc */
     border-radius: 8px;
+    /* Hiệu ứng đổ bóng */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 1000; /* Ensure it appears above other elements */
-    animation: fadeIn 0.5s; /* Animation effect */
+    /* Hiển thị trên tất cả các phần tử khác */
+    z-index: 1000;
+    /* Hiệu ứng xuất hiện dần */
+    animation: fadeIn 0.5s;
 }
 
-/* Animation keyframes */
+/* Keyframe cho hiệu ứng xuất hiện */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -519,14 +650,20 @@ h4 {
     }
 }
 
-/* Overlay to dim the background */
+/* Lớp phủ để làm mờ nền khi pop-up hiển thị */
 #overlay {
-    display: none; /* Initially hidden */
+    /* Ẩn ban đầu */
+    display: none;
+    /* Vị trí cố định để che toàn màn hình */
     position: fixed;
     top: 0;
     left: 0;
+    /* Chiều rộng và chiều cao toàn bộ màn hình */
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
-    z-index: 999; /* Ensure it appears above other elements */
+    /* Màu nền đen trong suốt */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Hiển thị trên các phần tử khác nhưng dưới pop-up */
+    z-index: 999;
 }
+

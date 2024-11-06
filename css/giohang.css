@@ -3,23 +3,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
+    /* Định dạng font chữ chính và thiết lập không margin và padding */
     font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
 }
 
 .container {
+    /* Thiết lập độ rộng 100% và căn giữa container */
     width: 100%;
     margin: auto;
 }
 
 .profile-section,
 .cart-section {
+    /* Khoảng cách và padding cho các phần Profile và Giỏ hàng */
     margin-bottom: 20px;
     padding: 10px;
 }
 
 .profile-section h2 {
+    /* Tiêu đề của phần hồ sơ với font Anton SC, nền cam và bóng chữ */
     font-family: "Anton SC", sans-serif;
     padding: 20px;
     background-color: #f26f33;
@@ -32,6 +36,7 @@ body {
 }
 
 .profile-section img {
+    /* Định dạng ảnh hồ sơ dạng hình tròn với viền */
     border-radius: 50%;
     width: 100%;
     height: auto;
@@ -41,31 +46,37 @@ body {
 }
 
 .profile-info {
+    /* Bố trí flex cho thông tin hồ sơ, căn giữa các phần tử */
     display: flex;
     align-items: center;
     padding: 10px;
 }
 
 .profile-info div {
+    /* Căn lề cho các phần tử trong thông tin hồ sơ */
     margin-left: 0;
     margin: 20px;
 }
 
 .profile-info p {
+    /* Khoảng cách cho các đoạn văn trong thông tin hồ sơ */
     margin: 5px 0;
 }
 
 hr {
+    /* Định dạng đường gạch ngang màu cam */
     color: #F26F33;
     border: 5px solid #F26F33;
 }
 
 .d-flex {
+    /* Nền cam và độ rộng phù hợp nội dung cho các phần tử d-flex */
     background-color: #f26f33;
     width: max-content;
 }
 
 .cart-section h2 {
+    /* Tiêu đề của phần giỏ hàng với font Anton SC và bóng chữ */
     font-family: "Anton SC", sans-serif;
     color: white;
     margin: 0;
@@ -75,12 +86,14 @@ hr {
 }
 
 .cart-section i {
+    /* Định dạng icon trong phần giỏ hàng */
     color: white;
     padding: 20px;
     font-size: 24px;
 }
 
 .cart-item {
+    /* Định dạng cho từng sản phẩm trong giỏ hàng với flex và nền màu */
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
@@ -90,6 +103,7 @@ hr {
 }
 
 .cart-item img {
+    /* Định dạng ảnh của sản phẩm trong giỏ hàng */
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -97,30 +111,36 @@ hr {
 }
 
 .cart-item-details {
+    /* Định dạng phần chi tiết của sản phẩm trong giỏ hàng */
     flex: 1;
 }
 
 h4 {
+    /* Khoảng cách cho các tiêu đề h4 */
     margin: 10px;
 }
 
 .cart-item-details p {
+    /* Định dạng cho đoạn văn trong chi tiết sản phẩm */
     margin: 5px 0;
     margin-left: 10px;
 }
 
 .cart-item-price,
 .cart-item-quantity {
+    /* Căn giữa và khoảng cách cho giá và số lượng sản phẩm */
     text-align: center;
     margin-left: 10px;
 }
 
 .cart-item-price {
+    /* Định dạng giá sản phẩm với màu đỏ và in đậm */
     color: red;
     font-weight: bold;
 }
 
 .update-input {
+    /* Định dạng ô nhập liệu để cập nhật số lượng sản phẩm */
     width: 50px;
     padding: 5px 10px;
     border: 1px solid #ff884b;
@@ -130,6 +150,7 @@ h4 {
 }
 
 .btn {
+    /* Định dạng chung cho các nút */
     width: 100%;
     max-width: 120px;
     padding: 10px;
@@ -140,14 +161,17 @@ h4 {
 }
 
 .remove-btn:hover {
+    /* Màu nền khi rê chuột vào nút xóa */
     background-color: #8B0000;
 }
 
 .update-btn:hover {
+    /* Màu nền khi rê chuột vào nút cập nhật */
     background-color: #0056b3;
 }
 
 .cart-summary {
+    /* Định dạng phần tổng quan giỏ hàng với nền màu cam nhạt */
     margin-top: 10px;
     background-color: #F26F336B;
     padding: 10px;
@@ -158,6 +182,7 @@ h4 {
 }
 
 .total-price-container {
+    /* Định dạng phần hiển thị tổng giá */
     display: flex;
     align-items: center;
     background: none;
@@ -166,12 +191,14 @@ h4 {
 }
 
 .cart-summary label {
+    /* Định dạng cho các nhãn trong tổng quan giỏ hàng */
     margin: 10px;
     font-size: 15px;
     padding: 10px;
 }
 
 .cart-summary .total-price {
+    /* Định dạng giá tổng trong phần tổng quan giỏ hàng */
     font-size: 18px;
     font-weight: bold;
     color: red;
@@ -179,6 +206,7 @@ h4 {
 }
 
 .checkout-btn {
+    /* Định dạng nút thanh toán */
     background-color: #ff884b;
     color: white;
     padding: 20px;
@@ -190,22 +218,26 @@ h4 {
 }
 
 .checkout-btn:hover {
+    /* Đổi màu nền khi rê chuột vào nút thanh toán */
     background-color: red;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .profile-info {
+        /* Căn theo cột và căn giữa các phần tử khi trên màn hình nhỏ */
         flex-direction: column;
         align-items: center;
     }
 
     .cart-item {
+        /* Định dạng theo cột cho sản phẩm trong giỏ hàng khi màn hình nhỏ */
         flex-direction: column;
         align-items: flex-start;
     }
 
     .cart-item img {
+        /* Thêm khoảng cách cho ảnh sản phẩm khi trên màn hình nhỏ */
         margin-bottom: 10px;
     }
 }
