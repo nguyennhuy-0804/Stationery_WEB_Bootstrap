@@ -1,4 +1,4 @@
-/* Header Top */
+/* Nền và bố cục của Header trên */
 .bg-header-top {
   background-color: #f15a29;
 }
@@ -7,26 +7,26 @@
   display: flex;
 }
 
+/* Logo của UEH */
 .logo-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-/* Logo ueh */
 .navbar-brand-logo {
   width: 220px;
   height: auto;
 }
 
-/* icon địa chỉ, sđt, facebook */
+/* Biểu tượng địa chỉ, SĐT, Facebook */
 .navbar-header-logo {
   width: 24px;
   height: auto;
   margin-right: 0.6rem;
 }
 
-/* tên STATIONERY */
+/* Tên STATIONERY */
 .navbar-brand-text {
   font-family: "Baloo";
   color: white;
@@ -36,8 +36,8 @@
     2px 2px 0 #005f69;
 }
 
-/* Searchbar */
-/* Background thanh tìm kiếm */
+/* Thanh tìm kiếm */
+/* Nền thanh tìm kiếm */
 .search-container {
   flex-grow: 1;
   max-width: 400px;
@@ -48,7 +48,7 @@
   justify-items: center;
 }
 
-/* data user nhập */
+/* Dữ liệu người dùng nhập */
 .search-input {
   width: 100%;
   border: 1px solid #ccc;
@@ -57,7 +57,7 @@
   font-size: 1rem;
 }
 
-/* icon của thanh search */
+/* Biểu tượng của thanh tìm kiếm */
 .search-icon {
   position: absolute;
   left: 18px;
@@ -79,7 +79,7 @@
   cursor: pointer;
 }
 
-/** Dropdown cho search bar */
+/* Menu thả xuống cho thanh tìm kiếm */
 .searchbar-dropdown {
   position: absolute;
   top: 80%;
@@ -123,7 +123,7 @@
   background-color: #f1f1f1;
 }
 
-/* vị trí CÁc icon địa chỉ, sđt, fb */
+/* Vị trí của các biểu tượng địa chỉ, SĐT, Facebook */
 .toolbar-container {
   display: flex;
   align-items: center;
@@ -137,7 +137,7 @@
   flex-direction: row;
 }
 
-/* chứa các icon địa chỉ, sđt, fb */
+/* Chứa các biểu tượng địa chỉ, SĐT, Facebook */
 .icon-container {
   gap: 0.8rem;
   display: flex;
@@ -145,7 +145,7 @@
   justify-content: center;
 }
 
-/* các icon địa chỉ, sđt,fb */
+/* Các biểu tượng địa chỉ, SĐT, Facebook */
 .icon-container i {
   background-color: transparent;
   border-radius: 50%;
@@ -195,8 +195,7 @@
   font-weight: bold;
 }
 
-
-/* respnsive cho cỡ chữ title của web*/
+/* Responsive cho cỡ chữ tiêu đề của trang web */
 @media (max-width: 768px) {
   .navbar-brand-text {
     font-size: 26px;
@@ -213,7 +212,7 @@
   }
 }
 
-/* Header Bottom */
+/* Header dưới */
 .bg-header-bottom {
   display: flex;
   align-items: center;

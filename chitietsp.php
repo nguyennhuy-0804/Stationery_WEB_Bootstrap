@@ -390,7 +390,6 @@ if (isset($_POST['addRatingBtn'])) {
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
     <script>
- 
         $(".xzoom, .xzoom-gallery").xzoom({
             tint: '#333',
             Xoffset: 15

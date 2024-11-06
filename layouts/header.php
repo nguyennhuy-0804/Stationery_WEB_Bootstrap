@@ -31,26 +31,44 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             <!-- Thanh tìm kiếm -->
             <?php
             if (isset($_GET['search-category'])) {
-                // Lấy data tìm kiếm của người dùng trong đó: 
-                // trim để xóa các khoảng trắng, strlower để chuyển về chữ thường, real_escape_string loại bỏ các kí tự đặc biệt
-                $searchTerm = trim(strtolower($conn->real_escape_string($_GET['search-category'])));
+                // Lấy data tìm kiếm của người dùng
+                $searchTerm = trim($conn->real_escape_string($_GET['search-category']));
 
-                // Lấy các mã loại có têm trùng với data người dùng nhập vào
-                $query = "SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE '%$searchTerm%'";
-                $searchResult = mysqli_query($conn, $query);
+                // Truy vấn sản phẩm
+                $stmt = $conn->prepare("SELECT MaSP FROM sanpham WHERE TenSP LIKE ? ORDER BY MaSP DESC");
+                $likeTerm = "$searchTerm";
+                $stmt->bind_param("s", $likeTerm);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-                // kiểm tra kết quả tìm được
-                if (mysqli_num_rows($searchResult) > 0) {
+                // Kiểm tra kết quả tìm được
+                if ($result->num_rows > 0) {
                     // Lấy kết quả tìm kiếm dưới dạng mảng
-                    $searchData = mysqli_fetch_assoc($searchResult);
-                    // Đưa đến trang category tại loại sản phẩm đó
-                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
+                    $searchData = $result->fetch_assoc();
+                    // Đưa đến trang sản phẩm cụ thể
+                    header('Location: chitietsp.php?MaSP=' . $searchData['MaSP']);
                     exit();
                 } else {
-                    // Đưa đến trang không tìm thấy loại sản phẩm
-                    header('Location: danhmucsp.php?error=notfound');
-                    exit();
+                    // Truy vấn loại sản phẩm
+                    $stmt = $conn->prepare("SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE ?");
+                    $stmt->bind_param("s", $likeTerm);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    // Kiểm tra kết quả tìm được
+                    if ($result->num_rows > 0) {
+                        // Lấy kết quả tìm kiếm dưới dạng mảng
+                        $searchData = $result->fetch_assoc();
+                        // Đưa đến trang category tại loại sản phẩm đó
+                        header('Location: danhmucsp.php#' . $searchData['MaLoai']);
+                        exit();
+                    } else {
+                        // Đưa đến trang không tìm thấy loại sản phẩm
+                        header('Location: danhmucsp.php?error=notfound');
+                        exit();
+                    }
                 }
+                $stmt->close();
             }
             ?>
             <!-- form get  -->
@@ -150,7 +168,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     </li>
                     <!-- Hỏi đáp -->
                     <li class="nav-item">
-                        <a class="nav-link" href="questions.php">
+                        <a class="nav-link" href="hoidap.php">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>

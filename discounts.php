@@ -15,7 +15,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UEH Stationery</title>
 
-    <!-- lấy jQuery từ google apis hoặc dữ liệu người dùng -->
+    <!-- get jQuery from the google apis or use your own -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Assets for star ratings -->
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"
@@ -128,7 +128,7 @@ session_start();
                             <div class="col-md-6 p-0">
                                 <div
                                     class="d-flex justify-content-center align-items-center mh-100 h-100 position-relative">
-                                    <!-- Đếm ngược để flashsale -->
+                                    <!-- Countdown cảu tiên để flashsale -->
                                     <div class="bg-flash-countdown position-absolute top-0 start-0 ">
                                         <img src="assets/imgs/buttons/btn_flashsale.png" alt=""
                                             style="height: 70px; width: 50px"></img>
@@ -265,7 +265,7 @@ session_start();
                             </div>
                         </div>
 
-                        <button class="voucher-button">Lưu</button>
+                        <button class="voucher-button" onclick="saveIdToLocalStorage('<?php echo $data['MaKM']; ?>')">Lưu</button>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -283,9 +283,28 @@ session_start();
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+    <!-- Tooltip -->
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+
+    <!-- Save data to local storage -->
+    <script>
+        var savedVoucher = localStorage.getItem('savedVoucher');
+        document.localStorage =
+
+
+            function saveIdToLocalStorage(voucherId) {
+                let savedVoucher = localStorage.getItem('savedVoucher');
+                if (savedVoucher !== voucherId) {
+                    localStorage.setItem('savedVoucher', voucherId);
+                    alert('Đã lưu voucher khuyến mãi!');
+                } else {
+                    alert('Voucher khuyến mãi này đã được lưu!');
+                }
+            }
     </script>
 </body>
 

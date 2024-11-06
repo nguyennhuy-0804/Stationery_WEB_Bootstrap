@@ -14,28 +14,38 @@ $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người d�
 // Kiểm tra nếu user đã đăng nhập và có ID
 if (isset($userID)) {
     // Truy vấn giỏ hàng hiện tại của người dùng
-    $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' ORDER BY MaGH ASC");
+    $stmt = $conn->prepare("SELECT MaGH FROM giohang WHERE MaTV = ? ORDER BY MaGH ASC LIMIT 1");
+    $stmt->bind_param("s", $userID);
+    $stmt->execute();
+    $stmt->store_result();
 
-    // Nếu người dùng đã có giỏ hàng
-    if ($cartRow = mysqli_fetch_assoc($cartResult)) {
-        $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng hiện tại
+    if ($stmt->num_rows > 0) {
+        // Người dùng đã có giỏ hàng, lấy mã giỏ hàng
+        $stmt->bind_result($cartID);
+        $stmt->fetch();
     } else {
         // Người dùng chưa có giỏ hàng, tạo giỏ hàng mới
         $insertCartQuery = "
             INSERT INTO giohang (MaTV, Ngaytao, Tong, TinhTrang)
-            VALUES ('$userID', NOW(), 0, 'chua hoan tat')";  // Set default values: Tong = 0, TinhTrang = 'chua hoan tat'
+            VALUES (?, NOW(), 0, 'chua hoan tat')";
 
-        // Thực thi câu lệnh thêm giỏ hàng
-        if (mysqli_query($conn, $insertCartQuery)) {
-            // Lấy mã giỏ hàng mới vừa được tạo
-            $cartID = mysqli_insert_id($conn);
+        $insertStmt = $conn->prepare($insertCartQuery);
+        $insertStmt->bind_param("s", $userID);
+
+        if ($insertStmt->execute()) {
+            // Lấy mã giỏ hàng vừa tạo
+            $cartID = $insertStmt->insert_id;
         } else {
             // Xử lý lỗi nếu không thể tạo giỏ hàng
-            echo "Lỗi khi tạo giỏ hàng: " . mysqli_error($conn);
+            echo "Lỗi khi tạo giỏ hàng: " . $conn->error;
         }
+
+        $insertStmt->close();
     }
+
+    $stmt->close();
 } else {
-    // Nếu người dùng chưa đăng nhập, có thể chuyển hướng đến trang đăng nhập
+    // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
     echo "Vui lòng đăng nhập để tạo giỏ hàng.";
 }
 
@@ -123,7 +133,6 @@ if ($totalPrice > 0) {
 }
 mysqli_query($conn, $updateStatusQuery); // Thực hiện cập nhật trạng thái giỏ hàng
 
-// Cập nhật giỏ
 // Cập nhật số lượng sản phẩm trong giỏ hàng
 if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluong'])) {
     $MaSP = $_POST['MaSP']; // Lấy mã sản phẩm
@@ -223,9 +232,6 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     </div>
     <hr>
 
-
-
-
     <!-- Phần giỏ hàng -->
     <div class="cart-section">
         <div class="d-flex align-items-center">
@@ -233,9 +239,6 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
             <h2>GIỎ HÀNG</h2>
         </div>
         <br>
-
-
-
 
         <?php if ($totalPrice > 0) { ?> <!-- Kiểm tra xem giỏ hàng có sản phẩm không -->
             <?php
@@ -259,10 +262,6 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                                 <span style="color:  #ff4b4b; font-weight: bold">Không có khuyến mãi</span> <!-- Thông báo không có khuyến mãi với màu đỏ -->
                             <?php } ?>
                         </p>
-
-
-
-
                     </div>
                     <div class="cart-item-price">
                         <?php if ($cartDetailsRow['GiaKM'] != NULL) { ?> <!-- Kiểm tra xem có giá khuyến mãi không -->
@@ -280,9 +279,6 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                         <!-- Hidden input để gửi mã sản phẩm -->
                         <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>">
 
-
-
-
                         <!-- Nút cập nhật -->
                         <button type="submit" class="btn btn-primary update-btn" name="updateCart">Cập nhật</button>
                         <div class="cart-item-remove">
@@ -292,11 +288,6 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                             </form>
                         </div>
                     </form>
-
-
-
-
-
                 </div>
             <?php } ?>
 
@@ -307,7 +298,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                 <div class="total-price-container d-flex align-items-center">
                     <p class="total-price">Tổng: <?= number_format($totalPrice, 0, ",", ".") ?>đ</p> <!-- Tổng giá trị giỏ hàng -->
                     <!-- Form để thanh toán -->
-                    <form method="POST" action="Hoadon.php">
+                    <form method="POST" action="hoadon.php">
                         <input type="hidden" name="cart" value=''>
                         <button type="submit" class="checkout-btn">Mua</button> <!-- Nút thanh toán -->
                     </form>
@@ -331,4 +322,4 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 </body>
 
-</html>
+</html> 

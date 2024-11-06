@@ -712,12 +712,3 @@ if (isset($_POST['addRatingBtn'])) {
 
 
 </html>
-
-
-
-
-
-
-
-
-

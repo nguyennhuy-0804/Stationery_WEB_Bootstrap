@@ -1,13 +1,11 @@
 <?php
-session_start(); // Khởi động phiên ở đầu tệp
-include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
+include "database/conn.php";
+session_start();
 
-// Tạo kết nối
-$conn = new mysqli($server, $user, $pass, $database);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
+// Nếu chưa đăng nhập -> Chuyển tới trang Login
+if (!isset($_SESSION['mySession'])) {
+    header('location:login.php'); // Chuyển hướng đến trang đăng nhập
+    exit();
 }
 
 // Lấy ID người dùng từ session
@@ -23,7 +21,7 @@ if (!isset($_SESSION['mySession'])) {
     exit();
 }
 
-if ($userID > 0) {
+if (isset($userID)) {
     // Truy vấn để lấy giỏ hàng của người dùng
     $cartQuery = $conn->prepare("SELECT MaGH FROM giohang WHERE MaTV = ? AND TinhTrang = 1");
     $cartQuery->bind_param('i', $userID);
@@ -103,9 +101,9 @@ while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
 $totalPayment = $total; // Tổng tiền thanh toán ban đầu
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -166,7 +164,7 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
     <!-- Phần ĐƠN ĐẶT HÀNG -->
     <div class="cart-section">
         <div class="d-flex align-items-center">
-        <i class="fa-solid fa-file-invoice-dollar" style="font-size: 40px;"></i> <!-- Icon hóa đơn -->
+            <i class="fa-solid fa-file-invoice-dollar" style="font-size: 40px;"></i> <!-- Icon hóa đơn -->
             <h2>ĐƠN ĐẶT HÀNG</h2>
         </div>
         <br>
@@ -197,10 +195,9 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                 </div>
             </div>
         </div>
-        
-
 
         <div class="card mb-4">
+            <!-- Hình thức giao hàng -->
             <div class="card-body">
                 <h5>Hình thức giao hàng:</h5>
                 <div class="form-check">
@@ -226,9 +223,42 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                     <label class="form-check-label" for="codPayment">Thanh toán khi nhận hàng</label>
                 </div>
             </div>
+
+            <!-- Nút thanh toán -->
             <div class="card-footer">
                 <span class="total-text">Tổng số tiền phải thanh toán:</span>
                 <span id="totalPayment" class="total-amount"><?= number_format($totalPayment) ?> đ</span>
+                <?php
+                // Truy vấn giỏ hàng hiện tại của người dùng
+                $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
+                $cartRow = mysqli_fetch_assoc($cartResult);
+
+                if (!$cartRow) {
+                    echo "Giỏ hàng của bạn không có sản phẩm nào.";
+                    exit();
+                }
+
+                $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng
+
+                // Kiểm tra nếu biểu mẫu được gửi
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Đảm bảo $cartID được thiết lập và hợp lệ
+                    if (isset($cartID) && !empty($cartID)) {
+                        // Cập nhật TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
+                        $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$cartID' AND TinhTrang = 1");
+
+                        // Kiểm tra nếu truy vấn thành công
+                        if ($updateCartStatus) {
+                            $updateCarDetail  = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$cartID'");
+                        } else {
+                            // Xuất thông báo lỗi
+                            echo "Lỗi khi cập nhật trạng thái giỏ hàng: " . mysqli_error($conn);
+                        }
+                    } else {
+                        echo "Mã giỏ hàng không hợp lệ.";
+                    }
+                }
+                ?>
                 <form method="POST" class="payment-form" onsubmit="return showSuccessMessage(event);">
                     <button type="submit" class="btn btn-light">Thanh toán</button>
                 </form>
@@ -242,62 +272,66 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                 </div>
             </div>
 
-    <!-- Footer -->
-    <?php include 'layouts/footer.php'; ?>
+            <!-- Footer -->
+            <?php include 'layouts/footer.php'; ?>
 
-    <!-- Scripts -->
-    <script src="scripts/header.js"></script>
+            <!-- Scripts -->
+            <script src="scripts/header.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+            </script>
 
-    <script>
-      // Lấy tất cả các tùy chọn vận chuyển
-        const shippingOptions = document.querySelectorAll('.shipping-option');
-        // Lấy phần tử hiển thị tổng số tiền
-        const totalAmountElement = document.getElementById('totalAmount');
-        // Lấy phần tử hiển thị tổng số tiền phải thanh toán
-        const totalPaymentElement = document.getElementById('totalPayment');
+            <script>
+                // Lấy tất cả các tùy chọn vận chuyển
+                const shippingOptions = document.querySelectorAll('.shipping-option');
+                // Lấy phần tử hiển thị tổng số tiền
+                const totalAmountElement = document.getElementById('totalAmount');
+                // Lấy phần tử hiển thị tổng số tiền phải thanh toán
+                const totalPaymentElement = document.getElementById('totalPayment');
 
-        // Thêm sự kiện lắng nghe cho mỗi tùy chọn vận chuyển khi thay đổi
-        shippingOptions.forEach(option => {
-            option.addEventListener('change', updateTotal);
-        });
+                // Thêm sự kiện lắng nghe cho mỗi tùy chọn vận chuyển khi thay đổi
+                shippingOptions.forEach(option => {
+                    option.addEventListener('change', updateTotal);
+                });
 
-        // Hàm cập nhật tổng số tiền phải thanh toán
-        function updateTotal() {
-            // Lấy chi phí vận chuyển từ tùy chọn đã chọn
-            const shippingCost = parseInt(document.querySelector('input[name="shipping"]:checked').value);
-            // Lấy tổng số tiền hiện tại từ phần tử hiển thị và loại bỏ dấu phẩy
-            const total = parseInt(totalAmountElement.innerText.replace(/,/g, ''));
+                // Hàm cập nhật tổng số tiền phải thanh toán
+                function updateTotal() {
+                    // Lấy chi phí vận chuyển từ tùy chọn đã chọn
+                    const shippingCost = parseInt(document.querySelector('input[name="shipping"]:checked').value);
+                    // Lấy tổng số tiền hiện tại từ phần tử hiển thị và loại bỏ dấu phẩy
+                    const total = parseInt(totalAmountElement.innerText.replace(/,/g, ''));
 
-            // Tính toán tổng số tiền thanh toán
-            const totalPayment = total + shippingCost;
+                    // Tính toán tổng số tiền thanh toán
+                    const totalPayment = total + shippingCost;
 
-            // Cập nhật hiển thị tổng số tiền phải thanh toán với định dạng số
-            totalPaymentElement.innerText = new Intl.NumberFormat().format(totalPayment) + ' đ';
-        }
+                    // Cập nhật hiển thị tổng số tiền phải thanh toán với định dạng số
+                    totalPaymentElement.innerText = new Intl.NumberFormat().format(totalPayment) + ' đ';
+                }
 
-        // Hàm hiển thị thông báo thành công khi gửi form
-        function showSuccessMessage(event) {
-            event.preventDefault(); // Ngăn chặn việc gửi form
+                // Hàm hiển thị thông báo thành công khi gửi form
+                function showSuccessMessage(event) {
+                    event.preventDefault(); // Ngăn chặn việc gửi form
 
-            // Hiển thị lớp phủ và thông báo thành công
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'block';
+                    // Hiển thị lớp phủ và thông báo thành công
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'block';
 
-            // Tùy chọn: có thể reset form sau khi hiển thị thông báo
-            document.querySelector('.payment-form').reset();
-            
-            // Tự động ẩn thông báo sau vài giây
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('overlay').style.display = 'none';
-            }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
-        }
+                    // Tùy chọn: có thể reset form sau khi hiển thị thông báo
+                    document.querySelector('.payment-form').reset();
 
-    </script>
+                    // Tự động ẩn thông báo sau vài giây
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
+                    }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+
+                    // Chuyển hướng người dùng sau khi hiển thị thông báo
+                    setTimeout(() => {
+                        window.location.href = 'giohang.php';
+                    }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+                }
+            </script>
 </body>
-</html>
 
+</html>

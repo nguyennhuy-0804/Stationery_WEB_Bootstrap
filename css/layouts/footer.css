@@ -126,7 +126,7 @@
     overflow: hidden;
 }
 
-/* buttong sẽ mở rộng khi hover*/
+/* button sẽ mở rộng khi hover*/
 .phone-btn:hover {
     width: 190px;
 }
