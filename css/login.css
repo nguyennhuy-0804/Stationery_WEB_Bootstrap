@@ -1,193 +1,193 @@
 .login-container {
-    padding: 40px;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 40px; /* Thêm khoảng cách bên trong 40px */
+    width: 100%; /* Chiều rộng 100% */
+    box-sizing: border-box; /* Bao gồm cả viền và đệm trong kích thước */
 }
 
 .title {
-    display: flex;
-    justify-content: center;
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
 }
 
 .title h1 {
-    font-family: "Anton SC", system-ui;
-    font-weight: 300;
-    text-align: center;
-    font-size: 32px;
-    background-color: #005F69CC;
-    width: fit-content;
-    padding: 30px 40px;
-    color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482)
+    font-family: "Anton SC", system-ui; /* Font chữ */
+    font-weight: 300; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa văn bản */
+    font-size: 32px; /* Kích thước chữ */
+    background-color: #005F69CC; /* Màu nền */
+    width: fit-content; /* Chiều rộng vừa đủ nội dung */
+    padding: 30px 40px; /* Thêm khoảng cách bên trong */
+    color: #ffffff; /* Màu chữ */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482); /* Đổ bóng chữ */
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0px 0;
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Sắp xếp theo cột */
+    gap: 15px; /* Khoảng cách giữa các phần tử */
+    padding: 0px 0; /* Không thêm khoảng cách bên trong */
 }
 
 input[type="username"],
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-    background-color: #cdcdcd6a;
-    border: 2px solid #005F69;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "Roboto Slab", system-ui;
-    color: black;
+    width: 100%; /* Chiều rộng 100% */
+    max-width: 100%; /* Chiều rộng tối đa 100% */
+    padding: 10px; /* Thêm khoảng cách bên trong 10px */
+    background-color: #cdcdcd6a; /* Màu nền */
+    border: 2px solid #005F69; /* Viền 2px màu */
+    border-radius: 5px; /* Bo tròn góc 5px */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 600; /* Độ đậm chữ */
+    font-family: "Roboto Slab", system-ui; /* Font chữ */
+    color: black; /* Màu chữ */
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 2cm;
-    margin-top: 20px;
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 2cm; /* Khoảng cách giữa các nút */
+    margin-top: 20px; /* Thêm khoảng cách bên trên 20px */
 }
 
 .login-btn {
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 3px;
-    font-size: 20px;
-    font-family: "Anton SC", system-ui;
-    font-weight: 400;
-    display: inline-block;
-    text-align: center;
-    width: 48%;
-    text-shadow: 1px 1px 0 #336c72,
+    text-decoration: none; /* Không gạch chân */
+    padding: 15px 30px; /* Thêm khoảng cách bên trong */
+    border-radius: 3px; /* Bo tròn góc 3px */
+    font-size: 20px; /* Kích thước chữ */
+    font-family: "Anton SC", system-ui; /* Font chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    display: inline-block; /* Hiển thị dạng khối nội tuyến */
+    text-align: center; /* Căn giữa văn bản */
+    width: 48%; /* Chiều rộng 48% */
+    text-shadow: 1px 1px 0 #336c72, /* Đổ bóng chữ */
         -1px -1px 0 #336c72,
         1px -1px 0 #336c72,
         -1px 1px 0 #336c72;
 }
 
 .signup-btn {
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 3px;
-    font-size: 20px;
-    font-family: "Anton SC", system-ui;
-    font-weight: 400;
-    display: inline-block;
-    text-align: center;
-    width: 48%;
-    text-shadow: 1px 1px 0 #336c72,
+    text-decoration: none; /* Không gạch chân */
+    padding: 15px 30px; /* Thêm khoảng cách bên trong */
+    border-radius: 3px; /* Bo tròn góc 3px */
+    font-size: 20px; /* Kích thước chữ */
+    font-family: "Anton SC", system-ui; /* Font chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    display: inline-block; /* Hiển thị dạng khối nội tuyến */
+    text-align: center; /* Căn giữa văn bản */
+    width: 48%; /* Chiều rộng 48% */
+    text-shadow: 1px 1px 0 #336c72, /* Đổ bóng chữ */
         -1px -1px 0 #336c72,
         1px -1px 0 #336c72,
         -1px 1px 0 #336c72;
 }
 
 .signup-btn {
-    width: 180px;
-    background-color: #F26F33;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    padding: 14px 0;
-    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215);
+    width: 180px; /* Chiều rộng 180px */
+    background-color: #F26F33; /* Màu nền */
+    color: white; /* Màu chữ */
+    text-align: center; /* Căn giữa văn bản */
+    text-decoration: none; /* Không gạch chân */
+    display: inline-block; /* Hiển thị dạng khối nội tuyến */
+    padding: 14px 0; /* Thêm khoảng cách bên trong */
+    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215); /* Đổ bóng */
 }
 
 .login-btn {
-    width: 180px;
-    background-color: #F26F33;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    padding: 14px 0;
-    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215);
+    width: 180px; /* Chiều rộng 180px */
+    background-color: #F26F33; /* Màu nền */
+    color: white; /* Màu chữ */
+    text-align: center; /* Căn giữa văn bản */
+    text-decoration: none; /* Không gạch chân */
+    display: inline-block; /* Hiển thị dạng khối nội tuyến */
+    padding: 14px 0; /* Thêm khoảng cách bên trong */
+    box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215); /* Đổ bóng */
 }
 
 .extra-options {
-    text-align: right;
-    margin-top: 10px;
+    text-align: right; /* Căn phải văn bản */
+    margin-top: 10px; /* Thêm khoảng cách bên trên 10px */
 }
 
 .extra-options a {
-    text-decoration: underline;
-    font-family: "Roboto Slab", system-ui;
-    font-size: 14px;
-    color: #666666;
-    font-weight: 400;
+    text-decoration: underline; /* Gạch chân văn bản */
+    font-family: "Roboto Slab", system-ui; /* Font chữ */
+    font-size: 14px; /* Kích thước chữ */
+    color: #666666; /* Màu chữ */
+    font-weight: 400; /* Độ đậm chữ */
 }
 
 /* Responsive styles */
 @media (max-width: 1440px) {
     .title h1 {
-        font-size: 36px;
-        padding: 8px 30px;
+        font-size: 36px; /* Kích thước chữ */
+        padding: 8px 30px; /* Thêm khoảng cách bên trong */
     }
 
     .login-btn,
     .signup-btn {
-        width: 160px;
-        font-size: 18px;
+        width: 160px; /* Chiều rộng 160px */
+        font-size: 18px; /* Kích thước chữ */
     }
 }
 
 @media (max-width: 1024px) {
     .title h1 {
-        font-size: 32px;
-        padding: 8px 25px;
+        font-size: 32px; /* Kích thước chữ */
+        padding: 8px 25px; /* Thêm khoảng cách bên trong */
     }
 
     .login-btn,
     .signup-btn {
-        width: 140px;
-        font-size: 16px;
+        width: 140px; /* Chiều rộng 140px */
+        font-size: 16px; /* Kích thước chữ */
     }
 
     .buttons {
-        gap: 50px;
+        gap: 50px; /* Khoảng cách giữa các nút */
     }
 }
 
 @media (max-width: 768px) {
     .title h1 {
-        font-size: 28px;
-        padding: 6px 20px;
+        font-size: 28px; /* Kích thước chữ */
+        padding: 6px 20px; /* Thêm khoảng cách bên trong */
     }
 
     .login-btn,
     .signup-btn {
-        width: 130px;
-        font-size: 15px;
+        width: 130px; /* Chiều rộng 130px */
+        font-size: 15px; /* Kích thước chữ */
     }
 
     .login-container {
-        padding: 20px;
+        padding: 20px; /* Thêm khoảng cách bên trong 20px */
     }
 
     input[type="email"],
     input[type="password"] {
-        font-size: 14px;
+        font-size: 14px; /* Kích thước chữ */
     }
 }
 
 @media (max-width: 480px) {
     .title h1 {
-        font-size: 24px;
-        padding: 5px 15px;
+        font-size: 24px; /* Kích thước chữ */
+        padding: 5px 15px; /* Thêm khoảng cách bên trong */
     }
 
     .login-btn,
     .signup-btn {
-        width: 120px;
-        font-size: 14px;
+        width: 120px; /* Chiều rộng 120px */
+        font-size: 14px; /* Kích thước chữ */
     }
 
     input[type="email"],
     input[type="password"] {
-        padding: 8px;
+        padding: 8px; /* Thêm khoảng cách bên trong */
     }
 
     .buttons {
-        gap: 10px;
+        gap: 10px; /* Khoảng cách giữa các nút */
     }
 }

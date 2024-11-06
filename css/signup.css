@@ -1,14 +1,17 @@
+/* Container cho form đăng ký */
 .signup-container {
     padding: 40px;
     width: 100%;
     box-sizing: border-box;
 }
 
+/* Căn giữa tiêu đề */
 .title {
     display: flex;
     justify-content: center;
 }
 
+/* Kiểu dáng tiêu đề */
 .title h1 {
     font-family: "Anton SC", system-ui;
     font-weight: 300;
@@ -18,9 +21,10 @@
     width: fit-content;
     padding: 30px 40px;
     color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482)
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482);
 }
 
+/* Kiểu dáng form */
 .form-signup {
     display: flex;
     flex-direction: column;
@@ -29,6 +33,7 @@
     width: 100%;
 }
 
+/* Kiểu dáng các trường nhập liệu */
 .form-signup input[type="text"],
 .form-signup input[type="email"],
 .form-signup input[type="password"],
@@ -44,6 +49,7 @@
     color: black;
 }
 
+/* Kiểu dáng phần giới tính */
 .gender {
     display: flex;
     flex-direction: column;
@@ -51,6 +57,7 @@
     font-size: 16px;
 }
 
+/* Kiểu dáng nhãn giới tính */
 .gender label {
     display: flex;
     align-items: center;
@@ -58,6 +65,7 @@
     font-family: "Roboto Slab", system-ui;
 }
 
+/* Kiểu dáng nút radio */
 .gender input[type="radio"] {
     appearance: none;
     width: 24px;
@@ -68,6 +76,7 @@
     position: center;
 }
 
+/* Kiểu dáng nút radio khi được chọn */
 .gender input[type="radio"]:checked::before {
     content: '';
     display: block;
@@ -78,12 +87,14 @@
     position: center;
 }
 
+/* Kiểu dáng container nút */
 .buttons {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
+/* Kiểu dáng nút */
 .login-btn,
 .signup-btn {
     flex: 1;
@@ -105,7 +116,7 @@
     margin: 5px;
 }
 
-/* Responsive styles */
+/* Kiểu dáng đáp ứng cho các kích thước màn hình khác nhau */
 @media (max-width: 1440px) {
     .title h1 {
         font-size: 36px;

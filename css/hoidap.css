@@ -1,111 +1,109 @@
 .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
+    max-width: 1440px; /* Chiều rộng tối đa 1440px */
+    margin: 0 auto; /* Căn giữa */
+    padding: 20px; /* Thêm khoảng cách bên trong 20px */
+    border-radius: 8px; /* Bo tròn góc 8px */
 }
 
 .title {
-    font-family: "Anton SC", sans-serif;
-    font-weight: 300;
-    font-size: 50px;
-    text-align: center;
-    color: #f37921;
-    margin-bottom: 20px;
-    margin-top: 32px;
+    font-family: "Anton SC", sans-serif; /* Font chữ */
+    font-weight: 300; /* Độ đậm chữ */
+    font-size: 50px; /* Kích thước chữ */
+    text-align: center; /* Căn giữa văn bản */
+    color: #f37921; /* Màu chữ */
+    margin-bottom: 20px; /* Khoảng cách dưới 20px */
+    margin-top: 32px; /* Khoảng cách trên 32px */
 }
 
 .step {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Khoảng cách dưới 20px */
 }
 
 .step h2 {
-    color: #005F69;
-    margin-bottom: 10px;
-    font-size: 18px;
+    color: #005F69; /* Màu chữ */
+    margin-bottom: 10px; /* Khoảng cách dưới 10px */
+    font-size: 18px; /* Kích thước chữ */
 }
 
 .step p,
 .step ul {
-    font-size: 16px;
-    margin-left: 5px;
-    text-align: justify;
+    font-size: 16px; /* Kích thước chữ */
+    margin-left: 5px; /* Khoảng cách trái 5px */
+    text-align: justify; /* Căn đều văn bản */
 }
 
 .step ul {
-    list-style-type: disc;
-    margin-left: 20px;
+    list-style-type: disc; /* Kiểu danh sách đĩa */
+    margin-left: 20px; /* Khoảng cách trái 20px */
 }
 
 .step ul li {
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Khoảng cách dưới 5px */
 }
 
 .orange-divider {
-    height: 4px;
-    border-bottom: 4px solid #F26F33;
-    margin: 85px auto 0 auto;
-    width: 80%;
+    height: 4px; /* Chiều cao 4px */
+    border-bottom: 4px solid #F26F33; /* Đường viền dưới màu cam */
+    margin: 85px auto 0 auto; /* Khoảng cách trên 85px, căn giữa */
+    width: 80%; /* Chiều rộng 80% */
 }
-
 
 /* Responsive styles */
 @media (max-width: 1024px) {
     body {
-        font-size: 24x;
+        font-size: 24px; /* Kích thước chữ */
     }
 
     .container {
-        padding-left: 2cm;
-        padding-right: 2cm;
+        padding-left: 2cm; /* Khoảng cách trái 2cm */
+        padding-right: 2cm; /* Khoảng cách phải 2cm */
     }
 
     .title {
-        font-size: 40px;
+        font-size: 40px; /* Kích thước chữ */
     }
 }
 
-
 @media (max-width: 768px) {
     body {
-        font-size: 18px;
+        font-size: 18px; /* Kích thước chữ */
     }
 
     .container {
-        padding-left: 1cm;
-        padding-right: 1cm;
+        padding-left: 1cm; /* Khoảng cách trái 1cm */
+        padding-right: 1cm; /* Khoảng cách phải 1cm */
     }
 
     .title {
-        font-size: 36px;
+        font-size: 36px; /* Kích thước chữ */
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 16px;
-        padding: 10px;
+        font-size: 16px; /* Kích thước chữ */
+        padding: 10px; /* Thêm khoảng cách bên trong 10px */
     }
 
     .container {
-        padding-left: 0.5cm;
-        padding-right: 0.5cm;
+        padding-left: 0.5cm; /* Khoảng cách trái 0.5cm */
+        padding-right: 0.5cm; /* Khoảng cách phải 0.5cm */
     }
 
     .title {
-        font-size: 28px;
+        font-size: 28px; /* Kích thước chữ */
     }
 
     .step h2 {
-        font-size: 16px;
+        font-size: 16px; /* Kích thước chữ */
     }
 
     .step p,
     .step ul {
-        font-size: 14px;
+        font-size: 14px; /* Kích thước chữ */
     }
 
     .step ul {
-        margin-left: 15px;
+        margin-left: 15px; /* Khoảng cách trái 15px */
     }
 }

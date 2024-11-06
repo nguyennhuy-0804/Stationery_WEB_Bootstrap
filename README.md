@@ -1,32 +1,24 @@
 # MÔN PHÁT TRIỂN ỨNG DỤNG WEB
 
-#Tên đề tài : Xây dựng trang web UEH STATIONERY 
+## Tên đề tài : Xây dựng trang web UEH STATIONERY
 
-
-                
 Ngày nay, Công nghệ thông tin đóng vai trò quan trọng trong mọi lĩnh vực, đặc biệt trong Cách mạng Công nghiệp 4.0, thúc đẩy sự phát triển của thương mại điện tử. Với nhu cầu mua sắm nhanh chóng và hiệu quả, các website thương mại điện tử giúp doanh nghiệp dễ dàng tiếp cận khách hàng, mở rộng quy mô, và kết nối mạnh mẽ. Xuất phát từ thực tế, nhóm quyết định xây dựng website "UEH STATIONERY" để đáp ứng nhu cầu mua sắm sách và văn phòng phẩm của sinh viên UEH, giúp họ tiết kiệm thời gian, chi phí, và áp dụng kiến thức kinh doanh trực tuyến vào thực tế.
-
 
 ## TÁC GIẢ
 
-* **Nguyễn Như Ý** - Tác giả  https://github.com/nguyennhuy-0804
-* **Nguyễn Quỳnh Anh** - Đồng tác giả  https://github.com/Quynanhng25
-* **Nguyễn Cao Hoài Duyên** - Đồng tác giả https://github.com/CaoHoaiDuyen
-* **Đinh Trương Ngọc Quỳnh Hoa** - Đồng tác giả https://github.com/QHoa036
-* **Nguyễn Phương Thảo** - Đồng tác giả https://github.com/thaonguyenbi
+* **Nguyễn Như Ý** - Tác giả  <https://github.com/nguyennhuy-0804>
+* **Nguyễn Quỳnh Anh** - Đồng tác giả  <https://github.com/Quynanhng25>
+* **Nguyễn Cao Hoài Duyên** - Đồng tác giả <https://github.com/CaoHoaiDuyen>
+* **Đinh Trương Ngọc Quỳnh Hoa** - Đồng tác giả <https://github.com/QHoa036>
+* **Nguyễn Phương Thảo** - Đồng tác giả <https://github.com/thaonguyenbi>
 
+## VỀ UEH STATIONERY
 
-
-# VỀ UEH STATIONERY
-                
-
-Hiện nay, sinh viên UEH có nhu cầu cao về sách và văn phòng phẩm phục vụ học tập, nhưng gặp khó khăn trong việc tìm kiếm, so sánh và phải di chuyển mua sắm. Website "UEH STATIONERY" được xây dựng để đáp ứng nhu cầu này, giúp sinh viên tiết kiệm thời gian, chi phí, và thúc đẩy thương mại điện tử trong cộng đồng, đồng thời là cơ hội áp dụng kiến thức kinh doanh trực tuyến vào thực tế. 
-
-
-
+Hiện nay, sinh viên UEH có nhu cầu cao về sách và văn phòng phẩm phục vụ học tập, nhưng gặp khó khăn trong việc tìm kiếm, so sánh và phải di chuyển mua sắm. Website "UEH STATIONERY" được xây dựng để đáp ứng nhu cầu này, giúp sinh viên tiết kiệm thời gian, chi phí, và thúc đẩy thương mại điện tử trong cộng đồng, đồng thời là cơ hội áp dụng kiến thức kinh doanh trực tuyến vào thực tế.
 
 ## KIẾN THỨC ÁP DỤNG
-* Sử dụng các control cơ bản và nâng cao trong Visual Studio 
+
+* Sử dụng các control cơ bản và nâng cao trong Visual Studio
 * Thiết kế giao diện người dùng (UX/UI Design) trên Figma
 * SQL/MySQL để tạo và quản lý cơ sở dữ liệu
 * HTML5 để xây dựng cấu trúc nội dung
@@ -35,10 +27,6 @@ Hiện nay, sinh viên UEH có nhu cầu cao về sách và văn phòng phẩm p
 * Lập trình JavaScript và PHP cho back-end
 * Kết nối và thao tác với cơ sở dữ liệu bằng PHP
 * Kỹ năng triển khai website lên server
-
-
-
-
 
 ## Nền tảng xây dựng
 
@@ -49,10 +37,6 @@ JavaScript và PHP là những ngôn ngữ lập trình quan trọng để xây 
 Cuối cùng, việc triển khai website lên server là giai đoạn hoàn tất quá trình phát triển. Sau khi hoàn thành các thành phần của trang web, đội ngũ phát triển sẽ triển khai lên server, cài đặt và cấu hình để website có thể hoạt động ổn định trên môi trường thực tế. Quy trình bảo trì cũng được thực hiện định kỳ nhằm đảm bảo tính bảo mật, tính ổn định và hiệu suất của trang web khi sử dụng lâu dài.
 Với nền tảng này, các công cụ Figma, HTML5, CSS, Bootstrap, SQL Server, MySQL, JavaScript, và PHP sẽ giúp đội ngũ phát triển xây dựng nên các ứng dụng web hiệu quả, tối ưu và dễ mở rộng trong tương lai.
 
-
-
-
 ## Lời cảm ơn
-
 
 Nhóm chúng em xin gửi lời cảm ơn sâu sắc đến thầy Nguyễn Mạnh Tuấn, giảng viên bộ môn Phát triển Ứng dụng Web tại Đại học UEH, vì đã tận tình hướng dẫn, truyền đạt kiến thức và kinh nghiệm quý báu giúp chúng em không chỉ nắm vững lý thuyết mà còn áp dụng vào thực tế. Xin chân thành cảm ơn thầy vì tâm huyết và sự nhiệt tình giúp nhóm hoàn thiện đề tài tốt nhất.

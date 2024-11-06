@@ -1,60 +1,60 @@
-/* Table styles */
+/* Kiểu dáng bảng */
 .table {
     width: 100%;
     table-layout: fixed;
-    border-collapse: collapse; /* Collapse borders for a cleaner look */
-    border: 2px solid #000000; /* Dark border for the outer edge of the table */
-    border-radius: 8px; /* Rounded corners for the table */
-    overflow: hidden; /* Prevents overflow of corners */
+    border-collapse: collapse; /* Gộp các đường viền để có giao diện sạch hơn */
+    border: 2px solid #000000; /* Đường viền đậm cho cạnh ngoài của bảng */
+    border-radius: 8px; /* Góc bo tròn cho bảng */
+    overflow: hidden; /* Ngăn chặn tràn góc */
 }
 
 .table th,
 .table td {
-    border: 1px solid #dee2e6; /* Light gray border for table cells */
-    padding: 12px; /* Padding for table cells */
-    text-align: center; /* Center text alignment */
+    border: 1px solid #dee2e6; /* Đường viền xám nhạt cho các ô bảng */
+    padding: 12px; /* Đệm cho các ô bảng */
+    text-align: center; /* Căn giữa văn bản */
 }
 
 .table th {
-    background-color: #f8f9fa; /* Light background for header */
-    color: #343a40; /* Dark text color for header */
-    font-weight: bold; /* Make header text bold */
+    background-color: #f8f9fa; /* Nền nhạt cho tiêu đề */
+    color: #343a40; /* Màu chữ đậm cho tiêu đề */
+    font-weight: bold; /* Làm đậm chữ tiêu đề */
 }
 
-/* Centering the title */
+/* Căn giữa tiêu đề */
 h3 {
-    text-align: center; /* Center the subsection headings */
+    text-align: center; /* Căn giữa các tiêu đề phụ */
 }
 
-/* Chart container styles */
+/* Kiểu dáng container biểu đồ */
 .chart-container {
     position: relative;
     margin: auto;
-    width: 80%; /* Adjust width as needed */
-    height: 400px; /* Adjust height as needed */
-    border: 2px solid #000000; /* Dark border around chart */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #ffffff; /* White background */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 80%; /* Điều chỉnh chiều rộng theo nhu cầu */
+    height: 400px; /* Điều chỉnh chiều cao theo nhu cầu */
+    border: 2px solid #000000; /* Đường viền đậm quanh biểu đồ */
+    border-radius: 8px; /* Góc bo tròn */
+    background-color: #ffffff; /* Nền trắng */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bóng mờ nhẹ để tạo độ sâu */
 }
 
-/* Heading styles */
+/* Kiểu dáng tiêu đề */
 h1 {
-    color: #343a40; /* Dark text color for headings */
-    text-align: center; /* Centered headings */
+    color: #343a40; /* Màu chữ đậm cho tiêu đề */
+    text-align: center; /* Căn giữa tiêu đề */
 }
 
 h2 {
-    margin-top: 40px; /* Space above section heading */
-    margin-bottom: 20px; /* Space below section heading */
+    margin-top: 40px; /* Khoảng cách phía trên tiêu đề phần */
+    margin-bottom: 20px; /* Khoảng cách phía dưới tiêu đề phần */
 }
 
 h3 {
-    margin-top: 30px; /* Space above subsection heading */
-    text-align: center; /* Center subsection headings */
+    margin-top: 30px; /* Khoảng cách phía trên tiêu đề phụ */
+    text-align: center; /* Căn giữa tiêu đề phụ */
 }
 
-/* Custom font color for tables */
+/* Màu chữ tùy chỉnh cho bảng */
 .table td {
-    color: #495057; /* Darker text color for table data */
+    color: #495057; /* Màu chữ đậm hơn cho dữ liệu bảng */
 }

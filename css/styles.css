@@ -1,4 +1,4 @@
-/* Text display */
+/* Văn bản hiển thị */
 .text-display-lg {
     font-weight: 400;
     font-size: 64px;
@@ -61,7 +61,7 @@
     font-size: 14px;
 }
 
-/* Link Text */
+/* Văn bản liên kết */
 .text-link-lg {
     font-weight: 600;
     font-size: 24px;
@@ -82,7 +82,7 @@
     font-size: 14px;
 }
 
-/* Text color */
+/* Màu văn bản */
 .text-color-white {
     color: #ffffff;
 }
@@ -107,39 +107,27 @@
     color: #aaaaaa;
 }
 
-/* Property color */
+/* Thuộc tính màu sắc */
 .property-color-line {
     color: #dedede;
 }
 
 .property-color-input-bg {
-    /* Grayscale / Input Background */
-
     background: #eff0f7;
-    /* Input Background */
-
     border: 1px solid #fcfdfe;
 }
 
 .property-color-bg {
-    /* Grayscale / Background */
-
     background: #f7f7fc;
-    /* Background Color */
-
     border: 1px solid #d6d8e7;
 }
 
 .property-color-off-white {
-    /* Off-White */
-
     background: #fcfcfc;
-    /* Grayscale / Line */
-
     border: 1px solid #d6d8e7;
 }
 
-/*=====  custom  ======*/
+/*=====  Tự điều  ======*/
 .text-display-lg-bold-56 {
     font-weight: 700;
     font-size: 56px;

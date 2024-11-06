@@ -1,8 +1,10 @@
+/* Body */
 body {
     font-weight: 300;
     font-size: 26px;
 }
 
+/* Container chứa nội dung */
 .container {
     max-width: 1440px;
     margin: 0 auto;
@@ -10,6 +12,7 @@ body {
     border-radius: 8px;
 }
 
+/* Tiêu đề */
 .title {
     font-family: "Anton SC", sans-serif;
     font-weight: 300;
@@ -19,6 +22,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Kiểu dáng container theo step */
 .step {
     margin-bottom: 20px;
 }
@@ -45,6 +49,7 @@ body {
     margin-bottom: 5px;
 }
 
+/* Khoảng ngăn màu cam */
 .orange-divider {
     border: none;
     height: 2px;
@@ -53,7 +58,7 @@ body {
 }
 
 
-/* Responsive styles */
+/* Các kiểu dáng đa dạng */
 @media (max-width: 1024px) {
     body {
         font-size: 22px;
