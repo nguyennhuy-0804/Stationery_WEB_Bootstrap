@@ -12,282 +12,265 @@
 /** Banner Section */
 /* background */
 .banner-section {
-    padding-top: 20px;
+    padding-top: 20px; /* Khoảng cách trên */
 }
 
 .bg-banner {
-    background-color: #005f692e;
-    width: 100%;
-    height: 100%;
-    top: 261px;
-    border: 2px solid #0000001c;
-    padding: 10px 20px;
+    background-color: #005f692e; /* Màu nền */
+    width: 100%; /* Chiều rộng 100% */
+    height: 100%; /* Chiều cao 100% */
+    top: 261px; /* Vị trí trên */
+    border: 2px solid #0000001c; /* Viền */
+    padding: 10px 20px; /* Khoảng cách trong */
 }
 /* Big banner */
 .big-banner {
-    width: 100%;
-    height: 400px;
-    border-radius: 15px;
-    opacity: 0px;
-    margin: 10px 0px 10px 0px;
+    width: 100%; /* Chiều rộng 100% */
+    height: 400px; /* Chiều cao 400px */
+    border-radius: 15px; /* Bo tròn góc */
+    opacity: 0px; /* Độ mờ */
+    margin: 10px 0px 10px 0px; /* Khoảng cách ngoài */
 }
 /* small banner */
 .small-banner {
-    width: 100%;
-    height: 194px;
-    border-radius: 15px;
-    opacity: 0px;
-    margin: 10px 0px 10px 0px;
+    width: 100%; /* Chiều rộng 100% */
+    height: 194px; /* Chiều cao 194px */
+    border-radius: 15px; /* Bo tròn góc */
+    opacity: 0px; /* Độ mờ */
+    margin: 10px 0px 10px 0px; /* Khoảng cách ngoài */
 }
 
 /** Category Section */
 /* Tiêu đề của category */
 .bg-title-category {
-    width: 240px;
-    height: auto;
-    background-color: #f26f33;
-    margin: 50px 0px 20px 0px;
+    width: 240px; /* Chiều rộng 240px */
+    height: auto; /* Chiều cao tự động */
+    background-color: #f26f33; /* Màu nền */
+    margin: 50px 0px 20px 0px; /* Khoảng cách ngoài */
 }
 
 .title-category {
-    font-family: "Anton";
-    font-size: 25px;
-    font-weight: 400;
-    text-align: center;
-    color: white;
-    padding: 12px;
-    text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69,
-        2px 2px 0 #005f69;
+    font-family: "Anton"; /* Font chữ */
+    font-size: 25px; /* Kích thước chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa văn bản */
+    color: white; /* Màu chữ */
+    padding: 12px; /* Khoảng cách trong */
+    text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69; /* Đổ bóng chữ */
 }
 
 /* Các sản phẩm */
 .bgCategory {
-    width: 100%; 
-    height: 100%;
-    background-color: #d9d9d952;
-    border: 2px solid #0000001c;
-    padding: 10px 0px 10px 0px;
+    width: 100%; /* Chiều rộng 100% */
+    height: 100%; /* Chiều cao 100% */
+    background-color: #d9d9d952; /* Màu nền */
+    border: 2px solid #0000001c; /* Viền */
+    padding: 10px 0px 10px 0px; /* Khoảng cách trong */
 }
 
 /* CSS cho card */
 .card {
-    width: 245px;
-    height: 350px;
-    left: 30px;
-    border-radius: 10px 10px 10px 10px;
-    border: 2px solid #005f69;
+    width: 245px; /* Chiều rộng 245px */
+    height: 350px; /* Chiều cao 350px */
+    left: 30px; /* Vị trí trái */
+    border-radius: 10px 10px 10px 10px; /* Bo tròn góc */
+    border: 2px solid #005f69; /* Viền */
 }
 
 .card img {
-    width: 100%;
-    height: 250px;
+    width: 100%; /* Chiều rộng 100% */
+    height: 250px; /* Chiều cao 250px */
 }
 
 .card-title {
-    font-family: "Asul";
-    font-size: 18px;
-    font-weight: 400;
-    text-align: center;
-    color: #005f69;
-
+    font-family: "Asul"; /* Font chữ */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa văn bản */
+    color: #005f69; /* Màu chữ */
 }
 
 .card-text {
-    font-family: "Roboto";
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    color: #79747e;
+    font-family: "Roboto"; /* Font chữ */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa văn bản */
+    color: #79747e; /* Màu chữ */
 }
 
 .card-price {
-    font-family: "Roboto";
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    color: red;
+    font-family: "Roboto"; /* Font chữ */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    text-align: center; /* Căn giữa văn bản */
+    color: red; /* Màu chữ đỏ */
 }
 
 .card-old-price {
-    font-family: "Roboto";
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    color: gray;
+    font-family: "Roboto"; /* Font chữ */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa văn bản */
+    color: gray; /* Màu chữ xám */
 }
 
 /** Carousel */
 .carousel-wrapper {
-    height: 100%;
-    width: 100%;
-    border: 2px solid #0000001c;
-    position: relative;
-    background-color: #d9d9d952;
-    padding: 16px 0px 16px 0px;
+    height: 100%; /* Chiều cao 100% */
+    width: 100%; /* Chiều rộng 100% */
+    border: 2px solid #0000001c; /* Viền */
+    position: relative; /* Vị trí tương đối */
+    background-color: #d9d9d952; /* Màu nền */
+    padding: 16px 0px 16px 0px; /* Khoảng cách trong */
 }
 
 .carousel {
-    overflow: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+    overflow: auto; /* Tràn tự động */
+    scroll-behavior: smooth; /* Cuộn mượt */
+    scrollbar-width: none; /* Không hiển thị thanh cuộn */
 }
 
 .carousel::-webkit-scrollbar {
-    height: 0;
+    height: 0; /* Chiều cao thanh cuộn */
 }
 
 .carousel-prev,
 .carousel-next {
-    align-content: center;
-    background: #005f69;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    outline: 0;
-    padding: 8px;
-    position: absolute;
+    align-content: center; /* Căn giữa nội dung */
+    background: #005f69; /* Màu nền */
+    border-radius: 50%; /* Bo tròn */
+    border: none; /* Không viền */
+    cursor: pointer; /* Con trỏ chuột */
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    outline: 0; /* Không viền ngoài */
+    padding: 8px; /* Khoảng cách trong */
+    position: absolute; /* Vị trí tuyệt đối */
 }
 
 .carousel-prev {
-    top: 50%;
-    left: 0;
-    transform: translate(50%, -50%);
-    display: none;
+    top: 50%; /* Vị trí trên */
+    left: 0; /* Vị trí trái */
+    transform: translate(50%, -50%); /* Dịch chuyển */
+    display: none; /* Ẩn */
 }
 
 .carousel-next {
-    top: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
+    top: 50%; /* Vị trí trên */
+    right: 0; /* Vị trí phải */
+    transform: translate(-50%, -50%); /* Dịch chuyển */
 }
 
 .carousel-content {
-    align-content: center;
-    display: grid;
-    grid-gap: 24px;
-    grid-auto-flow: column;
-    margin: auto;
-    box-sizing: border-box;
+    align-content: center; /* Căn giữa nội dung */
+    display: grid; /* Sử dụng grid */
+    grid-gap: 24px; /* Khoảng cách giữa các phần tử */
+    grid-auto-flow: column; /* Sắp xếp theo cột */
+    margin: auto; /* Căn giữa */
+    box-sizing: border-box; /* Bao gồm viền và đệm trong kích thước */
 }
 
 .carousel-icon {
-    color: white;
-    height: 24px;
-    width: 24px;
+    color: white; /* Màu chữ trắng */
+    height: 24px; /* Chiều cao */
+    width: 24px; /* Chiều rộng */
 }
 
 /** Thumbnail */
 .category-section {
-    padding-top: 50px;
-    padding-right: 10px;
-    margin: 0;
+    padding-top: 50px; /* Khoảng cách trên */
+    padding-right: 10px; /* Khoảng cách phải */
+    margin: 0; /* Không khoảng cách ngoài */
 }
 
 /* Thumbnail */
 .thumbnail {
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    border: 10px solid white;
+    position: relative; /* Vị trí tương đối */
+    overflow: hidden; /* Ẩn tràn */
+    text-decoration: none; /* Không gạch chân */
+    border: 10px solid white; /* Viền trắng */
 }
 
 .thumbnail:hover {
-    opacity: 50%;
+    opacity: 50%; /* Độ mờ khi hover */
 }
 
 .thumbnail img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    opacity: 75%;
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 50%; /* Vị trí trên */
+    left: 50%; /* Vị trí trái */
+    min-width: 100%; /* Chiều rộng tối thiểu */
+    min-height: 100%; /* Chiều cao tối thiểu */
+    object-fit: cover; /* Đảm bảo hình ảnh vừa khít */
+    transform: translate(-50%, -50%); /* Dịch chuyển để căn giữa */
+    opacity: 75%; /* Độ mờ */
 }
 
 /* Big Thumbnail */
 .big-thumbnail {
-    height: 420px;
-    background: #005f69;
-    background: -moz-linear-gradient(top, #005f69 0%, #ffffff 50%, #f26f33 100%);
-    background: -webkit-linear-gradient(top,
-            #005f69 0%,
-            #ffffff 50%,
-            #f26f33 100%);
-    background: linear-gradient(to bottom, #005f69 0%, #ffffff 50%, #f26f33 100%);
+    height: 420px; /* Chiều cao */
+    background: #005f69; /* Màu nền */
+    background: -moz-linear-gradient(top, #005f69 0%, #ffffff 50%, #f26f33 100%); /* Gradient */
+    background: -webkit-linear-gradient(top, #005f69 0%, #ffffff 50%, #f26f33 100%); /* Gradient */
+    background: linear-gradient(to bottom, #005f69 0%, #ffffff 50%, #f26f33 100%); /* Gradient */
 }
 
 .big-thumbnail img {
-    padding: 50px;
+    padding: 50px; /* Khoảng cách trong */
 }
 
 /* Small Thumbnail */
 .small-thumbnail {
-    height: 210px;
+    height: 210px; /* Chiều cao */
 }
 
 .small-thumbnail img {
-    padding: 30px;
-    height: 150px;
+    padding: 30px; /* Khoảng cách trong */
+    height: 150px; /* Chiều cao */
 }
 
 .small-thumbnail-first {
-    background: #f26f33;
-    background: -moz-linear-gradient(top, #f26f33 0%, #ffffff 90%, #ffffff 100%);
-    background: -webkit-linear-gradient(top,
-            #f26f33 0%,
-            #ffffff 90%,
-            #ffffff 100%);
-    background: linear-gradient(to bottom, #f26f33 0%, #ffffff 90%, #ffffff 100%);
+    background: #f26f33; /* Màu nền */
+    background: -moz-linear-gradient(top, #f26f33 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
+    background: -webkit-linear-gradient(top, #f26f33 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
+    background: linear-gradient(to bottom, #f26f33 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
 }
 
 .small-thumbnail-second {
-    background: #ffffff;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 10%, #005f69 100%);
-    background: -webkit-linear-gradient(top,
-            #ffffff 0%,
-            #ffffff 10%,
-            #005f69 100%);
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 10%, #005f69 100%);
+    background: #ffffff; /* Màu nền */
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 10%, #005f69 100%); /* Gradient */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 10%, #005f69 100%); /* Gradient */
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 10%, #005f69 100%); /* Gradient */
 }
 
 .small-thumbnail-third {
-    background: #005f69;
-    background: -moz-linear-gradient(top, #005f69 0%, #ffffff 90%, #ffffff 100%);
-    background: -webkit-linear-gradient(top,
-            #005f69 0%,
-            #ffffff 90%,
-            #ffffff 100%);
-    background: linear-gradient(to bottom, #005f69 0%, #ffffff 90%, #ffffff 100%);
+    background: #005f69; /* Màu nền */
+    background: -moz-linear-gradient(top, #005f69 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
+    background: -webkit-linear-gradient(top, #005f69 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
+    background: linear-gradient(to bottom, #005f69 0%, #ffffff 90%, #ffffff 100%); /* Gradient */
 }
 
 .small-thumbnail-fourth {
-    background: #ffffff;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 10%, #f26f33 100%);
-    background: -webkit-linear-gradient(top,
-            #ffffff 0%,
-            #ffffff 10%,
-            #f26f33 100%);
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 10%, #f26f33 100%);
+    background: #ffffff; /* Màu nền */
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 10%, #f26f33 100%); /* Gradient */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 10%, #f26f33 100%); /* Gradient */
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 10%, #f26f33 100%); /* Gradient */
 }
 
 /* Caption */
 .caption {
-    position: absolute;
-    top: 45%;
-    left: 0;
-    width: 100%;
-    color: white;
-    text-shadow: 1px 2px 2px #000000;
-    font-size: 2rem;
-    font-family: "Anton SC", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 45%; /* Vị trí trên */
+    left: 0; /* Vị trí trái */
+    width: 100%; /* Chiều rộng 100% */
+    color: white; /* Màu chữ trắng */
+    text-shadow: 1px 2px 2px #000000; /* Đổ bóng chữ */
+    font-size: 2rem; /* Kích thước chữ */
+    font-family: "Anton SC", sans-serif; /* Font chữ */
+    font-weight: 400; /* Độ đậm chữ */
+    font-style: normal; /* Kiểu chữ */
 }
 
 .caption h2 {
-    color: white;
+    color: white; /* Màu chữ trắng */
 }
