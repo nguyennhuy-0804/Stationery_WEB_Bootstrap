@@ -38,8 +38,6 @@ if (isset($userID)) {
             // Xử lý lỗi nếu không thể tạo giỏ hàng
             echo "Lỗi khi tạo giỏ hàng: " . mysqli_error($conn);
         }
-
-        $insertStmt->close();
     }
 
     $stmt->close();
@@ -119,7 +117,11 @@ $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP
 
 //* Tính tổng giá trị
 while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
-    $totalPrice += $cartDetailsRow['Thanhtien']; // Cộng dồn tổng giá trị
+    if ($cartDetailsRow['GiaKM'] != NULL) {
+        $totalPrice += $cartDetailsRow['GiaKM'] * $cartDetailsRow['SoLuong']; // Nếu có giá khuyến mãi, sử dụng giá khuyến mãi
+    } else {
+        $totalPrice += $cartDetailsRow['Giaban'] * $cartDetailsRow['SoLuong']; // Ngược lại, sử dụng giá bán
+    }
 }
 
 //* Cập nhật tổng giá trị trong bảng giohang sau khi đã tính toán
