@@ -2,25 +2,20 @@
 include "database/conn.php";
 session_start();
 
-// Nếu chưa đăng nhập -> Chuyển tới trang Login
+//* Nếu chưa đăng nhập -> Chuyển tới trang Login
 if (!isset($_SESSION['mySession'])) {
-    header('location:login.php'); // Chuyển hướng đến trang đăng nhập
+    header('location:login.php');
     exit();
 }
 
-// Lấy ID người dùng từ session
+//* Lấy ID người dùng từ session
 $userID = $_SESSION['user']['MaTV'] ?? 0;
 
 $orderDetails = [];
 $total = 0;
 $shippingCost = 0;
 
-// Nếu chưa đăng nhập -> Chuyển tới trang Login
-if (!isset($_SESSION['mySession'])) {
-    header('location:login.php');
-    exit();
-}
-
+//* Nếu người dùng đã đăng nhập
 if (isset($userID)) {
     // Truy vấn để lấy giỏ hàng của người dùng
     $cartQuery = $conn->prepare("SELECT MaGH FROM giohang WHERE MaTV = ? AND TinhTrang = 1");
@@ -29,19 +24,19 @@ if (isset($userID)) {
     $cartResult = $cartQuery->get_result();
 
     if ($cartRow = $cartResult->fetch_assoc()) {
-        $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng hiện tại
+        // Lấy mã giỏ hàng hiện tại
+        $cartID = $cartRow['MaGH'];
 
         // Lấy thông tin sản phẩm trong giỏ hàng
-        $itemQuery = $conn->prepare("
-            SELECT chitietgiohang.*, sanpham.TenSP, sanpham.MaSP, sanpham.Giaban, sanpham.GiaKM, sanpham.HinhAnh 
-            FROM chitietgiohang 
-            JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP 
-            WHERE chitietgiohang.MaGH = ?
-        ");
+        $itemQuery = $conn->prepare("SELECT chitietgiohang.*, sanpham.TenSP, sanpham.MaSP, sanpham.Giaban, sanpham.GiaKM, sanpham.HinhAnh
+                                    FROM chitietgiohang
+                                    JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
+                                    WHERE chitietgiohang.MaGH = ?");
         $itemQuery->bind_param('i', $cartID);
         $itemQuery->execute();
         $itemResult = $itemQuery->get_result();
 
+        // Lấy chi phí vận chuyển
         while ($row = $itemResult->fetch_assoc()) {
             $price = !empty($row['GiaKM']) ? $row['GiaKM'] : $row['Giaban'];
             $item = [
@@ -57,20 +52,20 @@ if (isset($userID)) {
             $total += $price * $row['SoLuong'];
         }
     } else {
-        echo '<p class="text-danger">Giỏ hàng trống hoặc không tồn tại.</p>';
+        echo 'Giỏ hàng trống hoặc không tồn tại.';
         exit;
     }
 } else {
-    echo '<p class="text-danger">Không có người dùng đăng nhập.</p>';
+    echo 'Bạn chưa đăng nhập.';
     exit;
 }
 
-// Tính toán tổng thanh toán
+//* Tính toán tổng thanh toán
 $totalPayment = $total + $shippingCost; // Tổng thanh toán
 ?>
 
 <?php
-// Truy vấn giỏ hàng hiện tại của người dùng
+//* Truy vấn giỏ hàng hiện tại của người dùng
 $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
 $cartRow = mysqli_fetch_assoc($cartResult);
 
@@ -79,14 +74,15 @@ if (!$cartRow) {
     exit();
 }
 
-$cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng
+//* Lấy mã giỏ hàng
+$cartID = $cartRow['MaGH'];
 
-// Lấy chi tiết giỏ hàng để hiển thị
+//* Lấy chi tiết giỏ hàng để hiển thị
 $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP, sanpham.Hinhanh, sanpham.Giaban, sanpham.GiaKM
-                                          FROM chitietgiohang
-                                          JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
-                                          WHERE chitietgiohang.MaGH = '$cartID'
-                                          ORDER BY chitietgiohang.MaCTGH ASC");
+                                        FROM chitietgiohang
+                                        JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
+                                        WHERE chitietgiohang.MaGH = '$cartID'
+                                        ORDER BY chitietgiohang.MaCTGH ASC");
 
 $total = 0; // Khởi tạo biến tổng giá trị hóa đơn
 $orderDetails = []; // Khởi tạo mảng lưu trữ chi tiết đơn hàng
@@ -129,6 +125,7 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
+
     <link rel="stylesheet" href="css/giohang.css" />
     <link rel="stylesheet" href="css/Hoadon.css" />
 </head>
@@ -197,8 +194,8 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
         </div>
 
         <div class="card mb-4">
-            <!-- Hình thức giao hàng -->
             <div class="card-body">
+                <!-- Hình thức giao hàng -->
                 <h5>Hình thức giao hàng:</h5>
                 <div class="form-check">
                     <input class="form-check-input shipping-option" type="radio" name="shipping" id="fastShipping" value="30000">
@@ -209,6 +206,7 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                     <label class="form-check-label" for="ecoShipping">Giao hàng tiết kiệm (Miễn phí)</label>
                 </div>
 
+                <!-- Hình thức thanh toán -->
                 <h5 class="mt-4">Hình thức thanh toán:</h5>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="payment" id="bankPayment" value="bank">
@@ -228,43 +226,92 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
             <div class="card-footer">
                 <span class="total-text">Tổng số tiền phải thanh toán:</span>
                 <span id="totalPayment" class="total-amount"><?= number_format($totalPayment) ?> đ</span>
-                <?php
-                // Truy vấn giỏ hàng hiện tại của người dùng
-                $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
-                $cartRow = mysqli_fetch_assoc($cartResult);
 
-                if (!$cartRow) {
-                    echo "Giỏ hàng của bạn không có sản phẩm nào.";
-                    exit();
-                }
+                <form method="POST" class="payment-form">
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
+                        //* Truy vấn giỏ hàng hiện tại của người dùng
+                        $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
+                        $cartRow = mysqli_fetch_assoc($cartResult);
 
-                $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng
+                        //* Lấy mã giỏ hàng
+                        $selectedCartID = $cartRow['MaGH'];
 
-                // Kiểm tra nếu biểu mẫu được gửi
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Đảm bảo $cartID được thiết lập và hợp lệ
-                    if (isset($cartID) && !empty($cartID)) {
-                        // Cập nhật TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
-                        $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$cartID' AND TinhTrang = 1");
+                        if (isset($selectedCartID) && !empty($selectedCartID)) {
+                            // Cập nhật trạng thái giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
+                            $updateCartTotal = mysqli_query($conn, "UPDATE giohang SET Tong = 0 WHERE MaGH = '$selectedCartID'");
+                            $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$selectedCartID' AND TinhTrang = 1");
 
-                        // Kiểm tra nếu truy vấn thành công
-                        if ($updateCartStatus) {
-                            $updateCarDetail  = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$cartID'");
+                            // Xóa chi tiết giỏ hàng sau khi đã đặt hàng
+                            $updateCartDetail = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$selectedCartID'");
+
+                            // Lấy mã hóa đơn mới nhất của người dùng
+                            $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang WHERE MaTV = '$userID' ORDER BY NgayHD DESC LIMIT 1");
+                            $orderIDRow = mysqli_fetch_assoc($orderIDResult);
+                            $orderID = $orderIDRow['MaHD'];
+
+                            // Lấy mã thanh toán
+                            $paymentMethod = $_POST['payment'] ?? 'cod';
+
+                            // kiểm tra hình thức thanh toán
+                            if ($paymentMethod === 'bank') {
+                                $paymentMethod = 'Internet Banking';
+                            } elseif ($paymentMethod === 'momo') {
+                                $paymentMethod = 'Ví Momo';
+                            } else {
+                                $paymentMethod = 'Tiền mặt';
+                            }
+                            $paymentResult = mysqli_query($conn, "SELECT MaTT FROM thanhtoan WHERE Pttt = '$paymentMethod'");
+                            $paymentRow = mysqli_fetch_assoc($paymentResult);
+                            $paymentID = $paymentRow['MaTT'];
+
+                            // Thêm đơn hàng mới vào bảng hóa đơn
+                            $insertOrder = mysqli_query($conn, "INSERT INTO donhang (Trigia, NgayHD, MaTT, MaTV, MaKM, Trangthai)
+                                                                VALUES ('$totalPayment', NOW(), '$paymentID', '$userID', NULL, 'Đang xử lý')");
+
+                            // Lấy mã hóa đơn mới nhất
+                            $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang ORDER BY CAST(SUBSTRING(MaHD, 3) AS UNSIGNED) DESC LIMIT 1");
+                            $orderDetailIDRow = mysqli_fetch_assoc($orderIDResult);
+                            $orderDetailIDNew = $orderDetailIDRow['MaHD'];
+
+                            // Tạo mã hóa đơn mới
+                            $orderDetailID = substr($orderDetailIDNew, 0, 2) . ((int)substr($orderDetailIDNew, 2) + 1);
+                            $updateOrderID = mysqli_query($conn, "UPDATE donhang SET MaHD = '$orderDetailID' WHERE MaHD = ''");
+
+                            // Thêm chi tiết đơn hàng vào bảng chi tiết hóa đơn
+                            foreach ($orderDetails as $item) {
+                                $productID = $item['MaSP'];
+                                $quantity = $item['SoLuong'];
+
+                                $insertOrderDetail = mysqli_query($conn, "INSERT INTO chitietdonhang (MaHD, MaSP, SLuong) VALUES ('$orderID', '$productID', '$quantity')");
+
+                                // Lấy mã chi tiết hóa đơn mới nhất
+                                $orderDetailIDResult = mysqli_query($conn, "SELECT MaCTHD FROM chitietdonhang ORDER BY CAST(SUBSTRING(MaCTHD, 3) AS UNSIGNED) DESC LIMIT 1");
+                                $orderDetailIDRow = mysqli_fetch_assoc($orderDetailIDResult);
+                                $orderDetailID = $orderDetailIDRow['MaCTHD'];
+
+                                // Tạo mã chi tiết hóa đơn mới
+                                $orderDetailIDNew = substr($orderDetailID, 0, 2) . ((int)substr($orderDetailID, 2) + 1);
+                                $updateOrderID = mysqli_query($conn, "UPDATE chitietdonhang SET MaCTHD = '$orderDetailIDNew' WHERE MaCTHD = ''");
+                            }
+
+                            if ($updateCartStatus && $updateCartDetail && $insertOrder && $insertOrderDetail) {
+                                $formSubmitted = true;
+                            } else {
+                                echo "Đặt hàng không thành công.";
+                            }
                         } else {
-                            // Xuất thông báo lỗi
-                            echo "Lỗi khi cập nhật trạng thái giỏ hàng: " . mysqli_error($conn);
+                            echo "Giỏ hàng không hợp lệ.";
                         }
-                    } else {
-                        echo "Mã giỏ hàng không hợp lệ.";
                     }
-                }
-                ?>
-                <form method="POST" class="payment-form" onsubmit="return showSuccessMessage(event);">
-                    <button type="submit" class="btn btn-light">Thanh toán</button>
+                    ?>
+                    <button type="submit" class="btn btn-light" name="checkout">Thanh toán</button>
                 </form>
 
+
                 <!-- Lớp phủ để làm mờ nền -->
-                <div id="overlay"></div>
+                <div id="overlay">
+                </div>
 
                 <!-- Thông báo thành công -->
                 <div id="successMessage">
@@ -281,24 +328,28 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             </script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
             <script>
-                // Lấy tất cả các tùy chọn vận chuyển
+                //* Lấy tất cả các tùy chọn vận chuyển
                 const shippingOptions = document.querySelectorAll('.shipping-option');
-                // Lấy phần tử hiển thị tổng số tiền
+
+                //* Lấy phần tử hiển thị tổng số tiền
                 const totalAmountElement = document.getElementById('totalAmount');
-                // Lấy phần tử hiển thị tổng số tiền phải thanh toán
+
+                //* Lấy phần tử hiển thị tổng số tiền phải thanh toán
                 const totalPaymentElement = document.getElementById('totalPayment');
 
-                // Thêm sự kiện lắng nghe cho mỗi tùy chọn vận chuyển khi thay đổi
+                //* Thêm sự kiện lắng nghe cho mỗi tùy chọn vận chuyển khi thay đổi
                 shippingOptions.forEach(option => {
                     option.addEventListener('change', updateTotal);
                 });
 
-                // Hàm cập nhật tổng số tiền phải thanh toán
+                //* Hàm cập nhật tổng số tiền phải thanh toán
                 function updateTotal() {
                     // Lấy chi phí vận chuyển từ tùy chọn đã chọn
                     const shippingCost = parseInt(document.querySelector('input[name="shipping"]:checked').value);
+
                     // Lấy tổng số tiền hiện tại từ phần tử hiển thị và loại bỏ dấu phẩy
                     const total = parseInt(totalAmountElement.innerText.replace(/,/g, ''));
 
@@ -309,28 +360,51 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                     totalPaymentElement.innerText = new Intl.NumberFormat().format(totalPayment) + ' đ';
                 }
 
-                // Hàm hiển thị thông báo thành công khi gửi form
+                //* Hàm hiển thị thông báo thành công khi gửi form
                 function showSuccessMessage(event) {
-                    event.preventDefault(); // Ngăn chặn việc gửi form
 
                     // Hiển thị lớp phủ và thông báo thành công
-                    document.getElementById('overlay').style.display = 'block';
-                    document.getElementById('successMessage').style.display = 'block';
+                    var overlay = document.getElementById('overlay');
+                    var successMessage = document.getElementById('successMessage');
 
-                    // Tùy chọn: có thể reset form sau khi hiển thị thông báo
-                    document.querySelector('.payment-form').reset();
+                    if (overlay && successMessage) {
+                        overlay.style.display = 'block';
+                        successMessage.style.display = 'block';
 
-                    // Tự động ẩn thông báo sau vài giây
-                    setTimeout(() => {
-                        document.getElementById('successMessage').style.display = 'none';
-                        document.getElementById('overlay').style.display = 'none';
-                    }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+                        // Tùy chọn: có thể reset form sau khi hiển thị thông báo
+                        document.querySelector('.payment-form').reset();
 
-                    // Chuyển hướng người dùng sau khi hiển thị thông báo
-                    setTimeout(() => {
-                        window.location.href = 'giohang.php';
-                    }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+                        // Tự động ẩn thông báo sau vài giây
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                            overlay.style.display = 'none';
+                        }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+
+                        // Chuyển hướng người dùng sau khi hiển thị thông báo
+                        setTimeout(() => {
+                            window.location.href = 'giohang.php';
+                        }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
+                    } else {
+                        console.error('Overlay or success message element not found.');
+                    }
                 }
+            </script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var paymentMethod = 'cod'; // Default value
+
+                    // Function to update the payment method variable
+                    function updatePaymentMethod(event) {
+                        paymentMethod = event.target.value;
+                        console.log('Selected payment method:', paymentMethod);
+                    }
+
+                    // Add event listeners to the radio buttons
+                    document.getElementById('bankPayment').addEventListener('change', updatePaymentMethod);
+                    document.getElementById('momoPayment').addEventListener('change', updatePaymentMethod);
+                    document.getElementById('codPayment').addEventListener('change', updatePaymentMethod);
+                });
             </script>
 </body>
 
