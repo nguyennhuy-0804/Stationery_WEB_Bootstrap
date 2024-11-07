@@ -6,6 +6,8 @@
 //     exit();
 // }
 
+
+
 if (isset($_GET['search'])) {
     $searchQuery = $_GET['search'];
 
@@ -56,51 +58,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 </div>
             </div>
 
-            <!-- Thanh tìm kiếm -->
-            <?php
-            if (isset($_GET['search-category'])) {
-                // Lấy data tìm kiếm của người dùng trong đó: 
-                // trim để xóa các khoảng trắng, strlower để chuyển về chữ thường, real_escape_string loại bỏ các kí tự đặc biệt
-                $searchTerm = trim(strtolower($conn->real_escape_string($_GET['search-category'])));
-
-                // Lấy các mã loại có têm trùng với data người dùng nhập vào
-                $query = "SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE '%$searchTerm%'";
-                $searchResult = mysqli_query($conn, $query);
-
-                // kiểm tra kết quả tìm được
-                if (mysqli_num_rows($searchResult) > 0) {
-                    // Lấy kết quả tìm kiếm dưới dạng mảng
-                    $searchData = mysqli_fetch_assoc($searchResult);
-                    // Đưa đến trang category tại loại sản phẩm đó
-                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
-                    exit();
-                } else {
-                    // Đưa đến trang không tìm thấy loại sản phẩm
-                    header('Location: danhmucsp.php?error=notfound');
-                    exit();
-                }
-            }
-            ?>
-            <!-- form get  -->
-            <form action="search_results.php" method="get" class="search-container py-3">
-            <span><i class="fas fa-chevron-left search-icon"></i></span>
-            <input type="text" class="form-control search-input" name="search" id="search-input" placeholder="Tìm kiếm bất kỳ">
-            <!-- dropdown trong thanh tìm kiếm -->
-            <div class="searchbar-dropdown">
-                <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
-                    <?php foreach ($categoryData as $data): ?>
-                        <li class="searchbar-dropdown-item">
-                            <a href="<?php echo 'danhmucsp.php#' . $data['MaLoai']; ?>" style="color: black">
-                                <?php echo $data['TenLoai'] ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <span><button type="submit" class="search-btn"><i class="fas fa-search"></i></button></span>
-        </form>
-
-
+          
             <!-- Các icon -->
             <div class="toolbar-container">
                 <div class="navbar-toolbar py-1">
@@ -171,7 +129,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     </li>
 
                     <!-- Đăng nhập, đăng ký và đăng xuất -->
-                    <?php if (isset($_SESSION['user']) && (isset($_SESSION['mySession']))): ?>
+                    <?php if (isset($_SESSION['user']) && (isset($_SESSION['adminSession']))): ?>
                         <li class="nav-item dropdown">
                             <!-- In ra tên của user -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

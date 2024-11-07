@@ -1,6 +1,8 @@
 <?php 
 session_start(); 
 include "database/conn.php"; 
+
+
 // tạo kết nối
 $conn = new mysqli($server, $user, $pass, $database);
 
