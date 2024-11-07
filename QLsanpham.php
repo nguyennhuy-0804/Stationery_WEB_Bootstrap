@@ -46,14 +46,12 @@ if (isset($_POST['add_product'])) {
     } else {
         // Chỉ chạy câu lệnh SQL nếu các biến bắt buộc đã được xác định
         if ($MASP && $TenSP && $Giagoc && $Giaban && $Ngaycapnhat) {
-            
-                    // Chèn vào cơ sở dữ liệu
-                    $sql = "INSERT INTO sanpham (MaSP, TenSP, Maloai, Giagoc, Giaban, GiaKM, MaKM, Mota, TinhtrangTK, HotTrend, BestSeller, IsClick, IsLike, Hinhanh, Ngaycapnhat)
+
+            // Chèn vào cơ sở dữ liệu
+            $sql = "INSERT INTO sanpham (MaSP, TenSP, Maloai, Giagoc, Giaban, GiaKM, MaKM, Mota, TinhtrangTK, HotTrend, BestSeller, IsClick, IsLike, Hinhanh, Ngaycapnhat)
                             VALUES ('$MASP', '$TenSP', '$MALOAI', '$Giagoc', '$Giaban', '$GiaKM', '$MaKM', '$Mota', '$TinhtrangTK', '$HotTrend', '$BestSeller', '$IsClick', '$IsLike', '$Hinhanh', '$Ngaycapnhat')";
-                    mysqli_query($conn, $sql);
-                
-                }
-            else {
+            mysqli_query($conn, $sql);
+        } else {
             echo "Vui lòng điền tất cả các trường bắt buộc.";
         }
     }
@@ -170,6 +168,49 @@ $result = $conn->query($sql);
 
 
     <style>
+
+        button:hover {
+            background: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 5px;
+            /* Điều chỉnh khoảng cách bên phải */
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .message {
+            display: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        /* CSS cho modal */
         .modal {
             display: none;
             /* Ẩn modal mặc định */
@@ -189,7 +230,6 @@ $result = $conn->query($sql);
             /* Màu nền nửa trong suốt */
         }
 
-
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -204,158 +244,102 @@ $result = $conn->query($sql);
             /* Bo góc */
         }
 
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-        /* Khi màn hình có kích thước nhỏ hơn 768px, chuyển bảng thành dạng cuộn ngang */
-        @media screen and (max-width: 768px) {
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-
-            /* Bao bọc bảng để cho phép cuộn ngang trên màn hình nhỏ */
-            .table-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-
-
-
-            /* Thiết lập bảng chiếm hết chiều rộng */
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-
-
-
-            /* Ẩn tiêu đề bảng trên màn hình nhỏ */
-            table thead {
-                display: none;
-                /* Ẩn tiêu đề bảng trên màn hình nhỏ */
-            }
-
-
-
-
-            /* Đảm bảo mỗi dòng của bảng chiếm toàn bộ chiều rộng */
-            table,
-            table tbody,
-            table tr,
-            table td {
-                display: block;
-                width: 100%;
-            }
-
-
-
-
-            /* Thêm khoảng cách dưới mỗi dòng trong bảng */
-            table tr {
-                margin-bottom: 10px;
-            }
-
-
-
-
-            /* Đảm bảo nội dung bảng hiển thị hợp lý, căn phải và thêm nhãn trước mỗi ô */
-            table td {
-                text-align: right;
-                padding-left: 50%;
-                /* Dành không gian cho nhãn */
-                position: relative;
-            }
-
-
-
-
-            /* Thêm nhãn cho mỗi ô, hiển thị tên của trường dữ liệu */
-            table td:before {
-                content: attr(data-label);
-                /* Hiển thị nhãn theo dữ liệu */
-                position: absolute;
-                left: 10px;
-                font-weight: bold;
-            }
-
-
-
-
-            /* Cải thiện các nút hành động trên màn hình nhỏ, chúng chiếm toàn bộ chiều rộng */
+        /* Điều chỉnh responsive */
+        @media (max-width: 768px) {
             .action-button {
-                width: 100%;
-                margin-top: 5px;
+                margin: 5px
             }
 
-
-
-
-            /* Cải thiện modal trên màn hình nhỏ */
-            .modal-dialog {
-                max-width: 90%;
-                margin: 30px auto;
-            }
-
-
-
-
-            .modal-content {
-                width: 100%;
-            }
-
-
-
-
-            /* Khi textarea hiển thị trên màn hình nhỏ, cho phép cuộn dọc nếu cần */
-            textarea {
-                width: 100%;
-                height: 150px;
-                /* Chiều cao của textarea có thể thay đổi tuỳ theo yêu cầu */
-                overflow-y: auto;
-                resize: vertical;
-                /* Cho phép người dùng thay đổi chiều cao của textarea */
+            .message {
+                display: none;
+                /* Ẩn mặc định */
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 5px;
             }
         }
 
+        /* Thiết lập chung cho bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
 
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
 
-        /* Khi màn hình có kích thước lớn hơn 768px, quay lại bố cục bảng chuẩn */
-        @media screen and (min-width: 769px) {
-            .table-wrapper {
-                overflow-x: initial;
+
+        th {
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+
+        /* Responsive cho bảng dạng cột */
+        @media (max-width: 768px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                /* Hiển thị từng ô bảng dưới dạng khối */
             }
 
 
-
-
-            /* Hiển thị lại tiêu đề bảng */
-            table thead {
-                display: table-header-group;
+            /* Ẩn tiêu đề của bảng */
+            thead tr {
+                display: none;
             }
 
 
-
-
-            /* Loại bỏ nhãn trên mỗi ô trong bảng */
-            table td:before {
-                content: none;
+            /* Thiết lập từng dòng dữ liệu thành một khối */
+            tr {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #ddd;
             }
 
 
-
-
-            /* Các nút hành động trở lại dạng ban đầu */
-            .action-button {
-                width: auto;
-                margin-top: 0;
+            /* Hiển thị tiêu đề cột bên trong ô dữ liệu */
+            td {
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
             }
 
 
-
-
-            /* Không cho phép thay đổi kích thước textarea trên màn hình lớn */
-            textarea {
-                resize: none;
+            /* Gán tên tiêu đề cho mỗi ô dữ liệu bằng data-label */
+            td::before {
+                content: attr(data-label);
+                /* Lấy giá trị từ data-label để làm tiêu đề */
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                white-space: nowrap;
             }
+
         }
     </style>
 
@@ -457,7 +441,7 @@ $result = $conn->query($sql);
 
             <input type="text" name="IsClick" placeholder="Is Click">
             <input type="text" name="IsLike" placeholder="Is Like">
-            
+
             <input type="date" name="Ngaycapnhat" required>
 
 
@@ -469,7 +453,7 @@ $result = $conn->query($sql);
 
         <!-- Bảng sản phẩm -->
         <div class="table-wrapper">
-            <table class="table table-bordered">
+            <table>
                 <thead>
                     <tr>
                         <th>MaSP</th>
@@ -578,6 +562,3 @@ $result = $conn->query($sql);
 <?php
 $conn->close(); // Close the database connection
 ?>
-
-
-
