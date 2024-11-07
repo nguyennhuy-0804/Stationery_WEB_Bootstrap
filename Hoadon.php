@@ -69,8 +69,8 @@ $totalPayment = $total + $shippingCost; // Tổng thanh toán
 $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
 $cartRow = mysqli_fetch_assoc($cartResult);
 
-if (!$cartRow) {
-    header ('location: giohang.php');
+if (!isset($cartRow) && empty($cartRow)) {
+    header('location: giohang.php');
     exit();
 }
 
@@ -95,6 +95,84 @@ while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
 }
 
 $totalPayment = $total; // Tổng tiền thanh toán ban đầu
+?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
+    //* Truy vấn giỏ hàng hiện tại của người dùng
+    $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
+    $cartRow = mysqli_fetch_assoc($cartResult);
+
+    //* Lấy mã giỏ hàng
+    $selectedCartID = $cartRow['MaGH'];
+
+    if (isset($selectedCartID) && !empty($selectedCartID)) {
+        // Cập nhật trạng thái giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
+        $updateCartTotal = mysqli_query($conn, "UPDATE giohang SET Tong = 0 WHERE MaGH = '$selectedCartID'");
+        $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$selectedCartID' AND TinhTrang = 1");
+
+        // Xóa chi tiết giỏ hàng sau khi đã đặt hàng
+        $updateCartDetail = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$selectedCartID'");
+
+        // Lấy mã hóa đơn mới nhất của người dùng
+        $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang WHERE MaTV = '$userID' ORDER BY NgayHD DESC LIMIT 1");
+        $orderIDRow = mysqli_fetch_assoc($orderIDResult);
+        $orderID = $orderIDRow['MaHD'];
+
+        // Lấy mã thanh toán
+        $paymentMethod = $_POST['payment'] ?? 'cod';
+
+        // kiểm tra hình thức thanh toán
+        if ($paymentMethod === 'bank') {
+            $paymentMethod = 'Internet Banking';
+        } elseif ($paymentMethod === 'momo') {
+            $paymentMethod = 'Ví Momo';
+        } else {
+            $paymentMethod = 'Tiền mặt';
+        }
+        $paymentResult = mysqli_query($conn, "SELECT MaTT FROM thanhtoan WHERE Pttt = '$paymentMethod'");
+        $paymentRow = mysqli_fetch_assoc($paymentResult);
+        $paymentID = $paymentRow['MaTT'];
+
+
+        // Thêm đơn hàng mới vào bảng hóa đơn
+        $insertOrder = mysqli_query($conn, "INSERT INTO donhang (Trigia, NgayHD, MaTT, MaTV, MaKM, Trangthai) 
+                                            VALUES ('$totalPayment', NOW(), NULL, '$userID', NULL, 'Đang xử lý')");
+
+        // Lấy mã hóa đơn mới nhất
+        $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang ORDER BY CAST(SUBSTRING(MaHD, 3) AS UNSIGNED) DESC LIMIT 1");
+        $orderDetailIDRow = mysqli_fetch_assoc($orderIDResult);
+        $orderDetailIDNew = $orderDetailIDRow['MaHD'];
+
+        // Tạo mã hóa đơn mới
+        $orderDetailID = substr($orderDetailIDNew, 0, 2) . ((int)substr($orderDetailIDNew, 2) + 1);
+        $updateOrderID = mysqli_query($conn, "UPDATE donhang SET MaHD = '$orderDetailID' WHERE MaHD = ''");
+
+        // Thêm chi tiết đơn hàng vào bảng chi tiết hóa đơn
+        foreach ($orderDetails as $item) {
+            $productID = $item['MaSP'];
+            $quantity = $item['SoLuong'];
+
+            $insertOrderDetail = mysqli_query($conn, "INSERT INTO chitietdonhang (MaHD, MaSP, SLuong) VALUES ('$orderID', '$productID', '$quantity')");
+
+            // Lấy mã chi tiết hóa đơn mới nhất
+            $orderDetailIDResult = mysqli_query($conn, "SELECT MaCTHD FROM chitietdonhang ORDER BY CAST(SUBSTRING(MaCTHD, 3) AS UNSIGNED) DESC LIMIT 1");
+            $orderDetailIDRow = mysqli_fetch_assoc($orderDetailIDResult);
+            $orderDetailID = $orderDetailIDRow['MaCTHD'];
+
+            // Tạo mã chi tiết hóa đơn mới
+            $orderDetailIDNew = substr($orderDetailID, 0, 2) . ((int)substr($orderDetailID, 2) + 1);
+            $updateOrderID = mysqli_query($conn, "UPDATE chitietdonhang SET MaCTHD = '$orderDetailIDNew' WHERE MaCTHD = ''");
+        }
+    }
+
+    // After processing, set a flag to show the alert
+    echo "<script>
+        alert('Thanh toán thành công!');
+        window.location.href = 'giohang.php';
+    </script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -228,95 +306,8 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
                 <span id="totalPayment" class="total-amount"><?= number_format($totalPayment) ?> đ</span>
 
                 <form method="POST" class="payment-form">
-                    <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
-                        //* Truy vấn giỏ hàng hiện tại của người dùng
-                        $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
-                        $cartRow = mysqli_fetch_assoc($cartResult);
-
-                        //* Lấy mã giỏ hàng
-                        $selectedCartID = $cartRow['MaGH'];
-
-                        if (isset($selectedCartID) && !empty($selectedCartID)) {
-                            // Cập nhật trạng thái giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
-                            $updateCartTotal = mysqli_query($conn, "UPDATE giohang SET Tong = 0 WHERE MaGH = '$selectedCartID'");
-                            $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$selectedCartID' AND TinhTrang = 1");
-
-                            // Xóa chi tiết giỏ hàng sau khi đã đặt hàng
-                            $updateCartDetail = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$selectedCartID'");
-
-                            // Lấy mã hóa đơn mới nhất của người dùng
-                            $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang WHERE MaTV = '$userID' ORDER BY NgayHD DESC LIMIT 1");
-                            $orderIDRow = mysqli_fetch_assoc($orderIDResult);
-                            $orderID = $orderIDRow['MaHD'];
-
-                            // Lấy mã thanh toán
-                            $paymentMethod = $_POST['payment'] ?? 'cod';
-
-                            // kiểm tra hình thức thanh toán
-                            if ($paymentMethod === 'bank') {
-                                $paymentMethod = 'Internet Banking';
-                            } elseif ($paymentMethod === 'momo') {
-                                $paymentMethod = 'Ví Momo';
-                            } else {
-                                $paymentMethod = 'Tiền mặt';
-                            }
-                            $paymentResult = mysqli_query($conn, "SELECT MaTT FROM thanhtoan WHERE Pttt = '$paymentMethod'");
-                            $paymentRow = mysqli_fetch_assoc($paymentResult);
-                            $paymentID = $paymentRow['MaTT'];
-
-                            // Thêm đơn hàng mới vào bảng hóa đơn
-                            $insertOrder = mysqli_query($conn, "INSERT INTO donhang (Trigia, NgayHD, MaTT, MaTV, MaKM, Trangthai)
-                                                                VALUES ('$totalPayment', NOW(), '$paymentID', '$userID', NULL, 'Đang xử lý')");
-
-                            // Lấy mã hóa đơn mới nhất
-                            $orderIDResult = mysqli_query($conn, "SELECT MaHD FROM donhang ORDER BY CAST(SUBSTRING(MaHD, 3) AS UNSIGNED) DESC LIMIT 1");
-                            $orderDetailIDRow = mysqli_fetch_assoc($orderIDResult);
-                            $orderDetailIDNew = $orderDetailIDRow['MaHD'];
-
-                            // Tạo mã hóa đơn mới
-                            $orderDetailID = substr($orderDetailIDNew, 0, 2) . ((int)substr($orderDetailIDNew, 2) + 1);
-                            $updateOrderID = mysqli_query($conn, "UPDATE donhang SET MaHD = '$orderDetailID' WHERE MaHD = ''");
-
-                            // Thêm chi tiết đơn hàng vào bảng chi tiết hóa đơn
-                            foreach ($orderDetails as $item) {
-                                $productID = $item['MaSP'];
-                                $quantity = $item['SoLuong'];
-
-                                $insertOrderDetail = mysqli_query($conn, "INSERT INTO chitietdonhang (MaHD, MaSP, SLuong) VALUES ('$orderID', '$productID', '$quantity')");
-
-                                // Lấy mã chi tiết hóa đơn mới nhất
-                                $orderDetailIDResult = mysqli_query($conn, "SELECT MaCTHD FROM chitietdonhang ORDER BY CAST(SUBSTRING(MaCTHD, 3) AS UNSIGNED) DESC LIMIT 1");
-                                $orderDetailIDRow = mysqli_fetch_assoc($orderDetailIDResult);
-                                $orderDetailID = $orderDetailIDRow['MaCTHD'];
-
-                                // Tạo mã chi tiết hóa đơn mới
-                                $orderDetailIDNew = substr($orderDetailID, 0, 2) . ((int)substr($orderDetailID, 2) + 1);
-                                $updateOrderID = mysqli_query($conn, "UPDATE chitietdonhang SET MaCTHD = '$orderDetailIDNew' WHERE MaCTHD = ''");
-                            }
-
-                            if ($updateCartStatus && $updateCartDetail && $insertOrder && $insertOrderDetail) {
-                                $formSubmitted = true;
-                            } else {
-                                echo "Đặt hàng không thành công.";
-                            }
-                        } else {
-                            echo "Giỏ hàng không hợp lệ.";
-                        }
-                    }
-                    ?>
                     <button type="submit" class="btn btn-light" name="checkout">Thanh toán</button>
                 </form>
-
-
-                <!-- Lớp phủ để làm mờ nền -->
-                <div id="overlay">
-                </div>
-
-                <!-- Thông báo thành công -->
-                <div id="successMessage">
-                    Đặt hàng thành công!
-                </div>
             </div>
 
             <!-- Footer -->
@@ -358,35 +349,6 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
 
                     // Cập nhật hiển thị tổng số tiền phải thanh toán với định dạng số
                     totalPaymentElement.innerText = new Intl.NumberFormat().format(totalPayment) + ' đ';
-                }
-
-                //* Hàm hiển thị thông báo thành công khi gửi form
-                function showSuccessMessage(event) {
-
-                    // Hiển thị lớp phủ và thông báo thành công
-                    var overlay = document.getElementById('overlay');
-                    var successMessage = document.getElementById('successMessage');
-
-                    if (overlay && successMessage) {
-                        overlay.style.display = 'block';
-                        successMessage.style.display = 'block';
-
-                        // Tùy chọn: có thể reset form sau khi hiển thị thông báo
-                        document.querySelector('.payment-form').reset();
-
-                        // Tự động ẩn thông báo sau vài giây
-                        setTimeout(() => {
-                            successMessage.style.display = 'none';
-                            overlay.style.display = 'none';
-                        }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
-
-                        // Chuyển hướng người dùng sau khi hiển thị thông báo
-                        setTimeout(() => {
-                            window.location.href = 'giohang.php';
-                        }, 3000); // Điều chỉnh thời gian tính bằng milliseconds
-                    } else {
-                        console.error('Overlay or success message element not found.');
-                    }
                 }
             </script>
 
