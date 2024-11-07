@@ -153,7 +153,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css\QLKM.css" />
+    <link rel="stylesheet" href="css/QLKM.css" />
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
     <!-- Header -->
@@ -163,14 +163,6 @@ $result = $conn->query($sql);
    
     <?php include 'layouts/AdminHeader.php'; ?>
     <h1>Quản lý Khuyến Mãi</h1>
-
-
-    <!-- Hiển thị thông báo -->
-    <?php if ($message): ?>
-        <div class="message <?php echo strpos($message, 'Lỗi') === false ? 'success' : 'error'; ?>">
-            <?php echo $message; ?>
-        </div>
-    <?php endif; ?>
 
 
     <!-- Form thêm khuyến mãi -->
@@ -184,7 +176,12 @@ $result = $conn->query($sql);
         <button class="action-button" type="submit" name="add_discount">Thêm Khuyến Mãi</button>
     </form>
 
-
+    <!-- Hiển thị thông báo -->
+    <?php if ($message): ?>
+        <div class="message <?php echo strpos($message, 'Lỗi') === false ? 'success' : 'error'; ?>">
+            <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
 
 
        <!-- Bảng danh sách khuyến mãi -->
@@ -244,7 +241,7 @@ $result = $conn->query($sql);
                 <input type="text" name="DieuKien" id="DieuKien" placeholder="Điều Kiện" required>
                 <input type="date" name="NgayBD" id="NgayBD" placeholder="Ngày Bắt Đầu" required>
                 <input type="date" name="NgayKT" id="NgayKT" placeholder="Ngày Kết Thúc" required>
-                <button type="submit" name="edit_discount">Cập Nhật Khuyến Mãi</button>
+                <button type="submit" name="edit_discount" class="edit_discount">Cập Nhật Khuyến Mãi</button>
             </form>
         </div>
     </div>
@@ -274,6 +271,16 @@ $result = $conn->query($sql);
                 closeModal();
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageDiv = document.querySelector('.message');
+            if (messageDiv) {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000); // 5 giây
+            }
+        });
+
     </script>
    
      <!-- Footer -->

@@ -89,13 +89,13 @@ if ($product_revenue_result) {
 
     <style>
         .table {
-            width: 100%;
+            width: 95%;
             table-layout: fixed;
             border-collapse: collapse; /* Gộp viền để có cái nhìn sạch sẽ hơn */
-            border: 2px solid #F26F33; /* Viền ngoài màu cam */
+            border: 3px solid #F26F33; /* Viền ngoài màu cam */
             overflow: hidden; /* Ngăn ngừa tràn góc */
             postion: center; 
-            margin-left: 5px;       
+            margin-left: 15px;       
         }
         .table th,
         .table td {
@@ -138,7 +138,7 @@ if ($product_revenue_result) {
             margin-top: 40px; /* Khoảng cách phía trên tiêu đề phần */
             margin-bottom: 20px; /* Khoảng cách phía dưới tiêu đề phần */
             text-align: left; /* Căn trái tiêu đề */
-            margin-left: 5px; /* Khoảng cách bên trái */
+            margin-left: 15px; /* Khoảng cách bên trái */
         }
 
         h5 {
