@@ -293,7 +293,106 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
+<style>
+  /* Khi màn hình có kích thước nhỏ hơn 768px, chuyển bảng thành dạng cuộn ngang */
+@media screen and (max-width: 768px) {
+    /* Bao bọc bảng để cho phép cuộn ngang trên màn hình nhỏ */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
+    /* Thiết lập bảng chiếm hết chiều rộng */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Ẩn tiêu đề bảng trên màn hình nhỏ */
+    table thead {
+        display: none; /* Ẩn tiêu đề bảng trên màn hình nhỏ */
+    }
+
+    /* Đảm bảo mỗi dòng của bảng chiếm toàn bộ chiều rộng */
+    table, table tbody, table tr, table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Thêm khoảng cách dưới mỗi dòng trong bảng */
+    table tr {
+        margin-bottom: 10px;
+    }
+
+    /* Đảm bảo nội dung bảng hiển thị hợp lý, căn phải và thêm nhãn trước mỗi ô */
+    table td {
+        text-align: right;
+        padding-left: 50%; /* Dành không gian cho nhãn */
+        position: relative;
+    }
+
+    /* Thêm nhãn cho mỗi ô, hiển thị tên của trường dữ liệu */
+    table td:before {
+        content: attr(data-label); /* Hiển thị nhãn theo dữ liệu */
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }
+
+    /* Cải thiện các nút hành động trên màn hình nhỏ, chúng chiếm toàn bộ chiều rộng */
+    .action-button {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    /* Cải thiện modal trên màn hình nhỏ */
+    .modal-dialog {
+        max-width: 90%;
+        margin: 30px auto;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+
+    /* Khi textarea hiển thị trên màn hình nhỏ, cho phép cuộn dọc nếu cần */
+    textarea {
+        width: 100%;
+        height: 150px; /* Chiều cao của textarea có thể thay đổi tuỳ theo yêu cầu */
+        overflow-y: auto;
+        resize: vertical; /* Cho phép người dùng thay đổi chiều cao của textarea */
+    }
+}
+
+/* Khi màn hình có kích thước lớn hơn 768px, quay lại bố cục bảng chuẩn */
+@media screen and (min-width: 769px) {
+    .table-wrapper {
+        overflow-x: initial;
+    }
+
+    /* Hiển thị lại tiêu đề bảng */
+    table thead {
+        display: table-header-group;
+    }
+
+    /* Loại bỏ nhãn trên mỗi ô trong bảng */
+    table td:before {
+        content: none;
+    }
+
+    /* Các nút hành động trở lại dạng ban đầu */
+    .action-button {
+        width: auto;
+        margin-top: 0;
+    }
+
+    /* Không cho phép thay đổi kích thước textarea trên màn hình lớn */
+    textarea {
+        resize: none;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -368,82 +467,82 @@ $result = $conn->query($sql);
         </form>
 
 
-        <!-- Bảng sản phẩm -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>MaSP</th>
-                    <th>TenSP</th>
-                    <th>Giaban</th>
-                    <th>Mota</th>
-                    <th>HotTrend</th>
-                    <th>BestSeller</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($result->num_rows > 0) : ?>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
-                        <tr>
-                            <td><?php echo $row['MaSP']; ?></td>
-                            <td><?php echo $row['TenSP']; ?></td>
-                            <td><?php echo $row['Giaban']; ?></td>
-                            <td><?php echo $row['Mota']; ?></td>
-                            <td><?php echo $row['HotTrend'] ? 'Có' : 'Không'; ?></td>
-                            <td><?php echo $row['BestSeller'] ? 'Có' : 'Không'; ?></td>
-                            <td>
-                                <!-- Sửa và Xóa -->
-                                <form action="" method="POST" class="d-inline">
-                                    <input type="hidden" name="id" value="<?php echo $row['MaSP']; ?>">
-                                    <button type="submit" name="delete_product" class="btn btn-danger">Xóa</button>
-                                </form>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal<?php echo $row['MaSP']; ?>">Sửa</button>
+     <!-- Bảng sản phẩm -->
+<div class="table-wrapper">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>MaSP</th>
+                <th>TenSP</th>
+                <th>Giaban</th>
+                <th>Mota</th>
+                <th>HotTrend</th>
+                <th>BestSeller</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($result->num_rows > 0) : ?>
+                <?php while ($row = $result->fetch_assoc()) : ?>
+                    <tr>
+                        <td data-label="MaSP"><?php echo $row['MaSP']; ?></td>
+                        <td data-label="TenSP"><?php echo $row['TenSP']; ?></td>
+                        <td data-label="Giaban"><?php echo $row['Giaban']; ?></td>
+                        <td data-label="Mota"><?php echo $row['Mota']; ?></td>
+                        <td data-label="HotTrend"><?php echo $row['HotTrend'] ? 'Có' : 'Không'; ?></td>
+                        <td data-label="BestSeller"><?php echo $row['BestSeller'] ? 'Có' : 'Không'; ?></td>
+                        <td data-label="Hành động">
+                            <form action="" method="POST" class="d-inline">
+                                <input type="hidden" name="id" value="<?php echo $row['MaSP']; ?>">
+                                <button type="submit" name="delete_product" class="btn btn-danger">Xóa</button>
+                            </form>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal<?php echo $row['MaSP']; ?>">Sửa</button>
 
-                                <!-- modal sửa sản phẩm -->
-                                <div class="modal fade" id="editModal<?php echo $row['MaSP']; ?>" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Sửa sản phẩm</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="" method="POST" enctype="multipart/form-data">
-                                                    <input type="hidden" name="id" value="<?php echo $row['MaSP']; ?>">
-                                                    <input type="text" name="MaSP" value="<?php echo $row['MaSP']; ?>" required>
-                                                    <input type="text" name="TenSP" value="<?php echo $row['TenSP']; ?>" required>
-                                                    <input type="text" name="Maloai" value="<?php echo $row['Maloai']; ?>" required>
-                                                    <input type="number" name="Giagoc" value="<?php echo $row['Giagoc']; ?>" required>
-                                                    <input type="number" name="Giaban" value="<?php echo $row['Giaban']; ?>" required>
-                                                    <input type="number" name="GiaKM" value="<?php echo $row['GiaKM']; ?>"> 
-                                                    <input type="text" name="MaKM" value="<?php echo $row['MaKM']; ?>">
-                                                    <textarea name="Mota" required><?php echo $row['Mota']; ?></textarea>
-                                                    <input type="text" name="TinhtrangTK" value="<?php echo $row['TinhtrangTK']; ?>" required>
-                                                    <input type="checkbox" name="HotTrend" <?php echo $row['HotTrend'] ? 'checked' : ''; ?>> Hot Trend
-                                                    <input type="checkbox" name="BestSeller" <?php echo $row['BestSeller'] ? 'checked' : ''; ?>> Best Seller
-                                                    <input type="text" name="IsClick" value="<?php echo $row['IsClick']; ?>">
-                                                    <input type="text" name="IsLike" value="<?php echo $row['IsLike']; ?>">
-                                                    <input type="file" name="Hinhanh">
-                                                    <input type="date" name="Ngaycapnhat" value="<?php echo $row['Ngaycapnhat']; ?>" required>
-                                                    <button type="submit" class="btn btn-primary" name="edit_product">Cập nhật</button>
-                                                </form>
-                                            </div>
+                            <!-- Modal sửa sản phẩm -->
+                            <div class="modal fade" id="editModal<?php echo $row['MaSP']; ?>" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Sửa sản phẩm</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST" enctype="multipart/form-data">
+                                                <input type="hidden" name="id" value="<?php echo $row['MaSP']; ?>">
+                                                <input type="text" name="MaSP" value="<?php echo $row['MaSP']; ?>" required>
+                                                <input type="text" name="TenSP" value="<?php echo $row['TenSP']; ?>" required>
+                                                <input type="text" name="Maloai" value="<?php echo $row['Maloai']; ?>" required>
+                                                <input type="number" name="Giagoc" value="<?php echo $row['Giagoc']; ?>" required>
+                                                <input type="number" name="Giaban" value="<?php echo $row['Giaban']; ?>" required>
+                                                <input type="number" name="GiaKM" value="<?php echo $row['GiaKM']; ?>"> 
+                                                <input type="text" name="MaKM" value="<?php echo $row['MaKM']; ?>">
+                                                <textarea name="Mota" required><?php echo $row['Mota']; ?></textarea>
+                                                <input type="text" name="TinhtrangTK" value="<?php echo $row['TinhtrangTK']; ?>" required>
+                                                <input type="checkbox" name="HotTrend" <?php echo $row['HotTrend'] ? 'checked' : ''; ?>> Hot Trend
+                                                <input type="checkbox" name="BestSeller" <?php echo $row['BestSeller'] ? 'checked' : ''; ?>> Best Seller
+                                                <input type="text" name="IsClick" value="<?php echo $row['IsClick']; ?>">
+                                                <input type="text" name="IsLike" value="<?php echo $row['IsLike']; ?>">
+                                                <input type="file" name="Hinhanh">
+                                                <input type="date" name="Ngaycapnhat" value="<?php echo $row['Ngaycapnhat']; ?>" required>
+                                                <button type="submit" class="btn btn-primary" name="edit_product">Cập nhật</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="7" class="text-center">Chưa có sản phẩm nào.</td>
+                            </div>
+                        </td>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+                <?php endwhile; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="7" class="text-center">Chưa có sản phẩm nào.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 
     <!-- Footer -->
     <?php include 'layouts/AdminFooter.php'; ?>
