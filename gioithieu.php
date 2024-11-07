@@ -52,8 +52,8 @@ session_start();
             <div class="container">
                 <h2>GIỚI THIỆU</h2>
                 <p>
-                    <b>UEH STATIONERY</b> là trang giao dịch bán hàng trực tuyến trực thuộc đại học kinh tế tp. hồ chí minh
-                    (ueh)stationery. Trang được ra mắt lần đầu tiên vào ngày 21 tháng 9 năm 2024 với sứ mệnh từ việc bán
+                    <b>UEH STATIONERY</b> là trang giao dịch bán hàng trực tuyến trực thuộc Đại học Kinh tế TP. Hồ Chí Minh.
+                    Trang được ra mắt lần đầu tiên vào ngày 21 tháng 9 năm 2024 với sứ mệnh từ việc bán
                     các sản phẩm văn phòng, sách, giáo trình học tập, tài liệu tham khảo,... không chỉ giúp khuyến khích mọi
                     người nâng cao trí thức mà còn gây quỹ chung tay góp sức với các hoàn cảnh khó khăn.
                 </p>
