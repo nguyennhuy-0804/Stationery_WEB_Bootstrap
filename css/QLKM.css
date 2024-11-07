@@ -1,10 +1,11 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
 
+
 }
+
 
 h1 {
     text-align: center;
@@ -14,6 +15,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+
 #add-discount-form {
     margin-left: 5px;
     margin-bottom: 20px;
@@ -21,6 +23,7 @@ h1 {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 
 }
 input[type="text"], input[type="number"], input[type="date"] {
@@ -122,6 +125,7 @@ table {
     margin-top: 20px;
 }
 
+
 th,
 td {
     padding: 10px;
@@ -129,10 +133,12 @@ td {
     border: 1px solid #ddd;
 }
 
+
 th {
     background: #f8f9fa;
     text-align: center;
 }
+
 
 /* Responsive cho bảng dạng cột */
 @media (max-width: 768px) {
@@ -140,10 +146,12 @@ th {
         display: block; /* Hiển thị từng ô bảng dưới dạng khối */
     }
 
+
     /* Ẩn tiêu đề của bảng */
     thead tr {
         display: none;
     }
+
 
     /* Thiết lập từng dòng dữ liệu thành một khối */
     tr {
@@ -151,12 +159,14 @@ th {
         border-bottom: 1px solid #ddd;
     }
 
+
     /* Hiển thị tiêu đề cột bên trong ô dữ liệu */
     td {
         position: relative;
         padding-left: 50%;
         text-align: left;
     }
+
 
     /* Gán tên tiêu đề cho mỗi ô dữ liệu bằng data-label */
     td::before {
@@ -166,5 +176,6 @@ th {
         font-weight: bold;
         white-space: nowrap;
     }
+
 
 }

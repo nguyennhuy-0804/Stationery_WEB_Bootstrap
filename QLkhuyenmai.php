@@ -2,14 +2,18 @@
 session_start(); // Bắt đầu phiên
 include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
 
+
 // Tạo kết nối
 $conn = new mysqli($server, $user, $pass, $database);
+
 
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
+
 $message = ''; // Biến để lưu thông báo
+
 
 // Xử lý thêm khuyến mãi
 if (isset($_POST['add_discount'])) {
@@ -20,6 +24,7 @@ if (isset($_POST['add_discount'])) {
     $NgayBD = $_POST['NgayBD'] ?? null;
     $NgayKT = $_POST['NgayKT'] ?? null;
 
+
     if ($MaKM && $TenCT && $PhamtramKM !== null && $DieuKien && $NgayBD && $NgayKT) {
         // Kiểm tra xem MaKM và TenCT có bị trùng không
         $checkSql = "SELECT * FROM khuyenmai WHERE MaKM = ? OR TenCT = ?";
@@ -28,14 +33,16 @@ if (isset($_POST['add_discount'])) {
         $stmt->execute();
         $resultCheck = $stmt->get_result();
 
+
         if ($resultCheck->num_rows > 0) {
             $message = "Trùng lặp: Mã khuyến mãi hoặc tên chi tiết đã tồn tại. Vui lòng nhập khác.";
         } else {
-            $sql = "INSERT INTO khuyenmai (MaKM, TenCT, PhamtramKM, DieuKien, NgayBD, NgayKT) 
+            $sql = "INSERT INTO khuyenmai (MaKM, TenCT, PhamtramKM, DieuKien, NgayBD, NgayKT)
                     VALUES (?, ?, ?, ?, ?, ?)";
             $stmtInsert = $conn->prepare($sql);
             // Chỉnh sửa bind_param cho đúng kiểu dữ liệu
             $stmtInsert->bind_param("ssisss", $MaKM, $TenCT, $PhamtramKM, $DieuKien, $NgayBD, $NgayKT);
+
 
             if ($stmtInsert->execute()) {
                 $message = "Khuyến mãi đã được thêm thành công!";
@@ -48,7 +55,8 @@ if (isset($_POST['add_discount'])) {
     }
 }
 
-// Sửa khuyến mãi 
+
+// Sửa khuyến mãi
 if (isset($_POST['edit_discount'])) {
     $MaKM = $_POST['MaKM'] ?? null;
     $TenCT = $_POST['TenCT'] ?? null;
@@ -57,12 +65,13 @@ if (isset($_POST['edit_discount'])) {
     $NgayBD = $_POST['NgayBD'] ?? null;
     $NgayKT = $_POST['NgayKT'] ?? null;
 
+
     if ($MaKM) {
         $sql = "UPDATE khuyenmai SET TenCT=?, PhamtramKM=?, DieuKien=?, NgayBD=?, NgayKT=? WHERE MaKM=?";
         $stmt = $conn->prepare($sql);
         // Chỉnh sửa bind_param cho đúng kiểu dữ liệu
         $stmt->bind_param("sissss", $TenCT, $PhamtramKM, $DieuKien, $NgayBD, $NgayKT, $MaKM);
-        
+       
         if ($stmt->execute()) {
             $message = "Khuyến mãi đã được cập nhật thành công!";
         } else {
@@ -73,9 +82,11 @@ if (isset($_POST['edit_discount'])) {
     }
 }
 
+
 // Xử lý xóa khuyến mãi
 if (isset($_POST['delete_discount'])) {
     $MaKM = $_POST['MaKM'] ?? null;
+
 
     if ($MaKM) {
         // Cập nhật bảng donhang và sanpham trước khi xóa khuyến mãi
@@ -84,16 +95,18 @@ if (isset($_POST['delete_discount'])) {
         $stmtUpdateDonHang->bind_param("s", $MaKM);
         $stmtUpdateDonHang->execute();
 
+
         $updateSanPhamSql = "UPDATE sanpham SET MaKM = NULL WHERE MaKM = ?";
         $stmtUpdateSanPham = $conn->prepare($updateSanPhamSql);
         $stmtUpdateSanPham->bind_param("s", $MaKM);
         $stmtUpdateSanPham->execute();
 
+
         // Sau khi cập nhật, tiến hành xóa khuyến mãi
         $sql = "DELETE FROM khuyenmai WHERE MaKM=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $MaKM);
-        
+       
         if ($stmt->execute()) {
             $message = "Khuyến mãi đã được xóa thành công!";
         } else {
@@ -104,10 +117,12 @@ if (isset($_POST['delete_discount'])) {
     }
 }
 
+
 // Lấy danh sách khuyến mãi
 $sql = "SELECT * FROM khuyenmai";
 $result = $conn->query($sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -116,9 +131,11 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Sản Phẩm</title>
 
+
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -126,9 +143,11 @@ $result = $conn->query($sql);
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css" />
@@ -141,9 +160,10 @@ $result = $conn->query($sql);
    
 </head>
 <body>
-    
+   
     <?php include 'layouts/AdminHeader.php'; ?>
     <h1>Quản lý Khuyến Mãi</h1>
+
 
     <!-- Hiển thị thông báo -->
     <?php if ($message): ?>
@@ -151,6 +171,7 @@ $result = $conn->query($sql);
             <?php echo $message; ?>
         </div>
     <?php endif; ?>
+
 
     <!-- Form thêm khuyến mãi -->
     <form id="add-discount-form" method="post" action="">
@@ -162,6 +183,8 @@ $result = $conn->query($sql);
         <input type="date" name="NgayKT" placeholder="Ngày Kết Thúc" required>
         <button class="action-button" type="submit" name="add_discount">Thêm Khuyến Mãi</button>
     </form>
+
+
 
 
        <!-- Bảng danh sách khuyến mãi -->
@@ -190,6 +213,7 @@ $result = $conn->query($sql);
                 <td data-label="Hành Động">
                     <button class="action-button" onclick="openModal('<?php echo $row['MaKM']; ?>', '<?php echo $row['TenCT']; ?>', '<?php echo $row['PhamtramKM']; ?>', '<?php echo $row['DieuKien']; ?>', '<?php echo $row['NgayBD']; ?>', '<?php echo $row['NgayKT']; ?>')">Sửa</button>
 
+
                     <form method="post" action="" style="display:inline;">
                         <input type="hidden" name="MaKM" value="<?php echo $row['MaKM']; ?>">
                         <button class="action-button" type="submit" name="delete_discount" onclick="return confirm('Bạn có chắc chắn muốn xóa khuyến mãi này?');">Xóa</button>
@@ -206,7 +230,8 @@ $result = $conn->query($sql);
     <?php endif; ?>
 </tbody>
     </table>
-    
+   
+
 
     <!-- Modal sửa khuyến mãi -->
     <div id="myModal" class="modal">
@@ -224,6 +249,7 @@ $result = $conn->query($sql);
         </div>
     </div>
 
+
     <script>
         function openModal(MaKM, TenCT, PhamtramKM, DieuKien, NgayBD, NgayKT) {
             document.getElementById('MaKM').value = MaKM;
@@ -235,9 +261,11 @@ $result = $conn->query($sql);
             document.getElementById('myModal').style.display = "block"; // Hiện modal
         }
 
+
         function closeModal() {
             document.getElementById('myModal').style.display = "none"; // Ẩn modal
         }
+
 
         // Đóng modal khi nhấn ra ngoài
         window.onclick = function(event) {
@@ -247,9 +275,10 @@ $result = $conn->query($sql);
             }
         }
     </script>
-    
+   
      <!-- Footer -->
      <?php include 'layouts/AdminFooter.php'; ?>
+
 
     <!-- Scripts -->
     <script src="scripts/header.js"></script>
@@ -261,6 +290,7 @@ $result = $conn->query($sql);
 </body>
 </html>
 
+
 <?php
-$conn->close(); 
+$conn->close();
 ?>
