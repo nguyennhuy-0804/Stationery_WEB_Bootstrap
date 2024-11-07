@@ -23,28 +23,24 @@ if (isset($userID)) {
         // Người dùng đã có giỏ hàng, lấy mã giỏ hàng
         $stmt->bind_result($cartID);
         $stmt->fetch();
-    } else {
-        // Người dùng chưa có giỏ hàng, tạo giỏ hàng mới
-        $insertCartQuery = "
-            INSERT INTO giohang (MaTV, Ngaytao, Tong, TinhTrang)
-            VALUES (?, NOW(), 0, 'chua hoan tat')";
-
-        $insertStmt = $conn->prepare($insertCartQuery);
-        $insertStmt->bind_param("s", $userID);
-
-        if ($insertStmt->execute()) {
-            // Lấy mã giỏ hàng vừa tạo
-            $cartID = $insertStmt->insert_id;
-        } else {
-            // Xử lý lỗi nếu không thể tạo giỏ hàng
-            echo "Lỗi khi tạo giỏ hàng: " . $conn->error;
+    } 
+        else {
+            // Người dùng chưa có giỏ hàng, tạo giỏ hàng mới
+            $str = rand();
+            $MaGH = "GH" . md5($str);
+            $insertCartQuery = "
+                INSERT INTO giohang (MaGH, MaTV, Ngaytao, Tong, TinhTrang)
+                VALUES ('$MaGH','$userID', NOW(), 0, '0')";  
+            // Thực thi câu lệnh thêm giỏ hàng
+            if (mysqli_query($conn, $insertCartQuery)) {
+                // Lấy mã giỏ hàng mới vừa được tạo
+                $cartID = mysqli_insert_id($conn);
+            } else {
+                // Xử lý lỗi nếu không thể tạo giỏ hàng
+                echo "Lỗi khi tạo giỏ hàng: " . mysqli_error($conn);
+            }
         }
-
-        $insertStmt->close();
-    }
-
-    $stmt->close();
-} else {
+    } else {
     // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
     echo "Vui lòng đăng nhập để tạo giỏ hàng.";
 }
