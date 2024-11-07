@@ -129,7 +129,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     </li>
 
                     <!-- Đăng nhập, đăng ký và đăng xuất -->
-                    <?php if (isset($_SESSION['user']) && (isset($_SESSION['adminSession']))): ?>
+                    <?php if (isset($_SESSION['admin']) && (isset($_SESSION['adminSession']))): ?>
                         <li class="nav-item dropdown">
                             <!-- In ra tên của user -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

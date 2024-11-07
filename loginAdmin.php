@@ -3,77 +3,77 @@ session_start();
 include "database/conn.php";
 
 
-// Thông tin kết nối cơ sở dữ liệu
-$server = "localhost";   // Địa chỉ máy chủ cơ sở dữ liệu
-$user = "root";          // Tên người dùng (username)
-$pass = "";              // Mật khẩu người dùng
-$database = "uehstationery"; // Tên cơ sở dữ liệu
 
 
-// Tạo kết nối
-$conn = new mysqli($server, $user, $pass, $database);
-
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
-}
-
-
-// Khởi tạo thông báo lỗi
-$error_message = "";
-
-
-// Xử lý đăng nhập
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['loginAdmin'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Lấy thông tin người dùng
+    $sql = "SELECT taikhoan.MaTK, taikhoan.RoleID, taikhoan.MatKhau, admin.TenAD, admin.MaAD, admin.Email FROM
+    taikhoan JOIN admin ON taikhoan.MaTK = admin.MaTK WHERE TenDangNhap = '$username'";
+    $result = mysqli_query($conn, $sql);
 
-    // Truy vấn kiểm tra tài khoản
-    $sql = "SELECT MaTK, RoleID, MatKhau FROM taikhoan WHERE TenDangNhap = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) == 1) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $hashedPassword = $row['MatKhau']; // Lấy mật khẩu đã được hash
+            $roleId = $row['RoleID'];
 
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $hashedPassword = $row['MatKhau']; // Lấy mật khẩu đã được hash
-        $roleId = $row['RoleID'];
-
-
-        // Kiểm tra mật khẩu đã mã hóa (hash)
-        if (password_verify($password, $hashedPassword)) {
-            // Kiểm tra quyền truy cập
-            if ($roleId == 0) { // Admin có quyền truy cập
-                $_SESSION['MaTK'] = $row['MaTK'];
-                $_SESSION['RoleID'] = $roleId;
-                header("Location: QLthongke.php");
-                exit();
-            } else { // Người dùng với RoleID = 1 không có quyền truy cập
-                $error_message = "Bạn không có quyền truy cập."; // Thông báo cho người dùng không phải admin
-            }
-        } else {
-            // Nếu mật khẩu không phải hash, so sánh trực tiếp
-            if ($password === $hashedPassword) {
+            // Kiểm tra mật khẩu đã mã hóa (hash)
+            if (password_verify($password, $hashedPassword)) {
+                // Kiểm tra quyền truy cập
                 if ($roleId == 0) { // Admin có quyền truy cập
                     $_SESSION['MaTK'] = $row['MaTK'];
-                    $_SESSION['RoleID'] = $roleId;
-                    header("Location: QLthongke.php");
+                    $_SESSION['adminSession'] = $username;
+
+                    // Lưu thông tin người dùng vào session
+                    $_SESSION['admin'] = [
+                        'TenAD' => $row['TenAD'],
+                        'Email' => $row['Email'],
+                        'MaAD' => $row['MaAD'],
+                    ];
+
+                    // Chuyển hướng đến trang chủ
+                    header('location: QLthongke.php');
                     exit();
                 } else { // Người dùng với RoleID = 1 không có quyền truy cập
                     $error_message = "Bạn không có quyền truy cập."; // Thông báo cho người dùng không phải admin
                 }
             } else {
-                $error_message = "Mật khẩu không đúng."; // Thông báo mật khẩu sai
+                // Nếu mật khẩu không phải hash, so sánh trực tiếp
+                if ($password === $hashedPassword) {
+                    if ($roleId == 0) { // Admin có quyền truy cập
+                        $_SESSION['MaTK'] = $row['MaTK'];
+                        $_SESSION['adminSession'] = $username;
+
+                        // Lưu thông tin người dùng vào session
+                        $_SESSION['admin'] = [
+                            'TenAD' => $row['TenAD'],
+                            'Email' => $row['Email'],
+                            'MaAD' => $row['MaAD'],
+                        ];
+
+                        // Chuyển hướng đến trang chủ
+                        header('location: QLthongke.php');
+                        exit();
+                    } else { // Người dùng với RoleID = 1 không có quyền truy cập
+                        $error_message = "Bạn không có quyền truy cập."; // Thông báo cho người dùng không phải admin
+                    }
+                } else {
+                    $error_message = "Mật khẩu không đúng."; // Thông báo mật khẩu sai
+                }
             }
+        } else {
+            $error_message = "Tên đăng nhập không tồn tại."; // Thông báo tài khoản không tồn tại
         }
-    } else {
-        $error_message = "Tên đăng nhập không tồn tại."; // Thông báo tài khoản không tồn tại
-    }
-}
+
+        
+        } else {
+            $error_message = 'Tài khoản hoặc mật khẩu sai';
+        }
+    } 
+
 ?>
 
 
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="buttons">
                 <!-- Nút để đăng nhập và chuyển sang trang chủ admin -->
-                <button type="submit" name="login" class="login-btn">ĐĂNG NHẬP</button>
+                <button type="submit" name="loginAdmin" class="login-btn">ĐĂNG NHẬP</button>
             </div>
         </form>
     </div>
@@ -182,6 +182,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 </html>
-
-
-
