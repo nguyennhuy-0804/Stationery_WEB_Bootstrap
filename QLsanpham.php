@@ -45,65 +45,15 @@ if (isset($_POST['add_product'])) {
         echo "Tên sản phẩm đã tồn tại. Vui lòng sử dụng tên khác.";
     } else {
         // Chỉ chạy câu lệnh SQL nếu các biến bắt buộc đã được xác định
-        if ($MASP && $TenSP && $Giagoc && $Giaban && $Hinhanh && $Ngaycapnhat) {
-            // Di chuyển tệp đã tải lên đến vị trí mong muốn
-            $target_dir = "Homepage\\assets\\imgs\\products\\"; // Đường dẫn mới
-            $target_file = $target_dir . basename($Hinhanh);
-            $uploadOk = 1;
-
-
-            // Kiểm tra xem tệp hình ảnh có phải là hình ảnh hay không
-            $check = getimagesize($_FILES['Hinhanh']['tmp_name']);
-            if ($check === false) {
-                echo "File không phải là hình ảnh.";
-                $uploadOk = 0;
-            }
-
-
-            // Kiểm tra nếu tệp đã tồn tại
-            if (file_exists($target_file)) {
-                echo "Xin lỗi, tệp đã tồn tại.";
-                $uploadOk = 0;
-            }
-
-
-            // Kiểm tra kích thước tệp (giới hạn 5MB)
-            if ($_FILES['Hinhanh']['size'] > 5000000) {
-                echo "Xin lỗi, tệp của bạn quá lớn.";
-                $uploadOk = 0;
-            }
-
-
-            // Cho phép các định dạng tệp nhất định
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-            if (!in_array($imageFileType, $allowedTypes)) {
-                echo "Xin lỗi, chỉ các tệp JPG, JPEG, PNG & GIF được phép.";
-                $uploadOk = 0;
-            }
-
-
-            // Kiểm tra nếu $uploadOk đã được đặt về 0 do lỗi
-            if ($uploadOk === 0) {
-                echo "Xin lỗi, sản phẩm không được thêm vì lỗi trong việc tải lên tệp.";
-            } else {
-                // Thử di chuyển tệp đã tải lên
-                if (move_uploaded_file($_FILES['Hinhanh']['tmp_name'], $target_file)) {
+        if ($MASP && $TenSP && $Giagoc && $Giaban && $Ngaycapnhat) {
+            
                     // Chèn vào cơ sở dữ liệu
                     $sql = "INSERT INTO sanpham (MaSP, TenSP, Maloai, Giagoc, Giaban, GiaKM, MaKM, Mota, TinhtrangTK, HotTrend, BestSeller, IsClick, IsLike, Hinhanh, Ngaycapnhat)
                             VALUES ('$MASP', '$TenSP', '$MALOAI', '$Giagoc', '$Giaban', '$GiaKM', '$MaKM', '$Mota', '$TinhtrangTK', '$HotTrend', '$BestSeller', '$IsClick', '$IsLike', '$Hinhanh', '$Ngaycapnhat')";
-
-
-                    if ($conn->query($sql) === TRUE) {
-                        echo "Sản phẩm đã được thêm thành công!";
-                    } else {
-                        echo "Lỗi: " . $conn->error;
-                    }
-                } else {
-                    echo "Lỗi khi tải lên hình ảnh.";
+                    mysqli_query($conn, $sql);
+                
                 }
-            }
-        } else {
+            else {
             echo "Vui lòng điền tất cả các trường bắt buộc.";
         }
     }
@@ -492,7 +442,7 @@ $result = $conn->query($sql);
             <textarea name="Mota" placeholder="Mô tả sản phẩm"></textarea>
 
 
-            <input type="text" name="TinhtrangTK" placeholder="Tình trạng" required>
+            <input type="text" name="TinhtrangTK" placeholder="Tình trạng">
 
 
             <div class="checkbox-group">
@@ -507,7 +457,7 @@ $result = $conn->query($sql);
 
             <input type="text" name="IsClick" placeholder="Is Click">
             <input type="text" name="IsLike" placeholder="Is Like">
-            <input type="file" name="Hinhanh" required>
+            
             <input type="date" name="Ngaycapnhat" required>
 
 
