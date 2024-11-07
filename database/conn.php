@@ -3,7 +3,7 @@ $server = 'localhost';
 $user = 'root';
 $pass = '';
 $database = 'uehstationery';
-$port = '3307';
+$port = '3306';
 
 $conn = mysqli_connect($server, $user, $pass, $database, $port);
 
