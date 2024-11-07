@@ -33,7 +33,9 @@ if (isset($userID)) {
         // Thực thi câu lệnh thêm giỏ hàng
         if (mysqli_query($conn, $insertCartQuery)) {
             // Lấy mã giỏ hàng mới vừa được tạo
-            $cartID = mysqli_insert_id($conn);
+            $getCartIDQuery = "SELECT MaGH FROM giohang WHERE MaTV = '$userID' ORDER BY MaGH ASC LIMIT 1";
+            $getCartIDResult = mysqli_query($conn, $getCartIDQuery);
+            $cartID = mysqli_fetch_assoc($getCartIDResult)['MaGH'];
         } else {
             // Xử lý lỗi nếu không thể tạo giỏ hàng
             echo "Lỗi khi tạo giỏ hàng: " . mysqli_error($conn);
