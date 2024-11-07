@@ -70,7 +70,7 @@ $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' 
 $cartRow = mysqli_fetch_assoc($cartResult);
 
 if (!$cartRow) {
-    echo "Giỏ hàng của bạn không có sản phẩm nào.";
+    header ('location: giohang.php');
     exit();
 }
 
