@@ -164,13 +164,13 @@ $result = $conn->query($sql);
     </form>
 
 
-    <!-- Bảng danh sách khuyến mãi -->
-    <table>
+       <!-- Bảng danh sách khuyến mãi -->
+       <table>
         <thead>
             <tr>
                 <th>Mã Khuyến Mãi</th>
                 <th>Tên Chi Tiết</th>
-                <th>Phần Trăm Khuyến Mãi</th>
+                <th>% Khuyến Mãi</th>
                 <th>Điều Kiện</th>
                 <th>Ngày Bắt Đầu</th>
                 <th>Ngày Kết Thúc</th>
@@ -178,39 +178,35 @@ $result = $conn->query($sql);
             </tr>
         </thead>
         <tbody>
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['MaKM']; ?></td>
-                        <td><?php echo $row['TenCT']; ?></td>
-                        <td><?php echo $row['PhamtramKM']; ?></td>
-                        <td><?php echo $row['DieuKien']; ?></td>
-                        <td><?php echo $row['NgayBD']; ?></td>
-                        <td><?php echo $row['NgayKT']; ?></td>
-                        <td>
-                        <button class="action-button" 
-                                onclick="openModal('<?php echo $row['MaKM']; ?>', '<?php echo $row['TenCT']; ?>', '<?php echo $row['PhamtramKM']; ?>', '<?php echo $row['DieuKien']; ?>', '<?php echo $row['NgayBD']; ?>', '<?php echo $row['NgayKT']; ?>')">
-                            Sửa
-                        </button>
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td data-label="Mã Khuyến Mãi"><?php echo $row['MaKM']; ?></td>
+                <td data-label="Tên Chi Tiết"><?php echo $row['TenCT']; ?></td>
+                <td data-label="% Khuyến Mãi"><?php echo $row['PhamtramKM']; ?></td>
+                <td data-label="Điều Kiện"><?php echo $row['DieuKien']; ?></td>
+                <td data-label="Ngày Bắt Đầu"><?php echo $row['NgayBD']; ?></td>
+                <td data-label="Ngày Kết Thúc"><?php echo $row['NgayKT']; ?></td>
+                <td data-label="Hành Động">
+                    <button class="action-button" onclick="openModal('<?php echo $row['MaKM']; ?>', '<?php echo $row['TenCT']; ?>', '<?php echo $row['PhamtramKM']; ?>', '<?php echo $row['DieuKien']; ?>', '<?php echo $row['NgayBD']; ?>', '<?php echo $row['NgayKT']; ?>')">Sửa</button>
 
-                        <form method="post" action="" style="display:inline;">
-                            <input type="hidden" name="MaKM" value="<?php echo $row['MaKM']; ?>">
-                            <button class="action-button" 
-                                    type="submit" name="delete_discount" 
-                                    onclick="return confirm('Bạn có chắc chắn muốn xóa khuyến mãi này?');">
-                                Xóa
-                            </button>
-                        </form>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="7">Không có khuyến mãi nào.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
+                    <form method="post" action="" style="display:inline;">
+                        <input type="hidden" name="MaKM" value="<?php echo $row['MaKM']; ?>">
+                        <button class="action-button" type="submit" name="delete_discount" onclick="return confirm('Bạn có chắc chắn muốn xóa khuyến mãi này?');">Xóa</button>
+                    </form>
+                </td>
+           
+            </tr>
+           
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="7">Không có khuyến mãi nào.</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
     </table>
+    
 
     <!-- Modal sửa khuyến mãi -->
     <div id="myModal" class="modal">
