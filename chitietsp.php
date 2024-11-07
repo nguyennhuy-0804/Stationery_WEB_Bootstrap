@@ -186,9 +186,7 @@ if (isset($_POST['addRatingBtn'])) {
                             <!-- Button -->
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-warning me-2" name="addtocartbtn" value="1">Thêm vào giỏ hàng</button>
-                                <button type="button" class="btn btn-danger">Mua</button>
-
-                                <!-- Trường Ẩn để Truyền Dữ Liệu Sản Phẩm -->
+                                                            <!-- Trường Ẩn để Truyền Dữ Liệu Sản Phẩm -->
                                 <input type="hidden" name="hinhanh" value="<?= $productRow['Hinhanh'] ?>">
                                 <input type="hidden" name="tensp" value="<?= $productRow['TenSP'] ?>">
                                 <input type="hidden" name="giaban" value="<?= $productRow['Giaban'] ?>">
