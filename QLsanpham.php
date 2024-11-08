@@ -11,6 +11,7 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
+$message = ''; // Biến để lưu thông báo
 
 // Xử lý thêm sản phẩm
 if (isset($_POST['add_product'])) {
@@ -40,9 +41,9 @@ if (isset($_POST['add_product'])) {
 
 
     if ($result_code->num_rows > 0) {
-        echo "Mã sản phẩm đã tồn tại. Vui lòng sử dụng mã khác.";
+        $message = "Mã sản phẩm đã tồn tại. Vui lòng sử dụng mã khác.";
     } elseif ($result_name->num_rows > 0) {
-        echo "Tên sản phẩm đã tồn tại. Vui lòng sử dụng tên khác.";
+        $message = "Tên sản phẩm đã tồn tại. Vui lòng sử dụng tên khác.";
     } else {
         // Chỉ chạy câu lệnh SQL nếu các biến bắt buộc đã được xác định
         if ($MASP && $TenSP && $Giagoc && $Giaban && $Ngaycapnhat) {
@@ -52,7 +53,7 @@ if (isset($_POST['add_product'])) {
                             VALUES ('$MASP', '$TenSP', '$MALOAI', '$Giagoc', '$Giaban', '$GiaKM', '$MaKM', '$Mota', '$TinhtrangTK', '$HotTrend', '$BestSeller', '$IsClick', '$IsLike', '$Hinhanh', '$Ngaycapnhat')";
             mysqli_query($conn, $sql);
         } else {
-            echo "Vui lòng điền tất cả các trường bắt buộc.";
+            $message = "Vui lòng điền tất cả các trường bắt buộc.";
         }
     }
 }
@@ -104,18 +105,18 @@ if (isset($_POST['delete_product'])) {
                 // Cuối cùng, xóa sản phẩm khỏi bảng sanpham
                 $sql_delete_product = "DELETE FROM sanpham WHERE MaSP='$id'";
                 if ($conn->query($sql_delete_product) === TRUE) {
-                    echo "Sản phẩm đã được xóa thành công từ tất cả các bảng!";
+                    $message = "Sản phẩm đã được xóa thành công từ tất cả các bảng!";
                 } else {
-                    echo "Lỗi khi xóa sản phẩm: " . $conn->error;
+                    $message = "Lỗi khi xóa sản phẩm: " . $conn->error;
                 }
             } else {
-                echo "Lỗi khi xóa đánh giá: " . $conn->error;
+                $message = "Lỗi khi xóa đánh giá: " . $conn->error;
             }
         } else {
-            echo "Lỗi khi xóa chi tiết giỏ hàng: " . $conn->error;
+            $message = "Lỗi khi xóa chi tiết giỏ hàng: " . $conn->error;
         }
     } else {
-        echo "Lỗi khi xóa chi tiết đơn hàng: " . $conn->error;
+        $message = "Lỗi khi xóa chi tiết đơn hàng: " . $conn->error;
     }
 }
 
@@ -166,7 +167,6 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
 
-
     <style>
 
         button:hover {
@@ -194,7 +194,7 @@ $result = $conn->query($sql);
         }
 
         .message {
-            display: none;
+            display: block;
             padding: 15px;
             margin: 10px 0;
             border-radius: 5px;
@@ -353,6 +353,7 @@ $result = $conn->query($sql);
     <!-- Header -->
     <?php include 'layouts/AdminHeader.php'; ?>
 
+    
 
     <div class="container mt-5" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
         <h1 style="margin-bottom: 30px;">Quản lý sản phẩm</h1>
@@ -448,7 +449,12 @@ $result = $conn->query($sql);
             <button type="submit" class="btn btn-primary" name="add_product">Thêm sản phẩm</button>
         </form>
 
-
+        <!-- Hiển thị thông báo -->
+        <?php if ($message): ?>
+                <div class="message <?php echo strpos($message, 'Lỗi') === false ? 'success' : 'error'; ?>">
+                    <?php echo $message; ?>
+                </div>
+        <?php endif; ?>
 
 
         <!-- Bảng sản phẩm -->
@@ -541,6 +547,18 @@ $result = $conn->query($sql);
                 closeModal();
             }
         }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageDiv = document.querySelector('.message');
+            if (messageDiv) {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000); // 5 giây
+            }
+        });
+
+
     </script>
     <!-- Footer -->
     <?php include 'layouts/AdminFooter.php'; ?>

@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
         }
     }
 
-    // After processing, set a flag to show the alert
+    // Thông báo thành công
     echo "<script>
         alert('Thanh toán thành công!');
         window.location.href = 'giohang.php';
@@ -354,15 +354,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    var paymentMethod = 'cod'; // Default value
+                    var paymentMethod = 'cod'; // Giá trị mặc định 
 
-                    // Function to update the payment method variable
+                    // Cập nhật bảng thanh toán 
                     function updatePaymentMethod(event) {
                         paymentMethod = event.target.value;
                         console.log('Selected payment method:', paymentMethod);
                     }
 
-                    // Add event listeners to the radio buttons
+                    // Xử lý xử kiện 
                     document.getElementById('bankPayment').addEventListener('change', updatePaymentMethod);
                     document.getElementById('momoPayment').addEventListener('change', updatePaymentMethod);
                     document.getElementById('codPayment').addEventListener('change', updatePaymentMethod);
