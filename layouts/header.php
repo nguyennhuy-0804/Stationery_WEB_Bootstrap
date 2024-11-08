@@ -187,6 +187,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                                 <?= $_SESSION['user']['TenTV'] ?? 'Không có dữ liệu' ?>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href='giohang.php' name="cart">Giỏ hàng</a></li>
                                 <li><a class="dropdown-item" href='logout.php' name="logout" class="logout-btn">Đăng xuất</a></li>
                             </ul>
                         </li>
