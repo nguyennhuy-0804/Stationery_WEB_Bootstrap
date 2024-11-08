@@ -4,7 +4,7 @@ include 'database/conn.php';
 
 // Kiểm tra xem user đăng nhập chưa
 if (isset($_SESSION['mySession'])) {
-    header('location: homepage.php');
+    header('location: index.php');
     exit();
 }
 
@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
             ];
 
             // Chuyển hướng đến trang chủ
-            header('location: homepage.php');
+            header('location: index.php');
             exit();
         } else {
             $error_message = 'Tài khoản hoặc mật khẩu sai';
