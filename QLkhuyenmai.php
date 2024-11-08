@@ -2,19 +2,6 @@
 session_start(); // Bắt đầu phiên
 include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
 
-
-// Tạo kết nối
-$conn = new mysqli($server, $user, $pass, $database);
-
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
-
-
-$message = ''; // Biến để lưu thông báo
-
-
 // Xử lý thêm khuyến mãi
 if (isset($_POST['add_discount'])) {
     $MaKM = $_POST['MaKM'] ?? null;

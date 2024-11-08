@@ -2,15 +2,6 @@
 session_start(); 
 include "database/conn.php"; 
 
-
-// tạo kết nối
-$conn = new mysqli($server, $user, $pass, $database);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-
 // lấy dữ liệu thống kê 
 $statistics = [];
 $sql = "SELECT MONTH(NgayHD) AS month, 

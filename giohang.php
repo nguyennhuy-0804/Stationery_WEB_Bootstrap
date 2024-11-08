@@ -324,7 +324,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                     <p class="total-price">Tổng: <?= number_format($totalPrice, 0, ",", ".") ?>đ</p>
 
                     <!-- Form để thanh toán -->
-                    <form method="POST" action="hoadon.php">
+                    <form method="POST" action="Hoadon.php">
                         <input type="hidden" name="cart" value=''>
                         <button type="submit" class="checkout-btn">Mua</button> <!-- Nút thanh toán -->
                     </form>
