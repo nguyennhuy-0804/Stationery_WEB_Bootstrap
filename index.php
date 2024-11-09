@@ -53,13 +53,19 @@ include 'database/conn.php';
                     <div id="carouselHotControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/imgs/banners/bn_1.png" alt="" class="big-banner">
+                                <a href="discounts.php">
+                                    <img src="assets/imgs/banners/bn_1.png" alt="" class="big-banner">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/bn_2.png" alt="" class="big-banner">
+                                <a href="discounts.php">
+                                    <img src="assets/imgs/banners/bn_2.png" alt="" class="big-banner">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/bn_4.png" alt="" class="big-banner">
+                                <a href="discounts.php">
+                                    <img src="assets/imgs/banners/bn_4.png" alt="" class="big-banner">
+                                </a>
                             </div>
                         </div>
 
@@ -80,10 +86,14 @@ include 'database/conn.php';
                 <div class="col-md-5 col-sm-12">
                     <div class="col">
                         <div class="row-6">
-                            <img src="assets/imgs/banners/bn_4.png" alt="" class="small-banner">
+                            <a href="discounts.php">
+                                <img src="assets/imgs/banners/bn_4.png" alt="" class="small-banner">
+                            </a>
                         </div>
                         <div class="row-6">
-                            <img src="assets/imgs/banners/bn_2.png" alt="" class="small-banner">
+                            <a href="discounts.php">
+                                <img src="assets/imgs/banners/bn_2.png" alt="" class="small-banner">
+                            </a>
                         </div>
                     </div>
                 </div>

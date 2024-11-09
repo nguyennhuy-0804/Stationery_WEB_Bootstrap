@@ -667,3 +667,9 @@ h4 {
     z-index: 999;
 }
 
+.alert {
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom: 20px;
+}

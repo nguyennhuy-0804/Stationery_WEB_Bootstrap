@@ -174,6 +174,11 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     header('Location: giohang.php');
     exit();
 }
+    //Thông báo đặt hàng thành công 
+    if (isset($_SESSION['success_message'])) {
+        echo "<div class='alert alert-success'>".$_SESSION['success_message']."</div>";
+        unset($_SESSION['success_message']); // Xóa thông báo sau khi hiển thị
+    }
 ?>
 
 <!DOCTYPE html>
@@ -346,6 +351,18 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script>
+        // Đợi sau 30 giây để ẩn thông báo
+        setTimeout(function() {
+            // Thêm class 'hidden' vào alert để tạo hiệu ứng mờ dần
+            document.querySelector('.alert').classList.add('hidden');
+            
+            // Sau khi hiệu ứng hoàn tất (1 giây), xóa alert khỏi DOM
+            setTimeout(function() {
+                document.querySelector('.alert').remove();
+            }, 1000); // Đợi 1 giây để hiệu ứng hoàn tất
+        }, 3000); // 3 giây
+    </script>
 </body>
 
 </html>

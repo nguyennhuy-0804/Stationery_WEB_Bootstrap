@@ -2,12 +2,6 @@
 include "database/conn.php";
 session_start();
 
-//Nếu chưa đăng nhập -> Chuyển tới trang Login
-if (!isset($_SESSION['mySession'])) {
-    header('location:login.php');
-    exit();
-}
-
 if (isset($_POST['addRatingBtn'])) {
 
     $str = rand();

@@ -8,6 +8,12 @@ session_start();
 //     exit();
 // }
 
+//* Nếu chưa đăng nhập -> Chuyển tới trang Login
+if (!isset($_SESSION['mySession'])) {
+    header('location:login.php');
+    exit();
+}
+
 // User hiện tại
 $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người dùng hiện tại
 ?>

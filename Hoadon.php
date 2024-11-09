@@ -166,11 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
         }
     }
 
-    // Thông báo thành công
-    echo "<script>
-        alert('Thanh toán thành công!');
-        window.location.href = 'giohang.php';
-    </script>";
+    // Nếu thanh toán thành công
+    $_SESSION['success_message'] = 'Đặt hàng thành công!';
+    header('Location: giohang.php');
     exit();
 }
 ?>

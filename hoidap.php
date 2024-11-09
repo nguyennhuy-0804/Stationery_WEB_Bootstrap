@@ -55,8 +55,7 @@ session_start();
                     <li>Đăng nhập bằng tài khoản và mật khẩu đã đăng ký trước đó. Trong trường hợp chưa có tài khoản,
                         Quý
                         khách có thể chọn “Đăng ký” để đăng ký tài khoản tại UEH Stationery Website.</li>
-                    <li>Sau khi đã kê khai đầy đủ thông tin yêu cầu, Quý khách có thể bấm vào chữ “Đăng ký” và “Xác
-                        nhận” để
+                    <li>Sau khi đã kê khai đầy đủ thông tin yêu cầu, Quý khách có thể bấm vào chữ “Đăng ký” để
                         hoàn tất quá trình đăng ký.</li>
                 </ul>
             </div>
@@ -73,13 +72,13 @@ session_start();
 
             <div class="step">
                 <h2>Bước 3: Thêm sản phẩm vào giỏ hàng</h2>
-                <p>Khi đã tìm được sản phẩm mong muốn, Quý khách bấm vào hình hoặc tên sản phẩm để vào được trang thông
+                <p>Khi đã tìm được sản phẩm mong muốn, Quý khách bấm vào tên sản phẩm để vào được trang thông
                     tin
                     chi tiết của sản phẩm, sau đó:</p>
                 <ul>
                     <li>Kiểm tra thông tin sản phẩm: giá/thông tin khuyến mãi/màu sắc.</li>
                     <li>Chọn số lượng muốn mua.</li>
-                    <li>Thêm sản phẩm vào giỏ hàng hoặc chọn mua ngay.</li>
+                    <li>Thêm sản phẩm vào giỏ hàng.</li>
                 </ul>
             </div>
 
@@ -87,22 +86,22 @@ session_start();
                 <h2>Bước 4: Kiểm tra giỏ hàng và đặt hàng</h2>
                 <p>Sau khi đã lựa chọn xong sản phẩm, Quý khách kiểm tra lại sản phẩm và số lượng có nhu cầu để điều
                     chỉnh
-                    cho phù hợp bằng cách: Bấm “Xem Giỏ hàng” hoặc “Thanh toán” để bắt đầu đặt hàng.</p>
+                    cho phù hợp bằng cách: Bấm “Mua” để bắt đầu đặt hàng.</p>
             </div>
 
             <div class="step">
                 <h2>Bước 5: Chọn hình thức giao hàng, phương thức thanh toán</h2>
                 <ul>
-                    <li>Chọn hình thức giao hàng: nhập địa chỉ giao hàng mong muốn, chọn hình thức giao nhanh hay giao
+                    <li>Chọn hình thức giao hàng: chọn hình thức giao nhanh hay giao
                         tiết
                         kiệm.</li>
                     <li>Chọn phương thức thanh toán: Chọn 01 trong các phương thức thanh toán như: Thanh toán qua Cổng
                         thanh
-                        toán (Momo, ZaloPay và ngân hàng trực tuyến).</li>
+                        toán (Momo, ngân hàng trực tuyến và thanh toán khi nhận hàng).</li>
                     <li>Sau khi hoàn tất quá trình chọn phương thức thanh toán, vui lòng kiểm tra lại các thông tin sau:
                         địa
                         chỉ nhận hàng, điện thoại, email, giá khuyến mãi, tổng tiền.</li>
-                    <li>Nếu các thông tin trên đã chính xác, Quý khách vui lòng bấm “Đặt mua”, hệ thống sẽ bắt đầu tiến
+                    <li>Nếu các thông tin trên đã chính xác, Quý khách vui lòng bấm “Thanh toán”, hệ thống sẽ bắt đầu tiến
                         hành
                         tạo đơn hàng dựa trên các thông tin Quý khách đã đăng ký.</li>
                 </ul>
@@ -110,8 +109,7 @@ session_start();
 
             <div class="step">
                 <h2>Bước 6: Theo dõi tình trạng đơn hàng</h2>
-                <p>Sau khi đặt hàng thành công, Quý khách có thể theo dõi tiến trình xử lý của đơn hàng ở phần đơn hàng
-                    hoặc
+                <p>Sau khi đặt hàng thành công, Quý khách có thể theo dõi tiến trình xử lý của đơn hàng qua
                     trạng thái được cập nhật qua email.</p>
 
                 <!-- Chính sách đổi trả -->

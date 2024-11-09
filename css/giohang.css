@@ -240,4 +240,26 @@ h4 {
         /* Thêm khoảng cách cho ảnh sản phẩm khi trên màn hình nhỏ */
         margin-bottom: 10px;
     }
+   
+}
+
+.alert {
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom: 20px;
+
+    /* Đặt phần tử ở vị trí cố định, giữa màn hình */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* Đảm bảo alert ở trên các phần tử khác */
+    width: auto; /* Điều chỉnh chiều rộng của alert */
+    max-width: 80%; /* Giới hạn chiều rộng của alert */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ để nổi bật */
+}
+
+.hidden {
+    opacity: 0; /* Giảm độ mờ để ẩn thông báo */
 }
