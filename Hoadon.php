@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                                 </div>
                             </div>
                             <div class="col-4 text-end">
-                                SL: <?= htmlspecialchars($item['SoLuong']) ?> x <?= number_format($item['ThanhTien']) ?> đ
+                                SL: <?= htmlspecialchars($item['SoLuong']) ?> x <?= number_format($item['GiaKM'] ? $item['GiaKM'] : $item['Giaban']) ?> đ
                             </div>
                         </div>
                     <?php endforeach; ?>
