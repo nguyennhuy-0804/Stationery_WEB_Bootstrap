@@ -4,6 +4,14 @@
 
 Ngày nay, Công nghệ thông tin đóng vai trò quan trọng trong mọi lĩnh vực, đặc biệt trong Cách mạng Công nghiệp 4.0, thúc đẩy sự phát triển của thương mại điện tử. Với nhu cầu mua sắm nhanh chóng và hiệu quả, các website thương mại điện tử giúp doanh nghiệp dễ dàng tiếp cận khách hàng, mở rộng quy mô, và kết nối mạnh mẽ. Xuất phát từ thực tế, nhóm quyết định xây dựng website "UEH STATIONERY" để đáp ứng nhu cầu mua sắm sách và văn phòng phẩm của sinh viên UEH, giúp họ tiết kiệm thời gian, chi phí, và áp dụng kiến thức kinh doanh trực tuyến vào thực tế.
 
+## Username và password đăng nhập 
+* Admin: 
+  ** Tên tài khoản (Admin): username1
+  ** Mật khẩu (Password): password1
+* User:
+  ** Tên tài khoản (Username): username6
+  ** Mật khẩu (Password): password6
+
 ## TÁC GIẢ
 
 * **Nguyễn Như Ý** - Tác giả  <https://github.com/nguyennhuy-0804>
