@@ -1,7 +1,7 @@
 <?php
 session_start(); // Bắt đầu phiên
 include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
-
+$message = "";
 // Xử lý thêm sản phẩm
 if (isset($_POST['add_product'])) {
     // Kiểm tra sự tồn tại của biến trong mảng $_POST
