@@ -1,25 +1,14 @@
-<?php 
+<?php
 session_start();
 include 'database/conn.php';
-
-// Kết nối cơ sở dữ liệu 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "uehstationery";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
 
 // Thông báo lỗi và thành công 
 $error_message = "";
 $success_message = "";
 
 // Function thay đổi mật khẩu 
-function changePassword($username, $newPassword) {
+function changePassword($username, $newPassword)
+{
     global $conn, $error_message, $success_message;
 
     // Kiểm tra username có tồn tại 
@@ -33,7 +22,7 @@ function changePassword($username, $newPassword) {
         $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
         $updateStmt = $conn->prepare("UPDATE taikhoan SET MatKhau = ? WHERE TenDangNhap = ?");
         $updateStmt->bind_param("ss", $hashedPassword, $username);
-        
+
         if ($updateStmt->execute()) {
             $success_message = "Đổi mật khẩu thành công!";
         } else {
