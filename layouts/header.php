@@ -22,7 +22,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="homepage.php">
+                    <a href="index.php">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
