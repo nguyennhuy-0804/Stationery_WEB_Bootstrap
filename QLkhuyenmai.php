@@ -1,7 +1,7 @@
 <?php
 session_start(); // Bắt đầu phiên
 include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
-
+$message = "";
 // Xử lý thêm khuyến mãi
 if (isset($_POST['add_discount'])) {
     $MaKM = $_POST['MaKM'] ?? null;
