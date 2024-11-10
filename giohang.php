@@ -2,14 +2,17 @@
 include "database/conn.php";
 session_start();
 
+
 //* Nếu chưa đăng nhập -> Chuyển tới trang Login
 if (!isset($_SESSION['mySession'])) {
     header('location:login.php');
     exit();
 }
 
+
 //* User hiện tại
 $userID = $_SESSION['user']['MaTV'];
+
 
 //* Kiểm tra nếu user đã đăng nhập và có ID
 if (isset($userID)) {
@@ -18,6 +21,7 @@ if (isset($userID)) {
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $stmt->store_result();
+
 
     if ($stmt->num_rows > 0) {
         // Người dùng đã có giỏ hàng, lấy mã giỏ hàng
@@ -42,14 +46,17 @@ if (isset($userID)) {
         }
     }
 
+
     $stmt->close();
 } else {
     // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
     echo "Vui lòng đăng nhập để tạo giỏ hàng.";
 }
 
+
 //* Khởi tạo biến tổng giá trị giỏ hàng
 $totalPrice = 0;
+
 
 //* Thêm sản phẩm vào giỏ hàng
 if (isset($_POST['addtocartbtn']) && $_POST['addtocartbtn']) {
@@ -57,24 +64,29 @@ if (isset($_POST['addtocartbtn']) && $_POST['addtocartbtn']) {
     $MaSP = $_POST['MaSP'];
     $soluong = $_POST['soluong'];
 
+
     // Lấy thông tin sản phẩm từ bảng sanpham
     $productQuery = "SELECT * FROM sanpham WHERE MaSP = '$MaSP'";
     $productResult = mysqli_query($conn, $productQuery);
     $product = mysqli_fetch_assoc($productResult);
 
+
     $giaban = $product['Giaban']; // Giá bán
     $giakm = $product['GiaKM'] ? $product['GiaKM'] : $giaban; // Nếu có giá khuyến mãi thì dùng giá khuyến mãi, ngược lại dùng giá bán
     $thanhtien = $soluong * $giakm; // Tính thành tiền cho sản phẩm
 
+
     // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
     $checkQuery = "SELECT * FROM chitietgiohang WHERE MaGH = '$cartID' AND MaSP = '$MaSP'";
     $checkResult = mysqli_query($conn, $checkQuery);
+
 
     if (mysqli_num_rows($checkResult) > 0) {
         // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng và thành tiền
         $row = mysqli_fetch_assoc($checkResult);
         $newQuantity = $row['SoLuong'] + $soluong; // Tăng số lượng
         $newThanhtien = $newQuantity * $giakm; // Tính lại thành tiền
+
 
         // Cập nhật sản phẩm trong giỏ hàng
         $updateQuery = "UPDATE chitietgiohang SET SoLuong = '$newQuantity', Thanhtien = '$newThanhtien' WHERE MaCTGH = '{$row['MaCTGH']}'";
@@ -88,27 +100,33 @@ if (isset($_POST['addtocartbtn']) && $_POST['addtocartbtn']) {
     }
 }
 
+
 //* Xóa sản phẩm khỏi giỏ hàng
 if (isset($_POST['remove']) && isset($_POST['MaSP'])) {
     // Lấy mã sản phẩm cần xóa
     $MaSPToRemove = $_POST['MaSP'];
+
 
     // Lấy thành tiền của sản phẩm hiện tại để trừ khỏi tổng giỏ hàng
     $currentItemQuery = "SELECT Thanhtien FROM chitietgiohang WHERE MaGH = '$cartID' AND MaSP = '$MaSPToRemove'";
     $currentItemResult = mysqli_query($conn, $currentItemQuery);
     $currentItem = mysqli_fetch_assoc($currentItemResult);
 
+
     // Lấy thành tiền sản phẩm hiện tại
     $currentItemTotal = $currentItem['Thanhtien'];
+
 
     // Xóa sản phẩm khỏi bảng chitietgiohang
     $deleteQuery = "DELETE FROM chitietgiohang WHERE MaGH = '$cartID' AND MaSP = '$MaSPToRemove'";
     mysqli_query($conn, $deleteQuery); // Thực hiện xóa sản phẩm
 
+
     // Cập nhật tổng giá trị trong giohang
     $updateTotalQuery = "UPDATE giohang SET Tong = Tong - '$currentItemTotal' WHERE MaGH = '$cartID'";
     mysqli_query($conn, $updateTotalQuery);
 }
+
 
 //* Lấy các sản phẩm trong giỏ hàng để hiển thị và tính tổng giá trị
 $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP, sanpham.Hinhanh, sanpham.Giaban, sanpham.GiaKM
@@ -116,6 +134,7 @@ $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP
                                         JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
                                         WHERE chitietgiohang.MaGH = '$cartID'
                                         ORDER BY chitietgiohang.MaCTGH ASC");
+
 
 //* Tính tổng giá trị
 while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
@@ -126,9 +145,11 @@ while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
     }
 }
 
+
 //* Cập nhật tổng giá trị trong bảng giohang sau khi đã tính toán
 $updateCartTotalQuery = "UPDATE giohang SET Tong = '$totalPrice' WHERE MaGH = '$cartID'";
 mysqli_query($conn, $updateCartTotalQuery);
+
 
 //* Cập nhật trạng thái TinhTrang dựa trên tổng giá trị
 if ($totalPrice > 0) {
@@ -140,24 +161,29 @@ if ($totalPrice > 0) {
 }
 mysqli_query($conn, $updateStatusQuery); // Thực hiện cập nhật trạng thái giỏ hàng
 
+
 //* Cập nhật số lượng sản phẩm trong giỏ hàng
-if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluong'])) {
+if (isset($_POST['MaSP']) && isset($_POST['soluong'])) {
     // Lấy thông tin sản phẩm từ form
     $MaSP = $_POST['MaSP'];
-    $soluong = $_POST['soluong'];
+    $soluong = (int)$_POST['soluong'];
+
 
     // Lấy thông tin sản phẩm từ bảng sanpham
     $productQuery = "SELECT Giaban, GiaKM FROM sanpham WHERE MaSP = '$MaSP'";
     $productResult = mysqli_query($conn, $productQuery);
     $product = mysqli_fetch_assoc($productResult);
 
+
     $giaban = $product['Giaban']; // Giá bán
     $giakm = $product['GiaKM'] ? $product['GiaKM'] : $giaban; // Sử dụng giá khuyến mãi nếu có
     $thanhtien = $soluong * $giakm; // Tính lại thành tiền
 
+
     // Cập nhật số lượng và thành tiền của sản phẩm trong giỏ hàng
     $updateQuery = "UPDATE chitietgiohang SET SoLuong = '$soluong', Thanhtien = '$thanhtien' WHERE MaGH = '$cartID' AND MaSP = '$MaSP'";
     mysqli_query($conn, $updateQuery); // Thực hiện cập nhật
+
 
     // Sau khi cập nhật số lượng, tính toán lại tổng giá trị giỏ hàng
     $totalPrice = 0; // Đặt lại tổng giá trị giỏ hàng
@@ -166,32 +192,40 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
         $totalPrice += $cartDetailsRow['Thanhtien']; // Cộng tổng giá trị mới
     }
 
+
     // Cập nhật tổng giá trị giỏ hàng trong bảng giohang
     $updateTotalQuery = "UPDATE giohang SET Tong = '$totalPrice' WHERE MaGH = '$cartID'";
     mysqli_query($conn, $updateTotalQuery);
+
 
     // Sau khi cập nhật, chuyển hướng lại giỏ hàng
     header('Location: giohang.php');
     exit();
 }
-    //Thông báo đặt hàng thành công 
-    if (isset($_SESSION['success_message'])) {
-        echo "<div class='alert alert-success'>".$_SESSION['success_message']."</div>";
-        unset($_SESSION['success_message']); // Xóa thông báo sau khi hiển thị
-    }
+
+
+//Thông báo đặt hàng thành công
+if (isset($_SESSION['success_message'])) {
+    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+    unset($_SESSION['success_message']); // Xóa thông báo sau khi hiển thị
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
 
+
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -199,9 +233,11 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css" />
@@ -210,16 +246,20 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
 
+
     <!-- JS -->
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
+
     <link rel="stylesheet" href="css/giohang.css" />
 </head>
+
 
 <body>
     <!-- Header -->
     <?php include 'layouts/header.php'; ?>
+
 
     <div class="container ">
         <!-- Phần thông tin người dùng -->
@@ -245,6 +285,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     </div>
     <hr>
 
+
     <!-- Phần giỏ hàng -->
     <div class="cart-section">
         <div class="d-flex align-items-center">
@@ -252,6 +293,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
             <h2>GIỎ HÀNG</h2>
         </div>
         <br>
+
 
         <?php if ($totalPrice > 0) { ?> <!-- Kiểm tra xem giỏ hàng có sản phẩm không -->
             <?php
@@ -267,13 +309,16 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                     <!-- Hình ảnh sản phẩm -->
                     <img src="./assets/imgs/products/<?= htmlspecialchars($cartDetailsRow['Hinhanh']) ?>" alt="<?= htmlspecialchars($cartDetailsRow['TenSP']) ?>">
 
+
                     <!-- Thông tin sản phẩm -->
                     <div class="cart-item-details">
                         <!-- Tên sản phẩm -->
                         <p><strong><?= htmlspecialchars($cartDetailsRow['TenSP']) ?></strong></p>
 
+
                         <!-- Mã sản phẩm -->
                         <p>Mã SP: <?= htmlspecialchars($cartDetailsRow['MaSP']) ?></p>
+
 
                         <!-- Kiểm tra xem có giá khuyến mãi không -->
                         <p>Chương trình khuyến mãi:
@@ -287,6 +332,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                         </p>
                     </div>
 
+
                     <div class="cart-item-price">
                         <?php if ($cartDetailsRow['GiaKM'] != NULL) { ?> <!-- Kiểm tra xem có giá khuyến mãi không -->
                             <!-- Giá gốc -->
@@ -298,18 +344,25 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                         </h4>
                     </div>
 
+
                     <form action="giohang.php" method="post">
                         <!-- Hiển thị số lượng -->
                         <div class="number form-group mb-3">
                             <label><strong>Số lượng:</strong></label>
-                            <input type="number" class="input-sm rounded update-input" id="soluong" name="soluong" value="<?= htmlspecialchars($cartDetailsRow['SoLuong']) ?>" min="1" />
+                            <input type="number" class="input-sm rounded update-input"
+                                name="soluong"
+                                value="<?= htmlspecialchars($cartDetailsRow['SoLuong']) ?>"
+                                min="1"
+                                onchange="updateQuantity(this.value, '<?= $cartDetailsRow['MaSP'] ?>')" />
                         </div>
+
 
                         <!-- Hidden input để gửi mã sản phẩm -->
                         <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>">
 
+
                         <!-- Nút cập nhật -->
-                        <button type="submit" class="btn btn-primary update-btn" name="updateCart">Cập nhật</button>
+                        <!-- <button type="submit" class="btn btn-primary update-btn" name="updateCart">Cập nhật</button> -->
                         <div class="cart-item-remove">
                             <form method="POST" action="">
                                 <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>"> <!-- Lưu mã sản phẩm để xóa -->
@@ -320,13 +373,16 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                 </div>
             <?php } ?>
 
+
             <br>
+
 
             <!-- Tổng tiền -->
             <div class="cart-summary d-flex justify-content-between align-items-center">
                 <div class="total-price-container d-flex align-items-center">
                     <!-- Tổng giá trị giỏ hàng -->
                     <p class="total-price">Tổng: <?= number_format($totalPrice, 0, ",", ".") ?>đ</p>
+
 
                     <!-- Form để thanh toán -->
                     <form method="POST" action="Hoadon.php">
@@ -336,33 +392,74 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                 </div>
             </div>
 
+
         <?php } else { ?>
             <p>Giỏ hàng của bạn trống.</p> <!-- Thông báo nếu giỏ hàng trống -->
         <?php } ?>
     </div>
 
+
     <!-- Footer -->
     <?php include 'layouts/footer.php'; ?>
 
+
     <!-- Scripts -->
     <script src="scripts/header.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+
+
+
     <script>
         // Đợi sau 30 giây để ẩn thông báo
         setTimeout(function() {
             // Thêm class 'hidden' vào alert để tạo hiệu ứng mờ dần
             document.querySelector('.alert').classList.add('hidden');
-            
+
+
             // Sau khi hiệu ứng hoàn tất (1 giây), xóa alert khỏi DOM
             setTimeout(function() {
                 document.querySelector('.alert').remove();
             }, 1000); // Đợi 1 giây để hiệu ứng hoàn tất
         }, 3000); // 3 giây
     </script>
+
+
+    <script>
+        function updateQuantity(newQuantity, productID) {
+            // Đảm bảo số lượng lớn hơn 0
+            if (newQuantity < 1) {
+                alert("Số lượng phải lớn hơn 0");
+                return;
+            }
+
+
+            // Gửi yêu cầu cập nhật số lượng sản phẩm
+            $.ajax({
+                type: "POST",
+                url: "giohang.php",
+                data: {
+                    MaSP: productID,
+                    soluong: newQuantity
+                },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function() {
+                    alert("Lỗi khi cập nhật số lượng.");
+                }
+            });
+        }
+    </script>
+
+
 </body>
 
+
 </html>
+
