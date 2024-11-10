@@ -4,12 +4,13 @@
 
 Ngày nay, Công nghệ thông tin đóng vai trò quan trọng trong mọi lĩnh vực, đặc biệt trong Cách mạng Công nghiệp 4.0, thúc đẩy sự phát triển của thương mại điện tử. Với nhu cầu mua sắm nhanh chóng và hiệu quả, các website thương mại điện tử giúp doanh nghiệp dễ dàng tiếp cận khách hàng, mở rộng quy mô, và kết nối mạnh mẽ. Xuất phát từ thực tế, nhóm quyết định xây dựng website "UEH STATIONERY" để đáp ứng nhu cầu mua sắm sách và văn phòng phẩm của sinh viên UEH, giúp họ tiết kiệm thời gian, chi phí, và áp dụng kiến thức kinh doanh trực tuyến vào thực tế.
 
-## Username và password đăng nhập 
-* Admin: 
-  ** Tên tài khoản (Admin): username1
+## Username và password đăng nhập
+
+* Admin:
+  **Tên tài khoản (Admin): username1
   ** Mật khẩu (Password): password1
 * User:
-  ** Tên tài khoản (Username): username6
+  **Tên tài khoản (Username): username6
   ** Mật khẩu (Password): password6
 
 ## TÁC GIẢ
@@ -46,21 +47,25 @@ Cuối cùng, việc triển khai website lên server là giai đoạn hoàn t�
 Với nền tảng này, các công cụ Figma, HTML5, CSS, Bootstrap, SQL Server, MySQL, JavaScript, và PHP sẽ giúp đội ngũ phát triển xây dựng nên các ứng dụng web hiệu quả, tối ưu và dễ mở rộng trong tương lai.
 
 ## Tài Liệu Thiết Kế
-[XEM TẠI ĐÂY](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Thi%E1%BA%BFt%20K%E1%BA%BF.md)
+
+[Xem tại đây](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Thi%E1%BA%BFt%20K%E1%BA%BF.md)
 
 ## Tài liệu cho nhà phát triển
 
-[XEM TẠI ĐÂY](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Cho%20Nh%C3%A0%20Ph%C3%A1t%20Tri%E1%BB%83n.md)
+[Xem tại đây](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Cho%20Nh%C3%A0%20Ph%C3%A1t%20Tri%E1%BB%83n.md)
 
 ## Tài liệu cho người dùng cuối
- [tại đây](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Cho%20Ng%C6%B0%E1%BB%9Di%20D%C3%B9ng%20Cu%E1%BB%91i.md)
 
-# Kênh Truyền Thông
-Web page: [quản lý web ban hang](https://uehstationery.info/ )
+[Xem tại đây](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/T%C3%A0i%20Li%E1%BB%87u%20Cho%20Ng%C6%B0%E1%BB%9Di%20D%C3%B9ng%20Cu%E1%BB%91i.md)
 
-# Đóng góp ý kiến
+## Kênh Truyền Thông
+
+Web page: [Quản Lý Web Bán Hàng](https://uehstationery.info/ )
+
+## Đóng góp ý kiến
+
 Sau khi mua hàng, khách hàng sẽ nhận được 1 form đánh giá qua email. Nội dung form cụ thể như sau:
-[XEM TẠI ĐÂY](https://forms.gle/gp3iyKBmtvVKX9qL7)
+[Xem tại đây](https://forms.gle/gp3iyKBmtvVKX9qL7)
 
 ## Lời cảm ơn
 
