@@ -38,7 +38,7 @@
 
 ### 8) Loaisanpham
 
-![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Loaisanpham.png)
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/loaisanpham.png)
 
 ### 9) Role
 
@@ -46,7 +46,7 @@
 
 ### 10) Sanpham
 
-![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Sanpham.png)
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/sanpham.png)
 
 ### 11) Taikhoan
 
