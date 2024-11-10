@@ -1,10 +1,12 @@
-# Quản trị CSDL SQL Server
+# Tài Liệu Cho Nhà Phát Triển
 
-## Cách cài đặt SQL
+## Quản trị CSDL SQL Server
+
+### Cách cài đặt SQL
 
 [Xem tại đây](https://www.youtube.com/watch?v=SOwO51droJ4)
 
-## Cách cài đặt XAMPP
+### Cách cài đặt XAMPP
 
 [Xem tại đây](https://youtu.be/0Zay4yjYxJc?si=oZQcd-F7959wpxmY)
 
@@ -14,7 +16,7 @@
 
 [Xem tại đây](http://o7planning.org/vi/10297/huong-dan-cai-dat-va-cau-hinh-sql-server-express-2012)
 
-## Tự học Full Lộ Trình Lập Trình Front-end (HTML/CSS/JS)
+### Tự học Full Lộ Trình Lập Trình Front-end (HTML/CSS/JS)
 
 [Xem tại đây](https://youtu.be/QK7t5Aodgik?si=g7rYIfLvumyJjZDy)
 
