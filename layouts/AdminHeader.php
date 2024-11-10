@@ -128,6 +128,18 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         <div class="vertical-divider"></div>
                     </li>
 
+                    <!-- trang QL Khuyến mãi -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="QLuser.php">
+                            <i class="bi bi-fire navbar-header-logo"></i>
+                            QL người dùng
+                        </a>
+                    </li>
+
+                    <li>
+                        <div class="vertical-divider"></div>
+                    </li>
+
                     <!-- Đăng nhập, đăng ký và đăng xuất -->
                     <?php if (isset($_SESSION['admin']) && (isset($_SESSION['adminSession']))): ?>
                         <li class="nav-item dropdown">
