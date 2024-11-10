@@ -4,7 +4,7 @@
 
 ### Cách cài đặt SQL
 
-[Xem tại đây](https://www.youtube.com/watch?v=SOwO51droJ4)
+[Xem tại đây](https://youtu.be/iNXUxqy1svM?si=NBqWg-6OgsdCycFI)
 
 ### Cách cài đặt XAMPP
 
@@ -14,7 +14,8 @@
 
 ### Hướng dẫn cài đặt và cấu hình SQL Server
 
-[Xem tại đây](http://o7planning.org/vi/10297/huong-dan-cai-dat-va-cau-hinh-sql-server-express-2012)
+[Xem tại đây](https://datapot.vn/huong-dan-cai-dat-sql-server-2022-moi-nhat/ 
+)
 
 ### Tự học Full Lộ Trình Lập Trình Front-end (HTML/CSS/JS)
 
