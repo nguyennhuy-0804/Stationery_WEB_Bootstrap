@@ -1,40 +1,65 @@
 # Tài liệu thiết kế
+
 Đây là tài liệu phân tích thiết kế hệ thống trước khi bắt tay và xây dựng phần mềm
 
 ## Sơ đồ thực thể - quan hệ (ERD)
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/CSDL1.png)
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/S%C6%A1%20%C4%91%E1%BB%93%20th%E1%BB%B1c%20th%E1%BB%83.png)
 
 ## Thiết kế và mô tả mô hình dữ liệu vật lý
 
 ### 1) CSDL
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/CSDL.png)
 
-#### Mô tả:
-- CSDL: Cơ Sở Dữ Liệu
+![erd](hhttps://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/CSDL.png)
 
-### 2) CT_HoaDon
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/CT_HoaDon.png)
+### 2) Admin
 
-#### Mô tả:
-- MaHD: Mã hóa đơn
-- MaHang: Mã Hàng
-- SoLuong:số lượng
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Admin.png)
 
-### 3) Bảng Hàng
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/H%C3%A0ng.png)
-#### Mô tả:
-- MaHang: Mã hàng
-- MaLoai: Mã Loại SP
-- MaThuongHieu: Mã thương hiệu
--TenHang:Tên hàng
--SoLuong:Số lư
--DonGia: Đơn giá
--HinhAnh: Hình ảnh
--MoTa:Mô tả
--NgayNhap: Ngày nhập
+### 3) Chitietdonhang
 
-### 4) Bảng Loại
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/Lo%E1%BA%A1i.png)
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Chitietdonhang.png)
 
-### 5) Bảng Thương Hiệu
-![erd](https://github.com/goupbaocao4305/trang-web-ban-hang/blob/Th%C3%A1i-Qu%E1%BB%91c-Anh/H%C3%ACnh/Th%C6%B0%C6%A1ng%20Hi%E1%BB%87u.png)
+### 4) Danhgia
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Danhgia.png)
+
+### 5) Donhang
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Danhgia.png)
+
+### 6) Giohang
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Giohang.png)
+
+### 7) Khuyenmai
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Khuyenmai.png)
+
+### 8) Loaisanpham
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Loaisanpham.png)
+
+### 9) Role
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/role.png)
+
+### 10) Sanpham
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Sanpham.png)
+
+### 11) Taikhoan
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Taikhoan.png)
+
+### 12) Thanhtoan
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Thanhtoan.png)
+
+### 13) Thanhvien
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Thanhvien.png)
+
+### 14) Chitietgiohang
+
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Chitietgiohang.png)
