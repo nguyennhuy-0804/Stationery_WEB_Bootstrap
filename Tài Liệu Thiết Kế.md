@@ -58,7 +58,7 @@
 
 ### 13) Thanhvien
 
-![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/Thanhvien.png)
+![erd](https://github.com/nguyennhuy-0804/Stationery_WEB_Bootstrap/blob/develop/H%C3%ACnh/ThanhVien.png)
 
 ### 14) Chitietgiohang
 
